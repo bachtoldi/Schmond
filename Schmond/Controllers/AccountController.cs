@@ -18,6 +18,7 @@ namespace Schmond.Controllers
 		// POST api/accounts
 		[AllowAnonymous]
 		[HttpPost]
+		[Route("")]
 		public async Task<IHttpActionResult> Register(User userModel)
 		{
 			if (!ModelState.IsValid)
