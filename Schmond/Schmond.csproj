@@ -113,6 +113,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
+    <Content Include="App\controllers\accountController.js" />
+    <Content Include="App\controllers\indexController.js" />
+    <Content Include="App\services\authInterceptorService.js" />
+    <Content Include="App\services\authService.js" />
+    <Content Include="App\views\account\login.html" />
+    <Content Include="App\views\account\register.html" />
     <Content Include="content\materialize\css\materialize.css" />
     <Content Include="content\materialize\css\materialize.min.css" />
     <Content Include="content\materialize\font\material-design-icons\LICENSE.txt" />
@@ -122,6 +128,12 @@
     </Content>
     <Content Include="content\site.min.css">
       <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="content\spinner.css">
+      <DependentUpon>spinner.scss</DependentUpon>
+    </Content>
+    <Content Include="content\spinner.min.css">
+      <DependentUpon>spinner.css</DependentUpon>
     </Content>
     <Content Include="index.html" />
     <Content Include="Scripts\angular-animate.js" />
@@ -916,6 +928,10 @@
       <DependentUpon>site.css</DependentUpon>
     </Content>
     <Content Include="Scripts\angular-local-storage.min.js" />
+    <Content Include="content\spinner.scss" />
+    <Content Include="content\spinner.css.map">
+      <DependentUpon>spinner.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
