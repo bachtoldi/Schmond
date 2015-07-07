@@ -4,12 +4,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-TextLayoutMetrics" content="natural" />
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.yellow-amber.min.css" />
-	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<!--<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">-->
-	<link rel="stylesheet" href="/content/site.min.css" media="screen,projection">
-	<!--<link rel="stylesheet" href="/content/spinner.min.css" media="screen,projection">-->
+	<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">
+	<link rel="stylesheet" href="/content/site.css" media="screen,projection">
+	<link rel="stylesheet" href="/content/spinner.css" media="screen,projection">
 	<script src="/scripts/jquery-2.1.1.min.js"></script>
 	<script src="/scripts/angular.min.js"></script>
 	<script src="/scripts/angular-route.min.js"></script>
@@ -17,27 +14,37 @@
 	<title>Die Legion</title>
 </head>
 <body>
-	<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
-		<header class="mdl-layout__header" data-ng-controller="indexController">
-			<div class="mdl-layout__header-row">
-				<!-- Title -->
-				<span class="mdl-layout-title">{{ title }}</span>
+	<header data-ng-controller="indexController">
+		<nav class="top-nav brown darken-2">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full">
+						<i class="mdi-navigation-menu"></i>
+					</a>
+					<ul class="right hide-on-med-and-down">
+						<li ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth">
+							<a href="/#/profile">Mein Profil</a>
+						</li>
+						<li ng-hide="!authentication.isAuth">
+							<a ng-click="logOut()">Abmelden</a>
+						</li>
+						<li ng-class="{ active: isActive('/register')}" ng-hide="authentication.isAuth">
+							<a href="/#/register">Registrieren</a>
+						</li>
+						<li ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth">
+							<a href="/#/login">Anmelden</a>
+						</li>
+					</ul>
+					<a class="brand-logo" ng-cloak>{{ title }}</a>
+				</div>
 			</div>
-			<div class="mdl-layout__header-row">
-				<div class="mdl-layout-spacer"></div>
-				<nav class="mdl-navigation">
-					<a class="mdl-navigation__link" href="/#/profile" ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth">Mein Profil</a>
-					<a class="mdl-navigation__link" ng-click="logOut()" ng-hide="!authentication.isAuth">Abmelden</a>
-					<a class="mdl-navigation__link" href="/#/register" ng-class="{ active: isActive('/register')}" ng-hide="authentication.isAuth">Registrieren</a>
-					<a class="mdl-navigation__link" href="/#/login" ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth">Anmelden</a>
-				</nav>
-			</div>
-			<!--<ul id="nav-mobile" class="side-nav fixed z-depth-4" ng-cloak>
+		</nav>
+		<ul id="nav-mobile" class="side-nav fixed z-depth-4" ng-cloak>
 			<li class="logo">
-			<a id="logo-container" href="/#/home" class="brand-logo hide-nav">
-			<!--<img alt="Logo" src="/" class="center-block" height="150"/>
-			<h1 class="center-block">LOGO</h1>
-			</a>
+				<a id="logo-container" href="/#/home" class="brand-logo hide-nav">
+					<!--<img alt="Logo" src="/" class="center-block" height="150"/>-->
+					<h1 class="center-block">LOGO</h1>
+				</a>
 			</li>
 			<li class="no-padding" ng-hide="!authentication.isAuth">
 				<ul class="collapsible collapsible-accordion">
@@ -74,7 +81,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="logo hide-on-large-only">&nbsp;</li>
+			<li class="logo hide-on-large-only">&nbsp;</li> <!-- workaround to get space and a border between this and the upper item -->
 			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth">
 				<a href="/#/profile" class="waves-effect waves-ripple hide-nav">Mein Profil</a>
 			</li>
@@ -87,52 +94,45 @@
 			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth">
 				<a href="/#/login" class="waves-effect waves-ripple hide-nav">Anmelden</a>
 			</li>
-			</ul>-->
-		</header>
-		<div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">{{ title }}</span>
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-			</nav>
-		</div>
-		<main class="mdl-layout__content">
-			<!--<div class="container">
-				<div data-ng-controller="indexController">
-					<svg alt="Lade..." class="ng-hide spinner" ng-show="loading" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-						<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-					</svg>
-				</div>
-				<div data-ng-view="">
-				</div>
-			</div>-->
-			<div class="page-content" data-ng-view="">
-			</div>
-		</main>
-		<!--<footer class="page-footer brown" data-ng-controller="indexController">
-			<div class="container">
-				<div class="col l4 offset-l2 s12">
-					<ul>
-						<li>
-							<a class=" grey-text text-lighten-3" href="/#/imprint">
-								Impressum
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="footer-copyright brown darken-2">
-				<div class="container">
-					<div class="row">
-						<span class="col s12 m6">© 2013-{{ getDateNow() | date:'yyyy'}} Die Legion, All rights reserved.</span>
-						<span class="col s12 m6 right-align hide-on-small-and-down">v. 1.0.0</span>
+		</ul>
+	</header>
+	<main>
+		<div class="container">
+			<div class="ng-cloak" data-ng-controller="indexController">
+				<div class="col s12 ng-hide" ng-show="message != ''">
+					<div class="card-panel lighten-1 z-depth-1 white-text" ng-class="{ 'green': state == 'success', 'red': state == 'error' }">
+						<strong class="ng-hide">Fehler!</strong> {{ message }}
 					</div>
 				</div>
+				<svg alt="Lade..." class="ng-hide spinner" ng-show="loading" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+					<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+				</svg>
 			</div>
-		</footer>-->
-	</div>
+			<div data-ng-view="">
+			</div>
+		</div>
+	</main>
+	<footer class="page-footer brown" data-ng-controller="indexController">
+		<div class="container">
+			<div class="col l4 offset-l2 s12">
+				<ul>
+					<li>
+						<a class=" grey-text text-lighten-3" href="/#/imprint">
+							Impressum
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright brown darken-2">
+			<div class="container">
+				<div class="row">
+					<span class="col s12 m6">© 2013-{{ getDateNow() | date:'yyyy'}} Die Legion, All rights reserved.</span>
+					<span class="col s12 m6 right-align hide-on-small-and-down">v. 1.0.0</span>
+				</div>
+			</div>
+		</div>
+	</footer>
 	<script src="/app/app.js"></script>
 
 	<script src="/app/controllers/indexController.js"></script>
@@ -141,17 +141,15 @@
 	<script src="/app/services/authService.js"></script>
 	<script src="/app/services/authInterceptorService.js"></script>
 
-	<!--<script src="/scripts/materialize/materialize.min.js"></script>-->
+	<script src="/scripts/materialize/materialize.min.js"></script>
 	<script type="text/javascript">
 		$('.button-collapse').sideNav();
 
 		$(document).ready(function () {
-
 			// hides sidebar after click
 			$('body').on('click', '.hide-nav', function () {
 				$('#sidenav-overlay').trigger('click');
 			});
-
 			$('.collapsible').collapsible({
 				accordion: false
 			});
