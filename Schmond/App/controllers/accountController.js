@@ -1,10 +1,10 @@
 ﻿'use strict';
-app.controller('accountController', ['$scope', '$rootScope', '$http', '$location', '$timeout', function ($scope, $rootScope, $http, $location, $timeout) {
+app.controller('accountController', ['$scope', '$rootScope', '$http', '$location', '$timeout', 'authService', function ($scope, $rootScope, $http, $location, $timeout, authService) {
 
 	var redirect = function (path) {
 		var timer = $timeout(function () {
 			$timeout.cancel(timer);
-			$rootScope.successMessage = '';
+			$rootScope.message = '';
 			$location.path(path);
 		}, 5000);
 	};
@@ -13,15 +13,41 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 		$rootScope.title = 'Registrieren';
 	}
 
+	$scope.initLogin = function () {
+		$rootScope.title = 'Anmelden';
+	}
+
 	$scope.register = function () {
 		$rootScope.loading = true;
 		$http.post('/api/accounts', $scope.user).success(function () {
-			$rootScope.successMessage = 'Registrierung erfolgreich abgeschlossen! In 5 Sekunden werden Sie zur Anmeldung weitergeleitet.';
-			redirect('/login');
+			$rootScope.modalHeader = 'Erfolgreich';
+			$rootScope.modalMessage = 'Vielen Dank für Ihre Registrierung.';
+			$rootScope.modalLink = '/#/login';
+			$('#modal').openModal();
 		}).error(function (err) {
-			console.log(err);
-			$rootScope.message = err;
+			$rootScope.state = 'error';
+			$rootScope.modalMessage = err;
+			$('#modal').openModal();
 		});
+
+		$rootScope.loading = false;
+	}
+
+	$scope.login = function () {
+		$rootScope.loading = true;
+
+		authService.login($scope.user).then(function () {
+			$rootScope.loading = false;
+			$rootScope.modalHeader = 'Erfolgreich';
+			$rootScope.modalMessage = 'Erfolgreich angemeldet!';
+			$('#modal').openModal();
+		},
+		 function (err) {
+		 	$rootScope.loading = false;
+		 	$rootScope.modalHeader = 'Anmeldung fehlgeschlagen';
+		 	$rootScope.modalMessage = err.error_description;
+		 	$('#modal').openModal();
+		 });
 
 		$rootScope.loading = false;
 	}

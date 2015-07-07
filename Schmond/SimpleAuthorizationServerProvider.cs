@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.Owin.Security.OAuth;
 
@@ -15,6 +16,8 @@ namespace Schmond
 
 		public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
 		{
+			context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+
 			using (var repo = new AuthRepository())
 			{
 				var user = await repo.FindUser(context.UserName, context.Password);
@@ -22,7 +25,6 @@ namespace Schmond
 				if (user == null)
 				{
 					context.SetError("invalid_grant", "Benutzername oder Kennwort falsch");
-					context.Rejected();
 					return;
 				}
 

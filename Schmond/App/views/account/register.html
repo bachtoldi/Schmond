@@ -1,27 +1,32 @@
 ﻿<div class="row" ng-init="initRegister()">
-	<form>
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-			<input class="mdl-textfield__input" type="text" name="username" ng-model="user.username" id="username" />
-			<label class="mdl-textfield__label" for="username">Benutzername</label>
-		</div>
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-			<input class="mdl-textfield__input" type="email" name="email" ng-model="user.email" id="email" />
-			<label class="mdl-textfield__label" for="email">Email</label>
-		</div>
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-			<input class="mdl-textfield__input" type="password" name="password" ng-model="user.password" id="password" />
-			<label class="mdl-textfield__label" for="password">Kennwort</label>
-		</div>
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-			<input class="mdl-textfield__input" type="password" name="confirmPassword" ng-model="user.confirmPassword" id="confirmPassword" />
-			<label class="mdl-textfield__label" for="confirmPassword">Kennwort bestätigen</label>
-		</div>
-
-		<div class="card-action center-align">
-			<button class="waves-effect waves-light btn" type="submit" title="Login">
-				<i class="mdi-content-send right"></i>
-				Mitglied werden
-			</button>
+	<form ng-submit="register()" class="col s12">
+		<div class="card-panel">
+			<div class="col s12 l6">
+				<div class="input-field col s12">
+					<input type="text" name="username" ng-model="user.username" id="username" required/>
+					<label for="username">Benutzername</label>
+				</div>
+				<div class="input-field col s12">
+					<input type="email" name="email" ng-model="user.email" id="email" required />
+					<label for="email">Email</label>
+				</div>
+			</div>
+			<div class="col s12 l6">
+				<div class="input-field col s12">
+					<input type="password" name="password" ng-model="user.password" id="password" required />
+					<label for="password">Kennwort</label>
+				</div>
+				<div class="input-field col s12">
+					<input type="password" name="confirmPassword" ng-model="user.confirmPassword" id="confirmPassword" required />
+					<label for="confirmPassword">Kennwort bestätigen</label>
+				</div>
+			</div>
+			<div class="card-action center-align">
+				<button class="waves-effect waves-light btn" type="submit" title="Login">
+					<i class="mdi-content-send right"></i>
+					Mitglied werden
+				</button>
+			</div>
 		</div>
 	</form>
 </div>

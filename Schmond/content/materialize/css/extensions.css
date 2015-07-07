@@ -1,0 +1,50 @@
+﻿body.hide-cards-on-mobile {
+	background: #efefef;
+}
+
+body.fixed-footer {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+	body.fixed-footer main {
+		flex: 1 0 auto;
+	}
+
+a[ng-click] {
+	cursor: pointer;
+}
+
+@media screen, projection {
+	body.hide-chrome-autofill-color input:-webkit-autofill,
+	body.hide-chrome-autofill-color input:-webkit-autofill:hover,
+	body.hide-chrome-autofill-color input:-webkit-autofill:focus,
+	body.hide-chrome-autofill-color input:-webkit-autofill:active {
+		transition: background-color 5000s ease-in-out 0s;
+		-webkit-box-shadow: 0 0 0 1000px white inset;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	body.hide-cards-on-mobile {
+		background: #fff;
+	}
+
+		body.hide-cards-on-mobile .card-panel,
+		body.hide-cards-on-mobile .card {
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
+
+			body.hide-cards-on-mobile .card-panel,
+			body.hide-cards-on-mobile .card .card-content {
+				padding: 0;
+			}
+
+			body.hide-cards-on-mobile .card-panel .card-action,
+			body.hide-cards-on-mobile .card .card-action {
+				border-top: none;
+			}
+}

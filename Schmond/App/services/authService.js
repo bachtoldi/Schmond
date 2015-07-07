@@ -11,16 +11,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 	};
 
 	var saveRegistration = function (registration) {
-		var fd = new FormData();
-		fd.append('userModel', registration);
-		fd.append('password', registration.password);
-		return $http.post(serviceBase + 'api/account/register', fd).then(function (response) {
+		return $http.post(serviceBase + 'api/accounts', registration).then(function (response) {
 			return response;
 		});
 	};
 
 	var updateProfile = function (profile) {
-		return $http.post(serviceBase + 'api/account', profile).then(function (response) {
+		return $http.put(serviceBase + 'api/accounts', profile).then(function (response) {
 			return response;
 		});
 	};
@@ -46,7 +43,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 		var deferred = $q.defer();
 
 		$http.post('/api/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-			console.log(response);
 			if (loginData.useRefreshTokens) {
 				localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
 			}
@@ -58,7 +54,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 			authentication.useRefreshTokens = loginData.useRefreshTokens;
 
 			deferred.resolve(response);
-
 		}).error(function (err) {
 			logOut();
 			deferred.reject(err);
@@ -112,7 +107,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 
 		var deferred = $q.defer();
 
-		$http.get(serviceBase + 'api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
+		$http.get(serviceBase + 'api/accounts/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
 
 			localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: '', useRefreshTokens: false });
 
