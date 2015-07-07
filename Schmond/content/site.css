@@ -1,15 +1,4 @@
-﻿body {
-	background: #efefef;
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
-}
-
-main {
-	flex: 1 0 auto;
-}
-
-@media screen, projection {
+﻿@media screen, projection {
 	header, main, footer {
 		padding-left: 120px;
 	}
@@ -57,21 +46,9 @@ main {
 		background-color: #795548;
 		opacity: .8;
 	}
-
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover,
-	input:-webkit-autofill:focus,
-	input:-webkit-autofill:active {
-		transition: background-color 5000s ease-in-out 0s;
-		-webkit-box-shadow: 0 0 0px 1000px white inset;
-	}
 }
 
 @media only screen and (max-width: 992px) {
-	body {
-		background: #fff;
-	}
-
 	header, main, footer {
 		padding-left: 0;
 	}
@@ -88,14 +65,4 @@ main {
 		-webkit-transform: none;
 		transform: none;
 	}
-
-	.card-panel, .card {
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-	}
-
-		.card .card-action {
-			border-top: none;
-		}
 }
