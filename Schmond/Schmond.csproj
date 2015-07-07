@@ -121,6 +121,7 @@
     <Content Include="App\views\account\register.html" />
     <Content Include="content\materialize\css\materialize.css" />
     <Content Include="content\materialize\css\materialize.min.css" />
+    <Content Include="content\materialize\css\extensions.css" />
     <Content Include="content\materialize\font\material-design-icons\LICENSE.txt" />
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="content\site.css" />

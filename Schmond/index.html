@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-TextLayoutMetrics" content="natural" />
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">
+	<link rel="stylesheet" href="/content/materialize/css/extensions.css" media="screen,projection">
 	<link rel="stylesheet" href="/content/site.css" media="screen,projection">
 	<link rel="stylesheet" href="/content/spinner.css" media="screen,projection">
 	<script src="/scripts/jquery-2.1.1.min.js"></script>
@@ -13,7 +14,7 @@
 	<script src="/scripts/angular-local-storage.min.js"></script>
 	<title>Die Legion</title>
 </head>
-<body>
+<body class="fixed-footer hide-cards-on-mobile hide-chrome-autofill-color">
 	<header data-ng-controller="indexController">
 		<nav class="top-nav brown darken-2">
 			<div class="container">
@@ -99,9 +100,12 @@
 	<main>
 		<div class="container">
 			<div class="ng-cloak" data-ng-controller="indexController">
-				<div class="col s12 ng-hide" ng-show="message != ''">
-					<div class="card-panel lighten-1 z-depth-1 white-text" ng-class="{ 'green': state == 'success', 'red': state == 'error' }">
-						<strong class="ng-hide">Fehler!</strong> {{ message }}
+				<div class="modal" id="modal">
+					<div class="modal-content">
+						<h4 class="ng-hide" ng-show="header != ''">{{ modalHeader }}</h4> {{ modalMessage }}
+					</div>
+					<div class="modal-footer">
+						<a href="{{ modalLink }}" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
 					</div>
 				</div>
 				<svg alt="Lade..." class="ng-hide spinner" ng-show="loading" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">

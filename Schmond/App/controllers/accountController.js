@@ -20,12 +20,14 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 	$scope.register = function () {
 		$rootScope.loading = true;
 		$http.post('/api/accounts', $scope.user).success(function () {
-			$rootScope.state = 'success';
-			$rootScope.message = 'Registrierung erfolgreich abgeschlossen! In 5 Sekunden werden Sie zur Anmeldung weitergeleitet.';
-			redirect('/login');
+			$rootScope.modalHeader = 'Erfolgreich';
+			$rootScope.modalMessage = 'Vielen Dank für Ihre Registrierung.';
+			$rootScope.modalLink = '/#/login';
+			$('#modal').openModal();
 		}).error(function (err) {
 			$rootScope.state = 'error';
-			$rootScope.message = err;
+			$rootScope.modalMessage = err;
+			$('#modal').openModal();
 		});
 
 		$rootScope.loading = false;
@@ -36,14 +38,15 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 
 		authService.login($scope.user).then(function () {
 			$rootScope.loading = false;
-			$rootScope.state = 'success';
-			$rootScope.message = 'Erfolgreich angemeldet! In 5 Sekunden werden Sie weitergeleitet.';
-			$location.path('/login');
+			$rootScope.modalHeader = 'Erfolgreich';
+			$rootScope.modalMessage = 'Erfolgreich angemeldet!';
+			$('#modal').openModal();
 		},
 		 function (err) {
 		 	$rootScope.loading = false;
-		 	$rootScope.state = 'error';
-		 	$rootScope.message = err.error_description;
+		 	$rootScope.modalHeader = 'Anmeldung fehlgeschlagen';
+		 	$rootScope.modalMessage = err.error_description;
+		 	$('#modal').openModal();
 		 });
 
 		$rootScope.loading = false;
