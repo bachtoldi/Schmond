@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Schmond.Models;
 
 namespace Schmond.Models
 {
@@ -18,4 +19,24 @@ namespace Schmond.Models
 		[Compare("Password", ErrorMessage = "Die Kennwörter stimmen nicht überein.")]
 		public string ConfirmPassword { get; set; }
 	}
+}
+
+//@example
+public class ModelExample
+{
+	[Key]
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)] // AutoIncrement
+	public int PrimaryKey { get; set; }
+
+	[StringLength(100)] // max length
+	[Required] // not null
+	public string SimpleProperty { get; set; }
+
+	[ForeignKey("UserId")] // many-to-one or one-to-one reference. can also be done in context
+	public User User { get; set; }
+
+	// column which references
+	public int UserId { get; set; }
+
+	//other references will be made in Context
 }
