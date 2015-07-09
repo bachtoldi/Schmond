@@ -71,6 +71,9 @@ CREATE TABLE Chars (
 	SpecId int FOREIGN KEY REFERENCES Spec(SpecId) NOT NULL
 )
 
+ALTER TABLE AspNetUsers
+ADD CharsId int FOREIGN KEY REFERENCES Chars(CharsId) NULL
+
 CREATE TABLE NeedType (
 	NeedTypeId int IDENTITY(1,1) PRIMARY KEY,
 	NeedTypeName varchar(max) NOT NULL
