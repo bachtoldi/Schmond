@@ -51,7 +51,7 @@
 </table>
 <table x="189" y="12" name="AspNetUserClaims">
 <row name="Id" null="0" autoincrement="1">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <relation table="AspNetUsers" row="Id" />
 </row>
 <row name="UserId" null="0" autoincrement="0">
@@ -136,13 +136,161 @@
 <datatype>bit</datatype>
 </row>
 <row name="AccessFailedCount" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 </row>
 <row name="UserName" null="0" autoincrement="0">
 <datatype>VARCHAR(256)</datatype>
 </row>
 <key type="PRIMARY" name="">
 <part>Id</part>
+</key>
+</table>
+<table x="841.3333368654605" y="402.77778248728066" name="Char">
+<row name="CharId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="UserId" null="0" autoincrement="0">
+<datatype>VARCHAR(128)</datatype>
+<relation table="AspNetUsers" row="Id" />
+</row>
+<row name="CharName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="RaceId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Race" row="RaceId" />
+</row>
+<row name="SpecId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Spec" row="SpecId" />
+</row>
+<key type="PRIMARY" name="">
+<part>CharId</part>
+</key>
+</table>
+<table x="261.3333368654605" y="441.66667373092105" name="Instance">
+<row name="InstanceId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="InstanceName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>InstanceId</part>
+</key>
+</table>
+<table x="274.3333368654605" y="584.666673730921" name="Boss">
+<row name="BossId" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="BossName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="InstanceId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Instance" row="InstanceId" />
+</row>
+<key type="PRIMARY" name="">
+<part>BossId</part>
+</key>
+</table>
+<table x="621" y="439.77778248728066" name="Spec">
+<row name="SpecId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="SpecName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="ClassId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Class" row="ClassId" />
+</row>
+<key type="PRIMARY" name="">
+<part>SpecId</part>
+</key>
+</table>
+<table x="441" y="586.7777824872807" name="Item">
+<row name="ItemId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="BossId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Boss" row="BossId" />
+</row>
+<key type="PRIMARY" name="">
+<part>ItemId</part>
+</key>
+</table>
+<table x="440" y="444.1111193527413" name="Class">
+<row name="ClassId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ClassName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ClassId</part>
+</key>
+</table>
+<table x="1004" y="401.1111193527413" name="Race">
+<row name="RaceId" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="RaceName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>RaceId</part>
+</key>
+</table>
+<table x="613" y="583.1111193527413" name="Available">
+<row name="AvailableId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="SpecId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Spec" row="SpecId" />
+</row>
+<row name="ItemId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Item" row="ItemId" />
+</row>
+<key type="PRIMARY" name="">
+<part>AvailableId</part>
+</key>
+</table>
+<table x="978" y="544.1111193527413" name="Need">
+<row name="NeedId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="CharId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Char" row="CharId" />
+</row>
+<row name="AvailableId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Available" row="AvailableId" />
+</row>
+<row name="NeedTypeId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="NeedType" row="NeedTypeId" />
+</row>
+<key type="PRIMARY" name="">
+<part>NeedId</part>
+</key>
+</table>
+<table x="954" y="699.1111193527413" name="NeedType">
+<row name="NeedTypeId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="NeedTypeName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>NeedTypeId</part>
 </key>
 </table>
 </sql>
