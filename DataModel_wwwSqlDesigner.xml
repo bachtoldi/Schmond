@@ -67,7 +67,7 @@
 <part>Id</part>
 </key>
 </table>
-<table x="686" y="43" name="AspNetUserLogins">
+<table x="739" y="21" name="AspNetUserLogins">
 <row name="LoginProvider" null="0" autoincrement="0">
 <datatype>VARCHAR(128)</datatype>
 </row>
@@ -141,19 +141,23 @@
 <row name="UserName" null="0" autoincrement="0">
 <datatype>VARCHAR(256)</datatype>
 </row>
+<row name="CharsId_Main" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Chars" row="CharsId" />
+</row>
 <key type="PRIMARY" name="">
 <part>Id</part>
 </key>
 </table>
-<table x="841.3333368654605" y="402.77778248728066" name="Char">
-<row name="CharId" null="0" autoincrement="1">
+<table x="841" y="402" name="Chars">
+<row name="CharsId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
 <row name="UserId" null="0" autoincrement="0">
 <datatype>VARCHAR(128)</datatype>
 <relation table="AspNetUsers" row="Id" />
 </row>
-<row name="CharName" null="0" autoincrement="0">
+<row name="CharsName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
 <row name="RaceId" null="0" autoincrement="0">
@@ -165,10 +169,10 @@
 <relation table="Spec" row="SpecId" />
 </row>
 <key type="PRIMARY" name="">
-<part>CharId</part>
+<part>CharsId</part>
 </key>
 </table>
-<table x="261.3333368654605" y="441.66667373092105" name="Instance">
+<table x="261" y="441" name="Instance">
 <row name="InstanceId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -179,7 +183,7 @@
 <part>InstanceId</part>
 </key>
 </table>
-<table x="274.3333368654605" y="584.666673730921" name="Boss">
+<table x="274" y="584" name="Boss">
 <row name="BossId" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 </row>
@@ -194,7 +198,7 @@
 <part>BossId</part>
 </key>
 </table>
-<table x="621" y="439.77778248728066" name="Spec">
+<table x="621" y="439" name="Spec">
 <row name="SpecId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -209,7 +213,7 @@
 <part>SpecId</part>
 </key>
 </table>
-<table x="441" y="586.7777824872807" name="Item">
+<table x="441" y="586" name="Item">
 <row name="ItemId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -220,11 +224,14 @@
 <datatype>INT</datatype>
 <relation table="Boss" row="BossId" />
 </row>
+<row name="ItemImg" null="1" autoincrement="0">
+<datatype>ENUM(actually picture)</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>ItemId</part>
 </key>
 </table>
-<table x="440" y="444.1111193527413" name="Class">
+<table x="440" y="444" name="Class">
 <row name="ClassId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -235,7 +242,7 @@
 <part>ClassId</part>
 </key>
 </table>
-<table x="1004" y="401.1111193527413" name="Race">
+<table x="1004" y="401" name="Race">
 <row name="RaceId" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 </row>
@@ -246,7 +253,7 @@
 <part>RaceId</part>
 </key>
 </table>
-<table x="613" y="583.1111193527413" name="Available">
+<table x="613" y="583" name="Available">
 <row name="AvailableId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -262,13 +269,13 @@
 <part>AvailableId</part>
 </key>
 </table>
-<table x="978" y="544.1111193527413" name="Need">
+<table x="978" y="544" name="Need">
 <row name="NeedId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
-<row name="CharId" null="0" autoincrement="0">
+<row name="CharsId" null="0" autoincrement="0">
 <datatype>INT</datatype>
-<relation table="Char" row="CharId" />
+<relation table="Chars" row="CharsId" />
 </row>
 <row name="AvailableId" null="0" autoincrement="0">
 <datatype>INT</datatype>
@@ -282,7 +289,7 @@
 <part>NeedId</part>
 </key>
 </table>
-<table x="954" y="699.1111193527413" name="NeedType">
+<table x="954" y="699" name="NeedType">
 <row name="NeedTypeId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
