@@ -26,7 +26,9 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 			$('#modal').openModal();
 		}).error(function (err) {
 			$rootScope.state = 'error';
+			$rootScope.modalHeader = 'Fehler';
 			$rootScope.modalMessage = err;
+			$rootScope.modalLink = 'javascript:void()';
 			$('#modal').openModal();
 		});
 
