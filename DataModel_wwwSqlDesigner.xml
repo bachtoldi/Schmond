@@ -269,7 +269,7 @@
 <part>AvailableId</part>
 </key>
 </table>
-<table x="978" y="544" name="Need">
+<table x="996" y="514" name="Need">
 <row name="NeedId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -285,6 +285,10 @@
 <datatype>INT</datatype>
 <relation table="NeedType" row="NeedTypeId" />
 </row>
+<row name="PrioritiesId" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="Priorities" row="PrioritiesId" />
+</row>
 <key type="PRIMARY" name="">
 <part>NeedId</part>
 </key>
@@ -298,6 +302,17 @@
 </row>
 <key type="PRIMARY" name="">
 <part>NeedTypeId</part>
+</key>
+</table>
+<table x="783" y="654" name="Priorities">
+<row name="PrioritiesId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+</row>
+<row name="PrioritiesName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>PrioritiesId</part>
 </key>
 </table>
 </sql>
