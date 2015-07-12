@@ -1,9 +1,9 @@
 /* 
-DROP DATABASE schmond_test_01
-CREATE DATABASE schmond_test
+DROP DATABASE schmond
+CREATE DATABASE schmond
 */
 
-USE [schmond_test]
+USE [schmond]
 
 SET ANSI_NULLS ON
 GO
