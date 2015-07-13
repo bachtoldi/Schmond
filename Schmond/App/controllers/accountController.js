@@ -1,14 +1,6 @@
 ﻿'use strict';
 app.controller('accountController', ['$scope', '$rootScope', '$http', '$location', '$timeout', 'authService', function ($scope, $rootScope, $http, $location, $timeout, authService) {
 
-	var redirect = function (path) {
-		var timer = $timeout(function () {
-			$timeout.cancel(timer);
-			$rootScope.message = '';
-			$location.path(path);
-		}, 5000);
-	};
-
 	$scope.initRegister = function () {
 		$rootScope.title = 'Registrieren';
 	}
@@ -20,19 +12,19 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 	$scope.register = function () {
 		$rootScope.loading = true;
 		$http.post('/api/accounts', $scope.user).success(function () {
+			$rootScope.loading = false;
 			$rootScope.modalHeader = 'Erfolgreich';
 			$rootScope.modalMessage = 'Vielen Dank für Ihre Registrierung.';
 			$rootScope.modalLink = '/#/login';
 			$('#modal').openModal();
 		}).error(function (err) {
+			$rootScope.loading = false;
 			$rootScope.state = 'error';
 			$rootScope.modalHeader = 'Fehler';
 			$rootScope.modalMessage = err;
 			$rootScope.modalLink = 'javascript:void()';
 			$('#modal').openModal();
 		});
-
-		$rootScope.loading = false;
 	}
 
 	$scope.login = function () {

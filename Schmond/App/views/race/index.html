@@ -1,0 +1,14 @@
+﻿<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+	<a class="btn btn-floating btn-large waves-effect waves-light red" href="/#/admin/race/create" title="Rasse erstellen">
+		<i class="mdi-content-add"></i>
+	</a>
+</div>
+<div class="row ng-hide" data-ng-init="initIndex()" ng-show="races.length > 0">
+	<div class="col s12">
+		<div class="collection z-depth-1">
+			<a class="collection-item" href="/#/admin/races/{{ race.id }}" ng-repeat="race in races">
+				{{ race.name }}
+			</a>
+		</div>
+	</div>
+</div>

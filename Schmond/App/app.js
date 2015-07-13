@@ -9,6 +9,10 @@ app.config(function ($routeProvider) {
 		controller: 'accountController',
 		templateUrl: '/app/views/account/register.html'
 	});
+	$routeProvider.when('/admin/races', {
+		controller: 'raceController',
+		templateUrl: '/app/views/race/index.html'
+	});
 	$routeProvider.when('/imprint', {
 		controller: '',
 		templateUrl: '/app/views/imprint.html'

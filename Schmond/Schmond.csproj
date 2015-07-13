@@ -116,11 +116,13 @@
     <Content Include="App\app.js" />
     <Content Include="App\controllers\accountController.js" />
     <Content Include="App\controllers\indexController.js" />
+    <Content Include="App\controllers\raceController.js" />
     <Content Include="App\services\authInterceptorService.js" />
     <Content Include="App\services\authService.js" />
     <Content Include="App\views\account\login.html" />
     <Content Include="App\views\account\register.html" />
     <Content Include="App\views\imprint.html" />
+    <Content Include="App\views\race\index.html" />
     <Content Include="content\materialize\css\materialize.css" />
     <Content Include="content\materialize\css\materialize.min.css" />
     <Content Include="content\materialize\css\extensions.css" />
@@ -931,8 +933,11 @@
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Filters\UnhandledExceptionFilter.cs" />
     <Compile Include="Models\Char.cs" />
+    <Compile Include="Models\Race.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleAuthorizationServerProvider.cs" />
