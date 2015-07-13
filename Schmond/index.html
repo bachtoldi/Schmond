@@ -47,6 +47,9 @@
 					<h1 class="center-block">LOGO</h1>
 				</a>
 			</li>
+			<li ng-class="{ active: isActive('/players')} }" class="bold">
+				<a href="/#/players" class="waves-effect waves-ripple hide-nav" data-activates="nav-mobile">Mitglieder</a>
+			</li>
 			<li class="no-padding" ng-hide="!authentication.isAuth">
 				<ul class="collapsible collapsible-accordion">
 					<li class="bold" ng-class="{ active: isActive('/lootlist')}">
@@ -76,6 +79,23 @@
 								</li>
 								<li ng-class="{ active: isActive('/lootlist/rogue')}">
 									<a href="/#/lootlists/rogue" class="waves-effect waves-ripple hide-nav">Schurke</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li class="no-padding" ng-hide="!authentication.isAuth">
+				<ul class="collapsible collapsible-accordion">
+					<li class="bold" ng-class="{ active: isActive('/admin')}">
+						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/admin')}">Administration</a>
+						<div class="collapsible-body">
+							<ul>
+								<li ng-class="{ active: isActive('/admin/races')}">
+									<a href="/#/admin/races" class="waves-effect waves-ripple hide-nav">Rassen</a>
+								</li>
+								<li ng-class="{ active: isActive('/admin/classes')}">
+									<a href="/#/admin/classes" class="waves-effect waves-ripple hide-nav">Klassen</a>
 								</li>
 							</ul>
 						</div>

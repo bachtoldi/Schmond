@@ -24,6 +24,40 @@ a[ng-click] {
 		transition: background-color 5000s ease-in-out 0s;
 		-webkit-box-shadow: 0 0 0 1000px white inset;
 	}
+
+	#logo-container {
+		height: auto;
+		margin-bottom: 16px;
+	}
+
+	.side-nav.fixed li.logo {
+		text-align: center;
+		margin-top: 16px;
+		margin-bottom: 16px;
+		border-bottom: 1px solid #ddd;
+	}
+
+		.side-nav.fixed li.logo:hover {
+			background-color: transparent;
+		}
+
+	.side-nav.fixed li {
+		line-height: 44px;
+	}
+
+		.side-nav.fixed li a {
+			font-size: 13px;
+			line-height: 44px;
+			height: 44px;
+		}
+
+		.side-nav.fixed li:hover, .side-nav.fixed li.active {
+			background-color: rgba(0, 0, 0, 0.10);
+		}
+
+	.bold > a {
+		font-weight: bold;
+	}
 }
 
 @media only screen and (max-width: 992px) {
@@ -43,8 +77,8 @@ a[ng-click] {
 				padding: 0;
 			}
 
-			body.hide-cards-on-mobile .card-panel .card-action,
-			body.hide-cards-on-mobile .card .card-action {
-				border-top: none;
-			}
+				body.hide-cards-on-mobile .card-panel .card-action,
+				body.hide-cards-on-mobile .card .card-action {
+					border-top: none;
+				}
 }
