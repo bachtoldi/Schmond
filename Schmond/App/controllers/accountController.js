@@ -48,6 +48,7 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 		 	$rootScope.loading = false;
 		 	$rootScope.modalHeader = 'Anmeldung fehlgeschlagen';
 		 	$rootScope.modalMessage = err.error_description;
+		 	$rootScope.modalLink = 'javascript:void()';
 		 	$('#modal').openModal();
 		 });
 

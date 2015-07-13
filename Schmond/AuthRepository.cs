@@ -13,10 +13,19 @@ namespace Schmond {
         private readonly UserManager<User> _userManager;
 
         public AuthRepository(Context context = null) {
-            _context = context ?? new Context();
+	        try
+	        {
+						_context = context ?? new Context();
 
-            var store = new UserStore<User>(_context);
-            _userManager = new UserManager<User>(store);
+						var store = new UserStore<User>(_context);
+						_userManager = new UserManager<User>(store);
+	        }
+	        catch (Exception ex)
+	        {
+		        
+		        throw;
+	        }
+            
         }
 
         public async Task<IdentityResult> RegisterUser(User user) {

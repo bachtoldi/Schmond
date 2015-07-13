@@ -10,13 +10,13 @@ namespace Schmond.Models
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int Id { get; set; }
+		public int CharsId { get; set; }
 
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }
 
 		[Required]
-		public int UserId { get; set; }
+		public string UserId { get; set; }
 
 		//Example how to load relations
 		//using (Context ctx = new Context())
