@@ -114,70 +114,87 @@ GO
 ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
 GO
 
-CREATE TABLE Instance (
-	InstanceId int IDENTITY(1,1) PRIMARY KEY,
-	InstanceName nvarchar(max) NOT NULL
+CREATE TABLE [dbo].[Instance] (
+	[InstanceId] int PRIMARY KEY,
+	[InstanceName] nvarchar(max) NOT NULL,
+	[InstanceNameEN] nvarchar(max) NOT NULL
 )
 
-CREATE TABLE Boss (
-	BossId int IDENTITY(1,1) PRIMARY KEY,
-	BossName nvarchar(max) NOT NULL,
-	InstanceId int FOREIGN KEY REFERENCES Instance(InstanceId) NOT NULL
+CREATE TABLE [dbo].[Boss] (
+	[BossId] int PRIMARY KEY,
+	[BossNumber] int NOT NULL,
+	[BossName] nvarchar(max) NOT NULL,
+	[BossNameEN] nvarchar(max) NOT NULL,
+	[FK_InstanceId] int FOREIGN KEY REFERENCES [dbo].[Instance]([InstanceId]) NOT NULL
 )
 
-CREATE TABLE Item (
-	ItemId int IDENTITY(1,1) PRIMARY KEY,
-	ItemName nvarchar(max) NOT NULL,
-	BossId int FOREIGN KEY REFERENCES Boss(BossId) NOT NULL,
-	ItemImg image NULL
+CREATE TABLE [dbo].[Class] (
+	[ClassId] int PRIMARY KEY,
+	[ClassName] nvarchar(max) NOT NULL,
+	[ClassNameEN] nvarchar(max) NOT NULL
 )
 
-CREATE TABLE Class (
-	ClassId int IDENTITY(1,1) PRIMARY KEY,
-	ClassName nvarchar(max) NOT NULL
+CREATE TABLE [dbo].[Item] (
+	[ItemId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemName] nvarchar(max) NOT NULL,
+	[ItemNameEN] nvarchar(max) NOT NULL,
+	[ItemType] nvarchar(max) NOT NULL,
+	[FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NULL,
+	[FK_BossId] int FOREIGN KEY REFERENCES [dbo].[Boss]([BossId]) NOT NULL,
+	[ItemImg] image NULL
 )
 
-CREATE TABLE Spec (
-	SpecId int IDENTITY(1,1) PRIMARY KEY,
-	SpecName nvarchar(max) NOT NULL,
-	ClassId int FOREIGN KEY REFERENCES Class(ClassId) NOT NULL
+CREATE TABLE [dbo].[Spec] (
+	[SpecId] int PRIMARY KEY,
+	[SpecName] nvarchar(max) NOT NULL,
+	[SpecNameEN] nvarchar(max) NOT NULL,
+	[FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL
 )
 
-CREATE TABLE Available (
-	AvailableId int IDENTITY(1,1) PRIMARY KEY,
-	SpecId int FOREIGN KEY REFERENCES Spec(SpecId) NOT NULL,
-	ItemId int FOREIGN KEY REFERENCES Item(ItemId) NOT NULL
+CREATE TABLE [dbo].[Available] (
+	[AvailableId] int IDENTITY(1,1) PRIMARY KEY,
+	[FK_SpecId] int FOREIGN KEY REFERENCES [dbo].[Spec]([SpecId]) NOT NULL,
+	[FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL
 )
 
-CREATE TABLE Race (
-	RaceId int IDENTITY(1,1) PRIMARY KEY,
-	RaceName nvarchar(max)
+CREATE TABLE [dbo].[Faction] (
+	[FactionId] int PRIMARY KEY,
+	[FactionName] nvarchar(max) NOT NULL,
+	[FactionNameEN] nvarchar(max) NOT NULL,
 )
 
-CREATE TABLE Chars (
-	CharsId int IDENTITY(1,1) PRIMARY KEY,
-	UserId nvarchar(128) FOREIGN KEY REFERENCES AspNetUsers(Id) NOT NULL,
-	CharsName varchar(max) NOT NULL,
-	RaceId int FOREIGN KEY REFERENCES Race(RaceId) NOT NULL,
-	SpecId int FOREIGN KEY REFERENCES Spec(SpecId) NOT NULL
+CREATE TABLE [dbo].[Race] (
+	[RaceId] int PRIMARY KEY,
+	[RaceName] nvarchar(max),
+	[RaceNameEN] nvarchar(max),
+	[FK_FactionId] int FOREIGN KEY REFERENCES [dbo].[Faction]([FactionId]) NOT NULL
 )
 
-ALTER TABLE AspNetUsers
-ADD CharsId int FOREIGN KEY REFERENCES Chars(CharsId) NULL
-
-CREATE TABLE NeedType (
-	NeedTypeId int IDENTITY(1,1) PRIMARY KEY,
-	NeedTypeName varchar(max) NOT NULL
+CREATE TABLE [dbo].[Char] (
+	[CharId] int IDENTITY(1,1) PRIMARY KEY,
+	[CharName] varchar(max) NOT NULL,
+	[FK_UserId] nvarchar(128) FOREIGN KEY REFERENCES [dbo].[AspNetUsers]([Id]) NOT NULL,
+	[FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL,
+	[FK_SpecId] int FOREIGN KEY REFERENCES [dbo].[Spec]([SpecId]) NOT NULL
 )
 
-CREATE TABLE Priorities (
-	PrioritiesId int PRIMARY KEY,
-	PrioritiesName varchar(max) NOT NULL
+ALTER TABLE [dbo].[AspNetUsers]
+ADD [FK_CharId] int FOREIGN KEY REFERENCES [dbo].[Char]([CharId]) NULL
+
+CREATE TABLE [dbo].[NeedType] (
+	[NeedTypeId] int PRIMARY KEY,
+	[NeedTypeName] varchar(max) NOT NULL
 )
 
-CREATE TABLE Need (
-	NeedId int IDENTITY(1,1) PRIMARY KEY,
-	CharsId int FOREIGN KEY REFERENCES Chars(CharsId) NOT NULL,
-	AvailableId int FOREIGN KEY REFERENCES Available(AvailableId) NOT NULL,
-	NeedTypeId int FOREIGN KEY REFERENCES NeedType(NeedTypeId) NOT NULL
+CREATE TABLE [dbo].[Priority] (
+	[PriorityId] int PRIMARY KEY,
+	[PriorityName] varchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[Need] (
+	[NeedId] int IDENTITY(1,1) PRIMARY KEY,
+	[FK_CharId] int FOREIGN KEY REFERENCES [dbo].[Char]([CharId]) NOT NULL,
+	[FK_AvailableId] int FOREIGN KEY REFERENCES [dbo].[Available]([AvailableId]) NOT NULL,
+	[FK_NeedTypeId] int FOREIGN KEY REFERENCES [dbo].[NeedType]([NeedTypeId]) NOT NULL,
+	[FK_PriorityId] int FOREIGN KEY REFERENCES [dbo].[Priority]([PriorityId]) NOT NULL
 )
