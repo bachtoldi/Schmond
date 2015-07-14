@@ -17,4 +17,8 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', '$location', 
 			$('#modal').openModal();
 		});
 	}
+
+	$scope.show = function(id) {
+		$('#' + id).openModal();
+	}
 }]);
