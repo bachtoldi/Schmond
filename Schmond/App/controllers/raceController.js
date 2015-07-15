@@ -21,7 +21,6 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 	$scope.show = function (race) {
 		if (race == null) {
 			$scope.race = {
-				id: '',
 				name: ''
 			}
 		} else {
@@ -38,8 +37,8 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 	$scope.save = function () {
 		$rootScope.loading = true;
-
-		if ($scope.race.id === '') {
+		
+		if ($scope.race.id == undefined) {
 			$http.post('/api/races', $scope.race).success(function () {
 				$rootScope.loading = false;
 				$scope.initIndex(); // reload races
