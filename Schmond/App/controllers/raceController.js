@@ -44,6 +44,7 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 				$scope.initIndex(); // reload races
 				$('#edit').closeModal();
 			}).error(function (err) {
+				console.log(err);
 				$rootScope.loading = false;
 				$rootScope.state = 'error';
 				$rootScope.modalHeader = 'Fehler';
