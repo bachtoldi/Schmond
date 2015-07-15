@@ -58,9 +58,36 @@ a[ng-click] {
 	.bold > a {
 		font-weight: bold;
 	}
+
+	.progress {
+		margin: 0;
+	}
+
+	nav .button-collapse i {
+		font-size: 24px;
+	}
+
+	.collection {
+		-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+		-ms-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	}
+
+	.modal {
+		max-width: 400px;
+	}
+
+	.fixed-action-btn {
+		top: 22px;
+		bottom: auto;
+		right: 22px;
+	}
 }
 
 @media only screen and (max-width: 992px) {
+}
+
+@media only screen and (max-width: 601px) {
 	body.hide-cards-on-mobile {
 		background: #fff;
 	}
@@ -81,4 +108,42 @@ a[ng-click] {
 				body.hide-cards-on-mobile .card .card-action {
 					border-top: none;
 				}
+
+	.lean-overlay {
+		visibility: hidden;
+	}
+
+	.modal, .modal.modal-fixed-footer {
+		-webkit-box-shadow: none;
+		-ms-box-shadow: none;
+		box-shadow: none;
+		-ms-border-radius: 0;
+		border-radius: 0;
+		position: fixed;
+		bottom: 0;
+		max-height: 100%;
+		max-width: 100%;
+		left: 0;
+		right: 0;
+		width: auto;
+		height: auto;
+		margin: 0;
+	}
+
+		.modal[style],
+		.modal.modal-fixed-footer[style] {
+			top: 0 !important;
+		}
+
+	.collection {
+		-webkit-box-shadow: none;
+		-ms-box-shadow: none;
+		box-shadow: none;
+		border: none;
+	}
+
+	.fixed-action-btn {
+		top: auto;
+		bottom: 90px;
+	}
 }

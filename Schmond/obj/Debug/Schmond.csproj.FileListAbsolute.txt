@@ -35,7 +35,6 @@ C:\Users\Pascal\Dropbox\dev\ProjectSchmond\Schmond\Schmond\bin\System.Web.Http.W
 C:\Users\Pascal\Dropbox\dev\ProjectSchmond\Schmond\Schmond\obj\Debug\Schmond.csprojResolveAssemblyReference.cache
 C:\Users\Pascal\Dropbox\dev\ProjectSchmond\Schmond\Schmond\obj\Debug\Schmond.dll
 C:\Users\Pascal\Dropbox\dev\ProjectSchmond\Schmond\Schmond\obj\Debug\Schmond.pdb
-C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.csprojResolveAssemblyReference.cache
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.dll
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\Schmond.dll.config
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\Schmond.dll
@@ -72,3 +71,4 @@ C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\System.Web.Http.Owin.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\Newtonsoft.Json.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\System.Web.Http.WebHost.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.pdb
+C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.csprojResolveAssemblyReference.cache

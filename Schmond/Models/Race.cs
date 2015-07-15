@@ -11,6 +11,7 @@ namespace Schmond.Models
 		public int Id { get; set; }
 
 		[Column("RaceName")]
+		[Required]
 		public string Name { get; set; }
 	}
 }

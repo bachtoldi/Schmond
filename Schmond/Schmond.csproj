@@ -122,6 +122,7 @@
     <Content Include="App\views\account\login.html" />
     <Content Include="App\views\account\register.html" />
     <Content Include="App\views\imprint.html" />
+    <Content Include="App\views\race\create.html" />
     <Content Include="App\views\race\index.html" />
     <Content Include="content\materialize\css\materialize.css" />
     <Content Include="content\materialize\css\materialize.min.css" />

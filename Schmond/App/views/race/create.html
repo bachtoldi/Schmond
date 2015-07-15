@@ -1,0 +1,11 @@
+﻿<div class="row ng-hide" data-ng-init="initIndex()" ng-show="races.length > 0">
+	<form class="col s12">
+		<div class="input-field col s12">
+			<input type="text" name="name" ng-model="race.name" id="name" required />
+			<label for="name">Name</label>
+		</div>
+		<div class="modal-footer hide-on-small-only">
+			<a ng-click="create()" class="modal-action waves-effect waves-green btn-flat">Erstellen</a>
+		</div>
+	</form>
+</div>
