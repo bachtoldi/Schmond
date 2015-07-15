@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -49,20 +50,20 @@ namespace Schmond
 		}
 
 		public async Task<IdentityResult> UpdateUser(string id, User userModel)
+		{
 			var user = await GetUserById(id);
-			try
-                IdentityResult identityResult = await _userManager.UpdateAsync(userModel);
-                return identityResult;
-            } catch (Exception se) {
-                throw se;
-            }
-        }
+			
+			user.Email = userModel.Email;
+			user.UserName = userModel.UserName;
+			user.MainCharId = userModel.MainCharId;
+
+			var identityResult = await _userManager.UpdateAsync(user);
+			return identityResult;
+		}
 
 		public async Task<IdentityResult> UpdatePassword(string id, User userModel)
 		{
-			var user = await GetUserById(id);
-
-			var identityResult = await _userManager.ChangePasswordAsync(user.Id, userModel.OldPassword, userModel.Password);
+			var identityResult = await _userManager.ChangePasswordAsync(id, userModel.OldPassword, userModel.Password);
 
 			return identityResult;
 		}
