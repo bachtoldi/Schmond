@@ -23,7 +23,7 @@ namespace Schmond.Models
 		public string OldPassword { get; set; }
 		
 		[Column("FK_CharId")]
-		public int? CharsId { get; set; }
+		public int? MainCharId { get; set; }
 	}
 }
 

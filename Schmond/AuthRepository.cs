@@ -49,23 +49,14 @@ namespace Schmond
 		}
 
 		public async Task<IdentityResult> UpdateUser(string id, User userModel)
-		{
 			var user = await GetUserById(id);
-			user.UserName = userModel.UserName;
-			user.Email = userModel.Email;
-			user.Password = userModel.Password;
-			user.ConfirmPassword = userModel.ConfirmPassword;
-			user.CharsId = userModel.CharsId;
 			try
-			{
-				var identityResult = await _userManager.UpdateAsync(user);
-				return identityResult;
-			}
-			catch (Exception se)
-			{
-				throw se;
-			}
-		}
+                IdentityResult identityResult = await _userManager.UpdateAsync(userModel);
+                return identityResult;
+            } catch (Exception se) {
+                throw se;
+            }
+        }
 
 		public async Task<IdentityResult> UpdatePassword(string id, User userModel)
 		{

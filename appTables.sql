@@ -134,14 +134,43 @@ CREATE TABLE [dbo].[Class] (
 	[ClassNameEN] nvarchar(max) NOT NULL
 )
 
+CREATE TABLE [dbo].[ItemArmorType] (
+    [ItemArmorTypeId] int PRIMARY KEY,
+    [ItemArmorTypeName] nvarchar(max) NOT NULL,
+	[ItemArmorTypeNameEN] nvarchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemSlotType] (
+	[ItemSlotTypeId] int PRIMARY KEY,
+	[ItemSlotTypeName] nvarchar(max) NOT NULL,
+	[ItemSlotTypeNameEN] nvarchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemType] (
+    [ItemTypeId] int PRIMARY KEY,
+    [ItemTypeName] nvarchar(max) NOT NULL,
+    [FK_ItemArmorTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemArmorType]([ItemArmorTypeId]) NOT NULL,
+	[FK_ItemSlotTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemSlotType]([ItemSlotTypeId]) NOT NULL
+)
+
 CREATE TABLE [dbo].[Item] (
 	[ItemId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemName] nvarchar(max) NOT NULL,
 	[ItemNameEN] nvarchar(max) NOT NULL,
-	[ItemType] nvarchar(max) NOT NULL,
-	[FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NULL,
-	[FK_BossId] int FOREIGN KEY REFERENCES [dbo].[Boss]([BossId]) NOT NULL,
+	[FK_ItemTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemType]([ItemTypeId]) NOT NULL,
 	[ItemImg] image NULL
+)
+
+CREATE TABLE [dbo].[ItemClassSetting] (
+    [ItemClassSettingId] int IDENTITY(1,1) PRIMARY KEY,
+    [FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL,
+    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemBossSetting] (
+    [ItemBossSettingId] int IDENTITY(1,1) PRIMARY KEY,
+    [FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL,
+    [FK_BossId] int FOREIGN KEY REFERENCES [dbo].[Boss]([BossId]) NOT NULL
 )
 
 CREATE TABLE [dbo].[Spec] (
@@ -168,6 +197,12 @@ CREATE TABLE [dbo].[Race] (
 	[RaceName] nvarchar(max),
 	[RaceNameEN] nvarchar(max),
 	[FK_FactionId] int FOREIGN KEY REFERENCES [dbo].[Faction]([FactionId]) NOT NULL
+)
+
+CREATE TABLE [dbo].[ClassRaceSetting] (
+    [ClassRaceSettingId] int IDENTITY(1,1) PRIMARY KEY,
+    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL,
+    [FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL
 )
 
 CREATE TABLE [dbo].[Char] (
