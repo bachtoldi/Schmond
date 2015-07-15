@@ -115,63 +115,63 @@ INSERT INTO [schmond].[dbo].[Class] ([ClassId], [ClassName], [ClassNameEN]) VALU
       */
 
 INSERT INTO [schmond].[dbo].[Spec] ([SpecId], [FK_ClassId], [SpecName], [SpecNameEN]) VALUES
- (2,  1, 'Disziplin', 'Discipline'),
- (1,  1, 'Heilig', 'Holy'),
- (3,  1, 'Schatten', 'Shadow'),
+ (2,  1, 'Disziplin',			'Discipline'),
+ (1,  1, 'Heilig',				'Holy'),
+ (3,  1, 'Schatten',			'Shadow'),
  
- (6,  2, 'Arkan', 'Arcane'),
- (5,  2, 'Feuer', 'Fire'),
- (4,  2, 'Frost', 'Frost'),
+ (6,  2, 'Arkan',				'Arcane'),
+ (5,  2, 'Feuer',				'Fire'),
+ (4,  2, 'Frost',				'Frost'),
 
- (7,  3, 'Gebrechen', 'Affliction'),
- (9,  3, 'Dämonologie', 'Demonology'),
- (8,  3, 'Zerstörung', 'Destruction'),
- 
- (12, 4, 'Meucheln', 'Assassination'),
- (10, 4, 'Kampf', 'Combat'),
- (11, 4, 'Täuschung', 'Subtlety'),
- 
- (14, 5, 'Gleichgewicht', 'Balance'),
- (13, 5, 'Wilder Kampf', 'Feral'),
- (15, 5, 'Wiederherstellung', 'Restoration'),
- 
- (18, 6, 'Tierherrschaft', 'Beast Mastery'),
- (17, 6, 'Treffsicherheit', 'Marksmanship'),
- (16, 6, 'Überleben', 'Survival'),
- 
- (21, 7, 'Elementar', 'Elemental'),
- (20, 7, 'Verstärkung', 'Enhancement'),
- (19, 7, 'Wiederherstellung', 'Restoration'),
- 
- (23, 8, 'Waffen', 'Arms'),
- (24, 8, 'Furor', 'Fury'),
- (22, 8, 'Schutz', 'Protection'),
+ (7,  3, 'Gebrechen',			'Affliction'),
+ (9,  3, 'Dämonologie',			'Demonology'),
+ (8,  3, 'Zerstörung',			'Destruction'),
 
- (25, 9, 'Heilig', 'Holy'),
- (26, 9, 'Schutz', 'Protection'),
- (27, 9, 'Vergeltung', 'Retribution')
+ (12, 4, 'Meucheln',			'Assassination'),
+ (10, 4, 'Kampf',				'Combat'),
+ (11, 4, 'Täuschung',			'Subtlety'),
+ 
+ (14, 5, 'Gleichgewicht',		'Balance'),
+ (13, 5, 'Wilder Kampf',		'Feral'),
+ (15, 5, 'Wiederherstellung',	'Restoration'),
+ 
+ (18, 6, 'Tierherrschaft',		'Beast Mastery'),
+ (17, 6, 'Treffsicherheit',		'Marksmanship'),
+ (16, 6, 'Überleben',			'Survival'),
+ 
+ (21, 7, 'Elementar',			'Elemental'),
+ (20, 7, 'Verstärkung',			'Enhancement'),
+ (19, 7, 'Wiederherstellung',	'Restoration'),
+ 
+ (23, 8, 'Waffen',				'Arms'),
+ (24, 8, 'Furor',				'Fury'),
+ (22, 8, 'Schutz',				'Protection'),
+
+ (25, 9, 'Heilig',				'Holy'),
+ (26, 9, 'Schutz',				'Protection'),
+ (27, 9, 'Vergeltung',			'Retribution')
 
 /*
  Faction Table
        */
 
 INSERT INTO [schmond].[dbo].[Faction] ([FactionId], [FactionName], [FactionNameEN]) VALUES
- (1, 'Allianz', 'Alliance'),
- (2, 'Horde', 'Horde')
+ (1, 'Allianz',	'Alliance'),
+ (2, 'Horde',	'Horde')
 
 /* 
  Race Table
       */
 
 INSERT INTO [schmond].[dbo].[Race] ([RaceId], [FK_FactionId], [RaceName], [RaceNameEN]) VALUES
- (1,	1,	'Gnom',	'Gnome'),
+ (1,	1,	'Gnom',		'Gnome'),
  (2,	1,	'Zwerg',	'Dwarf'),
- (3,	1,	'Mensch', 'Human'),
- (4,	1,	'Nachtelf', 'Nightelf'),
- (5,	2,	'Untot', 'Undead'),
- (6,	2,	'Ork', 'Orc'),
- (7,	2,	'Troll', 'Troll'),
- (8,	2,	'Taure', 'Tauren')
+ (3,	1,	'Mensch',	'Human'),
+ (4,	1,	'Nachtelf',	'Nightelf'),
+ (5,	2,	'Untot',	'Undead'),
+ (6,	2,	'Ork',		'Orc'),
+ (7,	2,	'Troll',	'Troll'),
+ (8,	2,	'Taure',	'Tauren')
 
 /*
     ClassRaceSetting Table
@@ -202,14 +202,14 @@ INSERT INTO [schmond].[dbo].[NeedType] ([NeedTypeId], [NeedTypeName]) VALUES
        */
 
 INSERT INTO [schmond].[dbo].[Priority] ([PriorityId], [PriorityName]) VALUES
- (1, 'Höchste'),
- (2, 'Höher'),
- (3, 'Hoch'),
- (4, 'Mittel-Hoch'),
- (5, 'Mittel'),
- (6, 'Mittel'),
- (7, 'Mittel-Niedrig'),
- (8, 'Niedrig'),
- (9, 'Niedriger'),
- (10, 'Niedrigste')
+ (1,	'Höchste'),
+ (2,	'Höher'),
+ (3,	'Hoch'),
+ (4,	'Mittel-Hoch'),
+ (5,	'Mittel'),
+ (6,	'Mittel'),
+ (7,	'Mittel-Niedrig'),
+ (8,	'Niedrig'),
+ (9,	'Niedriger'),
+ (10,	'Niedrigste')
 
