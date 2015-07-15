@@ -22,6 +22,7 @@ namespace Schmond.Models
 		[NotMapped]
 		public string OldPassword { get; set; }
 		
+		[Column("FK_CharId")]
 		public int? CharsId { get; set; }
 	}
 }
