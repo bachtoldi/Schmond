@@ -32,6 +32,12 @@ namespace Schmond
 				identity.AddClaim(new Claim("sub", context.UserName));
 				identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
 
+				var roles = repo.GetRoles(user.Id);
+				foreach (var role in roles)
+				{
+					identity.AddClaim(new Claim(ClaimTypes.Role, role));
+				}
+
 				// Identity info will ultimatly be encoded into an Access Token
 				// as a result of this call:
 				context.Validated(identity);

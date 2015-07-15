@@ -25,6 +25,6 @@ namespace Schmond
 
 		public virtual IDbSet<Char> Chars { get; set; }
 		public virtual IDbSet<Race> Races { get; set; }
-        //public virtual IDbSet<>
+		public virtual IDbSet<Class> Classes { get; set; }
 	}
 }

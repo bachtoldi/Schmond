@@ -1,27 +1,55 @@
-﻿<div class="fixed-action-btn" style="bottom: 48px; right: 24px;">
-	<a class="btn btn-floating btn-large waves-effect waves-light modal-trigger red" ng-click="show('create')" title="Rasse erstellen">
+﻿<!-- create button -->
+<div class="fixed-action-btn">
+	<a class="btn btn-floating btn-large waves-effect waves-light modal-trigger teal" ng-click="show(null)" title="Rasse erstellen">
 		<i class="mdi-content-add"></i>
 	</a>
 </div>
 
+<!-- elements -->
 <div class="row ng-hide" data-ng-init="initIndex()" ng-show="races.length > 0">
 	<div class="col s12">
-		<div class="collection z-depth-1">
-			<a class="collection-item" href="/#/admin/races/{{ race.id }}" ng-repeat="race in races">
-				{{ race.name }}
-			</a>
+		<div class="collection">
+			<div class="collection-item" ng-repeat="entry in races">
+				<a class="teal-text" ng-click="show(entry)">{{ entry.name }}</a>
+				<a ng-click="delete(entry)" class="right teal-text">
+					Löschen
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div class="modal" id="create">
-	<form ng-submit="create()">
-		<div class="modal-content">
-			<h4 class="ng-hide"></h4>
-
+<!-- edit modal -->
+<div class="modal modal-fixed-footer" id="edit">
+	<form ng-submit="save()">
+		<nav class="top-nav teal hide-on-med-and-up">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a ng-click="reset()" class="button-collapse btn-flat white-text modal-close">
+						<i class="material-icons">&#xE5C4;</i>
+					</a>
+					<button type="submit" class="button-collapse right btn-flat white-text">
+						<i class="material-icons">&#xE163;</i>
+					</button>
+					<span class="brand-logo">{{ race.name == '' ? 'Neue Rasse' : race.name}}</span>
+				</div>
+			</div>
+		</nav>
+		<div class="progress hide-on-med-and-up ng-hide" ng-show="loading">
+			<div class="indeterminate"></div>
 		</div>
-		<div class="modal-footer">
-			<a ng-click="" class="modal-action modal-close waves-effect waves-green btn-flat">Erstellen</a>
+		<div class="modal-content">
+			<h5 class="hide-on-small-only">{{ race.name == '' ? 'Neue Rasse' : race.name}}</h5>
+			<div class="row">
+				<div class="input-field col s12">
+					<input type="text" name="name" ng-model="race.name" id="name" />
+					<label for="name" ng-class="{ active: race.name != '' }">Name</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer hide-on-small-only">
+			<button type="submit" class="btn-flat modal-action">Ok</button>
+			<a ng-click="reset()" class="btn-flat modal-action modal-close">Abbrechen</a>
 		</div>
 	</form>
 </div>

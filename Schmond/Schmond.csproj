@@ -122,6 +122,7 @@
     <Content Include="App\views\account\login.html" />
     <Content Include="App\views\account\register.html" />
     <Content Include="App\views\imprint.html" />
+    <Content Include="App\views\race\create.html" />
     <Content Include="App\views\race\index.html" />
     <Content Include="content\materialize\css\materialize.css" />
     <Content Include="content\materialize\css\materialize.min.css" />
@@ -934,9 +935,11 @@
     <Compile Include="Context.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Filters\UnhandledExceptionFilter.cs" />
     <Compile Include="Models\Char.cs" />
+    <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

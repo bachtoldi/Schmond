@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schmond.Models
 {
-	public class Race
+	public class Class
 	{
 		[Key]
-		[Column("RaceId")]
+		[Column("ClassId")]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 
-		[Column("RaceName")]
 		[Required]
+		[Column("ClassName")]
 		public string Name { get; set; }
 	}
 }
