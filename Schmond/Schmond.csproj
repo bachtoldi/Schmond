@@ -935,6 +935,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Filters\UnhandledExceptionFilter.cs" />
     <Compile Include="Models\Char.cs" />
