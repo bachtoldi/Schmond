@@ -938,6 +938,7 @@
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Filters\UnhandledExceptionFilter.cs" />
     <Compile Include="Models\Char.cs" />
+    <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
