@@ -15,44 +15,44 @@
 	}
 
 	.side-nav .collapsible-body li.active, .side-nav.fixed .collapsible-body li.active {
-		background-color: #26a69a;
+		background-color: #d32f2f;
 	}
 
 	input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-		border-bottom: 1px solid #26a69a;
-		box-shadow: 0 1px 0 0 #26a69a;
+		border-bottom: 1px solid #d32f2f;
+		box-shadow: 0 1px 0 0 #d32f2f;
 	}
 
 		input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label, input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
-			color: #26a69a;
+			color: #d32f2f;
 		}
 
 	.input-field .prefix.active {
-		color: #26a69a;
+		color: #d32f2f;
 	}
 
 	[type="checkbox"]:checked + label:before {
-		border-right: 2px solid #26a69a;
-		border-bottom: 2px solid #26a69a;
+		border-right: 2px solid #d32f2f;
+		border-bottom: 2px solid #d32f2f;
 	}
 
 	.btn, .btn-large {
-		background-color: #26a69a;
+		background-color: #d32f2f;
 	}
 
 		.btn:hover, .btn-large:hover {
-			background-color: #26a69a;
+			background-color: #d32f2f;
 			opacity: .9;
 		}
 
 	button:focus {
 		outline: none;
-		background-color: #26a69a;
+		background-color: #d32f2f;
 		opacity: .8;
 	}
 
 	.collection a.collection-item {
-		color: #26a69a;
+		color: #d32f2f;
 	}
 }
 
