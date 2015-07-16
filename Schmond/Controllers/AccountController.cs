@@ -29,6 +29,10 @@ namespace Schmond.Controllers
 			{
 				return BadRequest(ModelState);
 			}
+			
+			// username should start with a uppercase letter, followed by lowwercase letters
+			userModel.UserName = string.Format("{0}{1}", userModel.UserName.Substring(0, 1).ToUpper(), userModel.UserName.Substring(1).ToLower());
+
 			var result = await _repo.RegisterUser(userModel);
 
 			var errorResult = GetErrorResult(result);

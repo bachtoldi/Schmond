@@ -19,6 +19,18 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 	}
 
 	$scope.show = function (race) {
+		$http.get('/api/factions').success(function (response) {
+			console.log(response);
+			$scope.factions = response;
+			$('select').material_select();
+		}).error(function (err) {
+			$rootScope.state = 'error';
+			$rootScope.modalHeader = 'Fehler';
+			$rootScope.modalMessage = err;
+			$rootScope.modalLink = 'javascript:void()';
+			$('#modal').openModal();
+		});
+
 		if (race == null) {
 			$scope.race = {
 				name: ''

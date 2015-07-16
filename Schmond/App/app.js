@@ -9,6 +9,14 @@ app.config(function ($routeProvider) {
 		controller: 'accountController',
 		templateUrl: '/app/views/account/register.html'
 	});
+	$routeProvider.when('/players', {
+		controller: 'charController',
+		templateUrl: '/app/views/char/index.html'
+	});
+	$routeProvider.when('/admin/accounts', {
+		controller: 'accountController',
+		templateUrl: '/app/views/account/index.html'
+	});
 	$routeProvider.when('/admin/races', {
 		controller: 'raceController',
 		templateUrl: '/app/views/race/index.html'
@@ -18,7 +26,7 @@ app.config(function ($routeProvider) {
 		templateUrl: '/app/views/imprint.html'
 	});
 
-	$routeProvider.otherwise('/login');
+	$routeProvider.otherwise('/players');
 });
 
 app.constant('ngAuthSettings', {

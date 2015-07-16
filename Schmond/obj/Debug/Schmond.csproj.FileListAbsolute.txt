@@ -71,4 +71,3 @@ C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\System.Web.Http.Owin.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\Newtonsoft.Json.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\System.Web.Http.WebHost.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.pdb
-C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.csprojResolveAssemblyReference.cache
