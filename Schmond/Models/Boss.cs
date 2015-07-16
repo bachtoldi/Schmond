@@ -3,16 +3,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schmond.Models
 {
-	public class Faction
+	public class Boss
 	{
 		[Key]
-		[Column("FactionId")]
+		[Column("BossId")]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 
 		[Required]
-		[Column("FactionName")]
+		public int Number { get; set; }
+
+		[Required]
+		[Column("BossName")]
 		public string Name { get; set; }
+
+		[Required]
+		[Column("FK_InstanceId")]
+		public int InstanceId { get; set; }
+
+		[ForeignKey("InstanceId")]
+		public virtual Instance Instance { get; set; }
 
 		public override string ToString()
 		{
@@ -21,8 +31,8 @@ namespace Schmond.Models
 
 		public override bool Equals(object obj)
 		{
-			var faction = obj as Faction;
-			return faction != null && faction.Id == Id;
+			var boss = obj as Boss;
+			return boss != null && boss.Id == Id;
 		}
 
 		public override int GetHashCode()

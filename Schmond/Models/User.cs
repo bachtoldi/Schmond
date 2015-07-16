@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Schmond.Models
 {
-	[Table("AspNetUsers")]
+	[Table("Account")]
 	public class User : IdentityUser
 	{
 		[StringLength(100, ErrorMessage = "Das {0} muss mindestens {2} Zeichen lang sein.", MinimumLength = 6)]
@@ -23,5 +23,8 @@ namespace Schmond.Models
 		
 		[Column("FK_CharId")]
 		public int? MainCharId { get; set; }
+
+		//[ForeignKey("MainCharId")]
+		//public virtual Char MainChar { get; set; }
 	}
 }

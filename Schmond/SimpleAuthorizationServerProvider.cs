@@ -29,7 +29,6 @@ namespace Schmond
 
 				var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 				identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-				identity.AddClaim(new Claim("sub", context.UserName));
 				identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
 
 				var roles = repo.GetRoles(user.Id);

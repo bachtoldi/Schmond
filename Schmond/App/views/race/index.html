@@ -1,6 +1,6 @@
 ﻿<!-- create button -->
 <div class="fixed-action-btn">
-	<a class="btn btn-floating btn-large waves-effect waves-light modal-trigger teal" ng-click="show(null)" title="Rasse erstellen">
+	<a class="btn btn-floating btn-large waves-effect waves-light modal-trigger red darken-2" ng-click="show(null)" title="Rasse erstellen">
 		<i class="mdi-content-add"></i>
 	</a>
 </div>
@@ -10,8 +10,8 @@
 	<div class="col s12">
 		<div class="collection">
 			<div class="collection-item" ng-repeat="entry in races">
-				<a class="teal-text" ng-click="show(entry)">{{ entry.name }}</a>
-				<a ng-click="delete(entry)" class="right teal-text">
+				<a class="red-text text-darken-2" ng-click="show(entry)">{{ entry.name }}</a>
+				<a ng-click="delete(entry)" class="right red-text text-darken-2">
 					Löschen
 				</a>
 			</div>
@@ -22,7 +22,7 @@
 <!-- edit modal -->
 <div class="modal modal-fixed-footer" id="edit">
 	<form ng-submit="save()">
-		<nav class="top-nav teal hide-on-med-and-up">
+		<nav class="top-nav red darken-2 hide-on-med-and-up">
 			<div class="container">
 				<div class="nav-wrapper">
 					<a ng-click="reset()" class="button-collapse btn-flat white-text modal-close">

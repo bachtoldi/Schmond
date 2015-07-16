@@ -1,28 +1,34 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
 
 namespace Schmond.Models
 {
-	[Table("Chars")]
 	public class Char
 	{
 		[Key]
+		[Column("CharId")]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int CharsId { get; set; }
+		public int Id { get; set; }
 
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }
 
 		[Required]
+		[Column("FK_UserId")]
 		public string UserId { get; set; }
 
-		//Example how to load relations
-		//using (Context ctx = new Context())
-		//{
-		//	var test = (from c in ctx.Chars.Include(x => x.User) // if you remove the include part, the user will be null. if you have the include part, ef will join the tables and load the whole user data, so be careful :)
-		//							select c);
-		//}
+		[ForeignKey("RaceId")]
+		public virtual Race Race { get; set; }
+
+		[Required]
+		[Column("FK_RaceId")]
+		public int RaceId { get; set; }
+
+		[ForeignKey("SpecId")]
+		public virtual Spec Spec { get; set; }
+
+		[Required]
+		[Column("FK_SpecId")]
+		public int SpecId { get; set; }
 	}
 }

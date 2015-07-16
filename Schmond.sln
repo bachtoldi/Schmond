@@ -7,7 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schmond", "Schmond\Schmond.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{4F617C97-B3FD-4E0A-8D86-2E4092E85AD2}"
 	ProjectSection(SolutionItems) = preProject
-		auth.sql = auth.sql
+		appTables.sql = appTables.sql
+		insertDevData.sql = insertDevData.sql
+		insertLookupData.sql = insertLookupData.sql
+		insertScriptItems.sql = insertScriptItems.sql
 	EndProjectSection
 EndProject
 Global
