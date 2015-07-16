@@ -11,7 +11,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[AspNetUsers](
+CREATE TABLE [dbo].[Account](
 	[Id] [nvarchar](128) NOT NULL,
 	[Email] [nvarchar](256) NULL,
 	[EmailConfirmed] [bit] NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 
 GO
 
-CREATE TABLE [dbo].[AspNetRoles](
+CREATE TABLE [dbo].[Role](
 	[Id] [nvarchar](128) NOT NULL,
 	[Name] [nvarchar](256) NOT NULL,
  CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
@@ -43,7 +43,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 
 GO
 
-CREATE TABLE [dbo].[AspNetUserRoles](
+CREATE TABLE [dbo].[UserHasRole](
 	[UserId] [nvarchar](128) NOT NULL,
 	[RoleId] [nvarchar](128) NOT NULL,
  CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED 
@@ -55,23 +55,23 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 
 GO
 
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[AspNetRoles] ([Id])
+ALTER TABLE [dbo].[UserHasRole]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Role] ([Id])
 ON DELETE CASCADE
 GO
 
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
+ALTER TABLE [dbo].[UserHasRole] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
 GO
 
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
+ALTER TABLE [dbo].[UserHasRole]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Account] ([Id])
 ON DELETE CASCADE
 GO
 
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+ALTER TABLE [dbo].[UserHasRole] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
 GO
 
-CREATE TABLE [dbo].[AspNetUserLogins](
+CREATE TABLE [dbo].[Login](
 	[LoginProvider] [nvarchar](128) NOT NULL,
 	[ProviderKey] [nvarchar](128) NOT NULL,
 	[UserId] [nvarchar](128) NOT NULL,
@@ -85,12 +85,12 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 
 GO
 
-ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
+ALTER TABLE [dbo].[Login]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Account] ([Id])
 ON DELETE CASCADE
 GO
 
-ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
+ALTER TABLE [dbo].[Login] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
 GO
 
 CREATE TABLE [dbo].[AspNetUserClaims](
@@ -107,7 +107,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 GO
 
 ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
+REFERENCES [dbo].[Account] ([Id])
 ON DELETE CASCADE
 GO
 
@@ -208,12 +208,12 @@ CREATE TABLE [dbo].[ClassRaceSetting] (
 CREATE TABLE [dbo].[Char] (
 	[CharId] int IDENTITY(1,1) PRIMARY KEY,
 	[CharName] varchar(max) NOT NULL,
-	[FK_UserId] nvarchar(128) FOREIGN KEY REFERENCES [dbo].[AspNetUsers]([Id]) NOT NULL,
+	[FK_UserId] nvarchar(128) FOREIGN KEY REFERENCES [dbo].[Account]([Id]) NOT NULL,
 	[FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL,
 	[FK_SpecId] int FOREIGN KEY REFERENCES [dbo].[Spec]([SpecId]) NOT NULL
 )
 
-ALTER TABLE [dbo].[AspNetUsers]
+ALTER TABLE [dbo].[Account]
 ADD [FK_CharId] int FOREIGN KEY REFERENCES [dbo].[Char]([CharId]) NULL
 
 CREATE TABLE [dbo].[NeedType] (
