@@ -71,3 +71,40 @@ C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\System.Web.Http.Owin.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\Newtonsoft.Json.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\bin\System.Web.Http.WebHost.xml
 C:\Users\mkollers\Documents\GitRepo\Schmond\Schmond\obj\Debug\Schmond.pdb
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Schmond.dll.config
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Schmond.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Schmond.pdb
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\EntityFramework.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\EntityFramework.SqlServer.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Security.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Newtonsoft.Json.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Owin.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Net.Http.Formatting.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Web.Http.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Web.Http.Owin.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Web.Http.WebHost.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\EntityFramework.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\EntityFramework.SqlServer.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Security.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Net.Http.Formatting.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Web.Http.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Web.Http.Owin.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\Newtonsoft.Json.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\bin\System.Web.Http.WebHost.xml
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\obj\Debug\Schmond.csprojResolveAssemblyReference.cache
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\obj\Debug\Schmond.dll
+C:\Users\Kollers\Documents\Visual Studio 2013\Projects\Schmond\Schmond\obj\Debug\Schmond.pdb
