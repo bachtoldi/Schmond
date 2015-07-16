@@ -1,7 +1,13 @@
 /*
+SET IDENTITY_INSERT tablename ON // Identity selber einfügen
+SET IDENTITY_INSERT tablename OFF // AI
+*/
+
+/*
 	Instance Table
 						*/
 
+SET IDENTITY_INSERT [schmond].[dbo].[Instance] ON
 INSERT INTO [schmond].[dbo].[Instance] ([InstanceId], [InstanceName], [InstanceNameEN]) VALUES
 	(1, 'Onyxias Hort',				'Onyxia''s Lair'),
 	(2, 'Geschmolzener Kern',		'Molten Core'),
@@ -11,11 +17,13 @@ INSERT INTO [schmond].[dbo].[Instance] ([InstanceId], [InstanceName], [InstanceN
 	(6, 'Tempel von Ahn''Qiraj',	'Temple of Ahn''Qiraj'),
 	(7, 'Naxxramas',				'Naxxramas'),
 	(8, 'Weltbosse',				'World Bosses')
+SET IDENTITY_INSERT [schmond].[dbo].[Instance] OFF
 	
 /*
 	Boss Table
 						*/
 
+SET IDENTITY_INSERT [schmond].[dbo].[Boss] ON
 INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [BossName], [BossNameEN]) VALUES
 	(1,		1,		1,		'Onyxia', 'Onyxia'),
 
@@ -94,11 +102,13 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(69,	7,		14,		'Saphiron',						'Sapphiron'),
 	(70,	7,		15,		'Kel''Thuzad',					'Kel''Thuzad'),
 	(71,	7,		16,		'Trash',						'Trash')
+SET IDENTITY_INSERT [schmond].[dbo].[Boss] OFF
 
  /*
   Class Table
         */
 
+SET IDENTITY_INSERT [schmond].[dbo].[Class] ON
 INSERT INTO [schmond].[dbo].[Class] ([ClassId], [ClassName], [ClassNameEN]) VALUES
 	(1, 'Priester',		'Priest'),
 	(2, 'Magier',		'Mage'),
@@ -109,11 +119,13 @@ INSERT INTO [schmond].[dbo].[Class] ([ClassId], [ClassName], [ClassNameEN]) VALU
 	(7, 'Schamane',		'Shaman'),
 	(8, 'Krieger',		'Warrior'),
 	(9, 'Paladin',		'Paladin')
+SET IDENTITY_INSERT [schmond].[dbo].[Class] OFF
 
 /*
  Spec Table
       */
 
+SET IDENTITY_INSERT [schmond].[dbo].[Spec] ON
 INSERT INTO [schmond].[dbo].[Spec] ([SpecId], [FK_ClassId], [SpecName], [SpecNameEN]) VALUES
  (2,  1, 'Disziplin',			'Discipline'),
  (1,  1, 'Heilig',				'Holy'),
@@ -150,19 +162,23 @@ INSERT INTO [schmond].[dbo].[Spec] ([SpecId], [FK_ClassId], [SpecName], [SpecNam
  (25, 9, 'Heilig',				'Holy'),
  (26, 9, 'Schutz',				'Protection'),
  (27, 9, 'Vergeltung',			'Retribution')
+SET IDENTITY_INSERT [schmond].[dbo].[Spec] OFF
 
 /*
  Faction Table
        */
 
+SET IDENTITY_INSERT [schmond].[dbo].[Faction] ON
 INSERT INTO [schmond].[dbo].[Faction] ([FactionId], [FactionName], [FactionNameEN]) VALUES
  (1, 'Allianz',	'Alliance'),
  (2, 'Horde',	'Horde')
+SET IDENTITY_INSERT [schmond].[dbo].[Faction] OFF
 
 /* 
  Race Table
       */
 
+SET IDENTITY_INSERT [schmond].[dbo].[Race] ON
 INSERT INTO [schmond].[dbo].[Race] ([RaceId], [FK_FactionId], [RaceName], [RaceNameEN]) VALUES
  (1,	1,	'Gnom',		'Gnome'),
  (2,	1,	'Zwerg',	'Dwarf'),
@@ -172,6 +188,7 @@ INSERT INTO [schmond].[dbo].[Race] ([RaceId], [FK_FactionId], [RaceName], [RaceN
  (6,	2,	'Ork',		'Orc'),
  (7,	2,	'Troll',	'Troll'),
  (8,	2,	'Taure',	'Tauren')
+SET IDENTITY_INSERT [schmond].[dbo].[Race] OFF
 
 /*
     ClassRaceSetting Table
@@ -191,16 +208,19 @@ INSERT INTO [schmond].[dbo].[ClassRaceSetting] ([FK_ClassId], [FK_RaceId]) VALUE
 /* NeedType Table
       */
 
+SET IDENTITY_INSERT [schmond].[dbo].[NeedType] ON
 INSERT INTO [schmond].[dbo].[NeedType] ([NeedTypeId], [NeedTypeName]) VALUES
  (1, 'Main Need'),
  (2, 'Second Need'),
  (3, 'No Need'),
  (4, 'Own')
+SET IDENTITY_INSERT [schmond].[dbo].[NeedType] OFF
 
 /* 
  Priorities Table
        */
 
+SET IDENTITY_INSERT [schmond].[dbo].[Priority] ON
 INSERT INTO [schmond].[dbo].[Priority] ([PriorityId], [PriorityName]) VALUES
  (1,	'Höchste'),
  (2,	'Höher'),
@@ -212,4 +232,5 @@ INSERT INTO [schmond].[dbo].[Priority] ([PriorityId], [PriorityName]) VALUES
  (8,	'Niedrig'),
  (9,	'Niedriger'),
  (10,	'Niedrigste')
+SET IDENTITY_INSERT [schmond].[dbo].[Priority] OFF
 

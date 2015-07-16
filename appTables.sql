@@ -137,36 +137,81 @@ CREATE TABLE [dbo].[Class] (
 	[ClassNameEN] nvarchar(max) NOT NULL
 )
 
---CREATE TABLE [dbo].[ItemArmorType] (
---    [ItemArmorTypeId] int PRIMARY KEY,
---    [ItemArmorTypeName] nvarchar(max) NOT NULL,
---	[ItemArmorTypeNameEN] nvarchar(max) NOT NULL
---)
+CREATE TABLE [dbo].[ItemClass] (
+	[ItemClassId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemClassName] nvarchar(max) NOT NULL,
+	[ItemClassNameEN] nvarchar(max) NOT NULL
+)
 
---CREATE TABLE [dbo].[ItemSlotType] (
---	[ItemSlotTypeId] int PRIMARY KEY,
---	[ItemSlotTypeName] nvarchar(max) NOT NULL,
---	[ItemSlotTypeNameEN] nvarchar(max) NOT NULL
---)
+CREATE TABLE [dbo].[ItemType] (
+	[ItemTypeId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemTypeName] nvarchar(max) NOT NULL,
+	[ItemTypeNameEN] nvarchar(max) NOT NULL
+)
 
---CREATE TABLE [dbo].[ItemType] (
---    [ItemTypeId] int PRIMARY KEY,
---    [ItemTypeName] nvarchar(max) NOT NULL,
- --   [FK_ItemArmorTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemArmorType]([ItemArmorTypeId]) NOT NULL,
-	--[FK_ItemSlotTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemSlotType]([ItemSlotTypeId]) NOT NULL
---)
+CREATE TABLE [dbo].[ItemBinding] (
+	[ItemBindingId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemBindingName] nvarchar(max) NOT NULL,
+	[ItemBindingNameEN] nvarchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemUniqueness] (
+	[ItemUniquenessId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemUniquenessName] nvarchar(max) NOT NULL,
+	[ItemUniquenessNameEN] nvarchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemSlot] (
+	[ItemSlotId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemSlotName] nvarchar(max) NOT NULL,
+	[ItemSlotNameEN] nvarchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemSet] (
+	[ItemSetId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemSetName] nvarchar(max) NOT NULL,
+	[ItemSetNameEN] nvarchar(max) NOT NULL,
+	[ItemSetNumberOfItems] int NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemRarity] (
+	[ItemRarityId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemRarityName] nvarchar(max) NOT NULL,
+	[ItemRarityNameEN] nvarchar(max) NOT NULL
+)
+
+CREATE TABLE [dbo].[ItemStatType] (
+	[ItemStatTypeId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemStatTypeName] nvarchar(max) NOT NULL,
+	[ItemStatTypeNameEN] nvarchar(max) NOT NULL
+)
 
 CREATE TABLE [dbo].[ItemDetail] (
-    [ItemDetailId] int IDENTITY(1,1) PRIMARY KEY,
-    [FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL
+	[ItemDetailId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemDetailDurability] int NULL,
+	[ItemDetailLevelRequirement] int NULL,
+	[FK_ItemClassId] int FOREIGN KEY REFERENCES [dbo].[ItemClass]([ItemClassId]) NULL,
+	[FK_ItemTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemType]([ItemTypeId]) NULL,
+	[FK_ItemSlotId] int FOREIGN KEY REFERENCES [dbo].[ItemSlot]([ItemSlotId]) NULL,
+	[FK_ItemBindingId] int FOREIGN KEY REFERENCES [dbo].[ItemBinding]([ItemBindingId]) NULL,
+	[FK_ItemRarityId] int FOREIGN KEY REFERENCES [dbo].[ItemRarity]([ItemRarityId]) NULL,
+	[FK_ItemUniquenessId] int FOREIGN KEY REFERENCES [dbo].[ItemUniqueness]([ItemUniquenessId]) NULL,
+	[FK_ItemSetId] int FOREIGN KEY REFERENCES [dbo].[ItemSet]([ItemSetId]) NULL
+)
+
+CREATE TABLE [dbo].[ItemStat] (
+	[ItemStatId] int IDENTITY(1,1) PRIMARY KEY,
+	[ItemStatIncrease] int NULL,
+	[FK_ItemStatTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemStatType]([ItemStatTypeId]) NOT NULL,
+	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NOT NULL
 )
 
 CREATE TABLE [dbo].[Item] (
 	[ItemId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemName] nvarchar(max) NOT NULL,
 	[ItemNameEN] nvarchar(max) NOT NULL,
-	--[FK_ItemTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemType]([ItemTypeId]) NOT NULL,
-	[ItemImg] image NULL
+	[ItemImg] image NULL,
+	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NULL
 )
 
 CREATE TABLE [dbo].[ItemClassSetting] (
