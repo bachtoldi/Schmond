@@ -95,6 +95,9 @@
 						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/admin')}">Administration</a>
 						<div class="collapsible-body">
 							<ul>
+								<li ng-class="{ active: isActive('/admin/accounts')}">
+									<a href="/#/admin/accounts" class="waves-effect waves-ripple hide-nav">Benutzer</a>
+								</li>
 								<li ng-class="{ active: isActive('/admin/races')}">
 									<a href="/#/admin/races" class="waves-effect waves-ripple hide-nav">Rassen</a>
 								</li>
@@ -124,7 +127,7 @@
 	<main>
 		<div class="container">
 			<div class="ng-cloak" data-ng-controller="indexController">
-				<div class="modal" id="modal">
+				<div class="modal modal-fixed-footer" id="modal">
 					<div class="modal-content">
 						<h4 class="ng-hide" ng-show="header != ''">{{ modalHeader }}</h4> {{ modalMessage }}
 					</div>

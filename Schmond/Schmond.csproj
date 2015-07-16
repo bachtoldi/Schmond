@@ -120,6 +120,7 @@
     <Content Include="App\controllers\raceController.js" />
     <Content Include="App\services\authInterceptorService.js" />
     <Content Include="App\services\authService.js" />
+    <Content Include="App\views\account\index.html" />
     <Content Include="App\views\account\login.html" />
     <Content Include="App\views\account\login.min.html">
       <DependentUpon>login.html</DependentUpon>

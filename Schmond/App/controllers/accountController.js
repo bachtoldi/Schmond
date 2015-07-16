@@ -9,6 +9,22 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 		$rootScope.title = 'Anmelden';
 	}
 
+	$scope.initIndex = function () {
+		$rootScope.title = 'Mitglieder';
+
+		$http.get('/api/accounts').success(function (response) {
+			$scope.accounts = response;
+			$rootScope.loading = false;
+		}).error(function (err) {
+			$rootScope.loading = false;
+			$rootScope.state = 'error';
+			$rootScope.modalHeader = 'Fehler';
+			$rootScope.modalMessage = err;
+			$rootScope.modalLink = 'javascript:void()';
+			$('#modal').openModal();
+		});
+	}
+
 	$scope.register = function () {
 		$rootScope.loading = true;
 		$http.post('/api/accounts', $scope.user).success(function () {
