@@ -1,28 +1,25 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schmond.Models
 {
-	public class Race
+	public class Spec
 	{
 		[Key]
-		[Column("RaceId")]
+		[Column("SpecId")]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 
-		[Column("RaceName")]
 		[Required]
+		[Column("SpecName")]
 		public string Name { get; set; }
 
 		[Required]
-		[Column("[FK_FactionId]")]
-		public int FactionId { get; set; }
+		[Column("FK_ClassId")]
+		public int ClassId { get; set; }
 
-		[ForeignKey("FactionId")]
-		public Faction Faction { get; set; }
-
-		public virtual ICollection<Class> AvailableClasses { get; set; }
+		[ForeignKey("ClassId")]
+		public Class Class { get; set; }
 
 		public override string ToString()
 		{
@@ -31,8 +28,8 @@ namespace Schmond.Models
 
 		public override bool Equals(object obj)
 		{
-			var race = obj as Race;
-			return race != null && race.Id == Id;
+			var spec = obj as Spec;
+			return spec != null && spec.Id == Id;
 		}
 
 		public override int GetHashCode()

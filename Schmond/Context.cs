@@ -10,7 +10,7 @@ namespace Schmond
 		public Context()
 			: base("DefaultContext")
 		{
-			//Database.SetInitializer<Context>(null);
+			Database.SetInitializer<Context>(null);
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -25,6 +25,12 @@ namespace Schmond
 			modelBuilder.Entity<IdentityUserLogin>().HasKey(l => new { l.UserId, l.LoginProvider, l.ProviderKey });
 			modelBuilder.Entity<IdentityRole>().HasKey(r => r.Id);
 			modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+
+			modelBuilder.Entity<Race>().HasMany<Class>(r => r.AvailableClasses)
+																 .WithMany(c => c.AvailableRaces)
+																 .Map(m => m.ToTable("ClassRaceSetting")
+																	 .MapLeftKey("FK_RaceId")
+																	 .MapRightKey("FK_ClassId"));
 		}
 
 		public virtual IDbSet<Char> Chars { get; set; }
