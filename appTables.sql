@@ -1,6 +1,9 @@
 /* 
 DROP DATABASE schmond
 CREATE DATABASE schmond
+
+SET IDENTITY_INSERT tablename ON // Identity selber einfügen
+SET IDENTITY_INSERT tablename OFF // AI
 */
 
 USE [schmond]
@@ -115,13 +118,13 @@ ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_d
 GO
 
 CREATE TABLE [dbo].[Instance] (
-	[InstanceId] int PRIMARY KEY,
+	[InstanceId] int IDENTITY(1,1) PRIMARY KEY,
 	[InstanceName] nvarchar(max) NOT NULL,
 	[InstanceNameEN] nvarchar(max) NOT NULL
 )
 
 CREATE TABLE [dbo].[Boss] (
-	[BossId] int PRIMARY KEY,
+	[BossId] int IDENTITY(1,1) PRIMARY KEY,
 	[BossNumber] int NOT NULL,
 	[BossName] nvarchar(max) NOT NULL,
 	[BossNameEN] nvarchar(max) NOT NULL,
@@ -129,35 +132,40 @@ CREATE TABLE [dbo].[Boss] (
 )
 
 CREATE TABLE [dbo].[Class] (
-	[ClassId] int PRIMARY KEY,
+	[ClassId] int IDENTITY(1,1) PRIMARY KEY,
 	[ClassName] nvarchar(max) NOT NULL,
 	[ClassNameEN] nvarchar(max) NOT NULL
 )
 
-CREATE TABLE [dbo].[ItemArmorType] (
-    [ItemArmorTypeId] int PRIMARY KEY,
-    [ItemArmorTypeName] nvarchar(max) NOT NULL,
-	[ItemArmorTypeNameEN] nvarchar(max) NOT NULL
-)
+--CREATE TABLE [dbo].[ItemArmorType] (
+--    [ItemArmorTypeId] int PRIMARY KEY,
+--    [ItemArmorTypeName] nvarchar(max) NOT NULL,
+--	[ItemArmorTypeNameEN] nvarchar(max) NOT NULL
+--)
 
-CREATE TABLE [dbo].[ItemSlotType] (
-	[ItemSlotTypeId] int PRIMARY KEY,
-	[ItemSlotTypeName] nvarchar(max) NOT NULL,
-	[ItemSlotTypeNameEN] nvarchar(max) NOT NULL
-)
+--CREATE TABLE [dbo].[ItemSlotType] (
+--	[ItemSlotTypeId] int PRIMARY KEY,
+--	[ItemSlotTypeName] nvarchar(max) NOT NULL,
+--	[ItemSlotTypeNameEN] nvarchar(max) NOT NULL
+--)
 
-CREATE TABLE [dbo].[ItemType] (
-    [ItemTypeId] int PRIMARY KEY,
-    [ItemTypeName] nvarchar(max) NOT NULL,
-    [FK_ItemArmorTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemArmorType]([ItemArmorTypeId]) NOT NULL,
-	[FK_ItemSlotTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemSlotType]([ItemSlotTypeId]) NOT NULL
+--CREATE TABLE [dbo].[ItemType] (
+--    [ItemTypeId] int PRIMARY KEY,
+--    [ItemTypeName] nvarchar(max) NOT NULL,
+ --   [FK_ItemArmorTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemArmorType]([ItemArmorTypeId]) NOT NULL,
+	--[FK_ItemSlotTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemSlotType]([ItemSlotTypeId]) NOT NULL
+--)
+
+CREATE TABLE [dbo].[ItemDetail] (
+    [ItemDetailId] int IDENTITY(1,1) PRIMARY KEY,
+    [FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL
 )
 
 CREATE TABLE [dbo].[Item] (
 	[ItemId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemName] nvarchar(max) NOT NULL,
 	[ItemNameEN] nvarchar(max) NOT NULL,
-	[FK_ItemTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemType]([ItemTypeId]) NOT NULL,
+	--[FK_ItemTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemType]([ItemTypeId]) NOT NULL,
 	[ItemImg] image NULL
 )
 
@@ -174,7 +182,7 @@ CREATE TABLE [dbo].[ItemBossSetting] (
 )
 
 CREATE TABLE [dbo].[Spec] (
-	[SpecId] int PRIMARY KEY,
+	[SpecId] int IDENTITY(1,1) PRIMARY KEY,
 	[SpecName] nvarchar(max) NOT NULL,
 	[SpecNameEN] nvarchar(max) NOT NULL,
 	[FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL
@@ -187,13 +195,13 @@ CREATE TABLE [dbo].[Available] (
 )
 
 CREATE TABLE [dbo].[Faction] (
-	[FactionId] int PRIMARY KEY,
+	[FactionId] int IDENTITY(1,1) PRIMARY KEY,
 	[FactionName] nvarchar(max) NOT NULL,
 	[FactionNameEN] nvarchar(max) NOT NULL,
 )
 
 CREATE TABLE [dbo].[Race] (
-	[RaceId] int PRIMARY KEY,
+	[RaceId] int IDENTITY(1,1) PRIMARY KEY,
 	[RaceName] nvarchar(max),
 	[RaceNameEN] nvarchar(max),
 	[FK_FactionId] int FOREIGN KEY REFERENCES [dbo].[Faction]([FactionId]) NOT NULL
@@ -217,12 +225,12 @@ ALTER TABLE [dbo].[Account]
 ADD [FK_CharId] int FOREIGN KEY REFERENCES [dbo].[Char]([CharId]) NULL
 
 CREATE TABLE [dbo].[NeedType] (
-	[NeedTypeId] int PRIMARY KEY,
+	[NeedTypeId] int IDENTITY(1,1) PRIMARY KEY,
 	[NeedTypeName] varchar(max) NOT NULL
 )
 
 CREATE TABLE [dbo].[Priority] (
-	[PriorityId] int PRIMARY KEY,
+	[PriorityId] int IDENTITY(1,1) PRIMARY KEY,
 	[PriorityName] varchar(max) NOT NULL
 )
 
