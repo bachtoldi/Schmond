@@ -85,15 +85,21 @@ namespace Schmond.Controllers
 			return (errorResult != null) ? errorResult : Ok();
 		}
 
-		//[HttpPut]
-		//[Route("password")]
-		//[Authorize]
-		//public async Task<IHttpActionResult> UpdatePassword(User userModel)
-		//{
+        [HttpPut]
+        [Route("password")]
+        [Authorize]
+        public async Task<IHttpActionResult> UpdatePassword(User userModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-		//}
+            var errorResult = GetErrorResult(await _repo.UpdatePassword(RequestContext.Principal.Identity.GetUserId(), userModel));
+            return (errorResult != null) ? errorResult : Ok();
+        }
 
-		protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
 		{
 			if (disposing)
 			{
