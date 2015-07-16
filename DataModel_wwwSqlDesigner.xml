@@ -141,56 +141,65 @@
 <row name="UserName" null="0" autoincrement="0">
 <datatype>VARCHAR(256)</datatype>
 </row>
-<row name="CharsId_Main" null="0" autoincrement="0">
+<row name="FK_CharId" null="0" autoincrement="0">
 <datatype>INT</datatype>
-<relation table="Chars" row="CharsId" />
+<relation table="Char" row="CharId" />
 </row>
 <key type="PRIMARY" name="">
 <part>Id</part>
 </key>
 </table>
-<table x="841" y="402" name="Chars">
-<row name="CharsId" null="0" autoincrement="1">
+<table x="883" y="375" name="Char">
+<row name="CharId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
-<row name="UserId" null="0" autoincrement="0">
+<row name="CharName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="FK_UserId" null="0" autoincrement="0">
 <datatype>VARCHAR(128)</datatype>
 <relation table="AspNetUsers" row="Id" />
 </row>
-<row name="CharsName" null="0" autoincrement="0">
-<datatype>VARCHAR(max)</datatype>
-</row>
-<row name="RaceId" null="0" autoincrement="0">
-<datatype>INT</datatype>
+<row name="FK_RaceId" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
 <relation table="Race" row="RaceId" />
 </row>
-<row name="SpecId" null="0" autoincrement="0">
+<row name="FK_SpecId" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="Spec" row="SpecId" />
 </row>
 <key type="PRIMARY" name="">
-<part>CharsId</part>
+<part>CharId</part>
 </key>
 </table>
-<table x="261" y="441" name="Instance">
+<table x="176" y="816" name="Instance">
 <row name="InstanceId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
 <row name="InstanceName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
+<row name="InstanceNameEN" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
 <key type="PRIMARY" name="">
 <part>InstanceId</part>
 </key>
 </table>
-<table x="274" y="584" name="Boss">
+<table x="166" y="942" name="Boss">
 <row name="BossId" null="0" autoincrement="1">
+<datatype>INTEGER</datatype>
+</row>
+<row name="BossNumber" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 </row>
 <row name="BossName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
-<row name="InstanceId" null="0" autoincrement="0">
+<row name="BossNameEN" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="FK_InstanceId" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="Instance" row="InstanceId" />
 </row>
@@ -198,11 +207,14 @@
 <part>BossId</part>
 </key>
 </table>
-<table x="621" y="439" name="Spec">
+<table x="606" y="497" name="Spec">
 <row name="SpecId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
 <row name="SpecName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="SpecNameEN" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
 <row name="ClassId" null="0" autoincrement="0">
@@ -213,47 +225,60 @@
 <part>SpecId</part>
 </key>
 </table>
-<table x="441" y="586" name="Item">
+<table x="651" y="968" name="Item">
 <row name="ItemId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
 <row name="ItemName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
-<row name="BossId" null="0" autoincrement="0">
-<datatype>INT</datatype>
-<relation table="Boss" row="BossId" />
+<row name="ItemNameEN" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
 </row>
 <row name="ItemImg" null="1" autoincrement="0">
 <datatype>ENUM(actually picture)</datatype>
 <default>NULL</default></row>
+<row name="ItemDetailId" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="ItemDetail" row="ItemDetailId" />
+</row>
 <key type="PRIMARY" name="">
 <part>ItemId</part>
 </key>
 </table>
-<table x="440" y="444" name="Class">
+<table x="572" y="672" name="Class">
 <row name="ClassId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
 <row name="ClassName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
+<row name="ClassNameEN" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
 <key type="PRIMARY" name="">
 <part>ClassId</part>
 </key>
 </table>
-<table x="1004" y="401" name="Race">
+<table x="1115" y="740" name="Race">
 <row name="RaceId" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 </row>
 <row name="RaceName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
+<row name="RaceNameEN" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="FK_FactionId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Faction" row="FactionId" />
+</row>
 <key type="PRIMARY" name="">
 <part>RaceId</part>
 </key>
 </table>
-<table x="613" y="583" name="Available">
+<table x="856" y="561" name="Available">
 <row name="AvailableId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -269,31 +294,31 @@
 <part>AvailableId</part>
 </key>
 </table>
-<table x="996" y="514" name="Need">
+<table x="1074" y="454" name="Need">
 <row name="NeedId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
-<row name="CharsId" null="0" autoincrement="0">
+<row name="FK_CharId" null="0" autoincrement="0">
 <datatype>INT</datatype>
-<relation table="Chars" row="CharsId" />
+<relation table="Char" row="CharId" />
 </row>
-<row name="AvailableId" null="0" autoincrement="0">
+<row name="FK_AvailableId" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="Available" row="AvailableId" />
 </row>
-<row name="NeedTypeId" null="0" autoincrement="0">
+<row name="FK_NeedTypeId" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="NeedType" row="NeedTypeId" />
 </row>
-<row name="PrioritiesId" null="1" autoincrement="0">
+<row name="FK_PriorityId" null="1" autoincrement="0">
 <datatype>INT</datatype>
-<default>NULL</default><relation table="Priorities" row="PrioritiesId" />
+<default>NULL</default><relation table="Priority" row="PriorityId" />
 </row>
 <key type="PRIMARY" name="">
 <part>NeedId</part>
 </key>
 </table>
-<table x="954" y="699" name="NeedType">
+<table x="1295" y="386" name="NeedType">
 <row name="NeedTypeId" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -304,15 +329,229 @@
 <part>NeedTypeId</part>
 </key>
 </table>
-<table x="783" y="654" name="Priorities">
-<row name="PrioritiesId" null="0" autoincrement="0">
+<table x="1296" y="479" name="Priority">
+<row name="PriorityId" null="0" autoincrement="0">
 <datatype>INT</datatype>
 </row>
-<row name="PrioritiesName" null="0" autoincrement="0">
+<row name="PriorityName" null="0" autoincrement="0">
 <datatype>VARCHAR(max)</datatype>
 </row>
 <key type="PRIMARY" name="">
-<part>PrioritiesId</part>
+<part>PriorityId</part>
+</key>
+</table>
+<table x="546" y="801" name="ItemClassSetting">
+<row name="ItemClassSetting" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="FK_ItemId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Item" row="ItemId" />
+</row>
+<row name="FK_ClassId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Class" row="ClassId" />
+</row>
+<key type="PRIMARY" name="">
+<part>ItemClassSetting</part>
+</key>
+</table>
+<table x="356" y="942" name="ItemBossSetting">
+<row name="ItemBossSettingId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="FK_ItemId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Item" row="ItemId" />
+</row>
+<row name="FK_BossId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Boss" row="BossId" />
+</row>
+<key type="PRIMARY" name="">
+<part>ItemBossSettingId</part>
+</key>
+</table>
+<table x="1313" y="761" name="Faction">
+<row name="FactionId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="FactionName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="FactionNameEN" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>FactionId</part>
+</key>
+</table>
+<table x="862" y="743" name="ClassRaceSetting">
+<row name="ClassRaceSettingId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="FK_ClassId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Class" row="ClassId" />
+</row>
+<row name="FK_RaceId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="Race" row="RaceId" />
+</row>
+<key type="PRIMARY" name="">
+<part>ClassRaceSettingId</part>
+</key>
+</table>
+<table x="618" y="1191.3333333333335" name="ItemDetail">
+<row name="ItemDetailId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemDetailDurability" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="ItemDetailLevelRequirement" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="FK_ItemClassId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemClass" row="ItemClassId" />
+</row>
+<row name="FK_ItemTyeId" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemType" row="ItemTypeId" />
+</row>
+<row name="FK_ItemSlotId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemSlot" row="ItemSlotId" />
+</row>
+<row name="FK_ItemBindingId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemBinding" row="ItemBindingId" />
+</row>
+<row name="FK_ItemRarityId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemRarity" row="ItemRarityId" />
+</row>
+<row name="FK_ItemUniquenessId" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="ItemUniquenessId" row="ItemUniquenessId" />
+</row>
+<row name="FK_ItemSetId" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ItemSet" row="ItemSetId" />
+</row>
+<key type="PRIMARY" name="">
+<part>ItemDetailId</part>
+</key>
+</table>
+<table x="414" y="1172" name="ItemClass">
+<row name="ItemClassId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemClassName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemClassId</part>
+</key>
+</table>
+<table x="420" y="1261" name="ItemType">
+<row name="ItemTypeId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemTypeName" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemTypeId</part>
+</key>
+</table>
+<table x="870" y="1273" name="ItemSlot">
+<row name="ItemSlotId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemSlotName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemSlotId</part>
+</key>
+</table>
+<table x="405" y="1349" name="ItemBinding">
+<row name="ItemBindingId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemBindingName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemBindingId</part>
+</key>
+</table>
+<table x="875" y="1364" name="ItemRarity">
+<row name="ItemRarityId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemRarityName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemRarityId</part>
+</key>
+</table>
+<table x="368" y="1439" name="ItemUniquenessId">
+<row name="ItemUniquenessId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemUniquenessName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemUniquenessId</part>
+</key>
+</table>
+<table x="864" y="1127" name="ItemStat">
+<row name="ItemStatId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemStatIncrease" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="FK_ItemStatTypeId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemStatType" row="ItemStatTypeId" />
+</row>
+<row name="FK_ItemDetailId" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="ItemDetail" row="ItemDetailId" />
+</row>
+<key type="PRIMARY" name="">
+<part>ItemStatId</part>
+</key>
+</table>
+<table x="866" y="1455" name="ItemSet">
+<row name="ItemSetId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemSetName" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<row name="ItemSetNumberOfItems" null="0" autoincrement="0">
+<datatype>INT</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemSetId</part>
+</key>
+</table>
+<table x="1081" y="1124" name="ItemStatType">
+<row name="ItemStatTypeId" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ItemStatTypeId" null="0" autoincrement="0">
+<datatype>VARCHAR(max)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>ItemStatTypeId</part>
 </key>
 </table>
 </sql>
