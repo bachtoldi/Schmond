@@ -2,7 +2,7 @@
 DROP DATABASE schmond
 CREATE DATABASE schmond
 
-SET IDENTITY_INSERT tablename ON // Identity selber einfügen
+SET IDENTITY_INSERT tablename ON // Identity selber einfÃ¼gen
 SET IDENTITY_INSERT tablename OFF // AI
 */
 
@@ -120,70 +120,70 @@ GO
 CREATE TABLE [dbo].[Instance] (
 	[InstanceId] int IDENTITY(1,1) PRIMARY KEY,
 	[InstanceName] nvarchar(max) NOT NULL,
-	[InstanceNameEN] nvarchar(max) NOT NULL
+	[InstanceNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[Boss] (
 	[BossId] int IDENTITY(1,1) PRIMARY KEY,
 	[BossNumber] int NOT NULL,
 	[BossName] nvarchar(max) NOT NULL,
-	[BossNameEN] nvarchar(max) NOT NULL,
+	[BossNameEN] nvarchar(max),
 	[FK_InstanceId] int FOREIGN KEY REFERENCES [dbo].[Instance]([InstanceId]) NOT NULL
 )
 
 CREATE TABLE [dbo].[Class] (
 	[ClassId] int IDENTITY(1,1) PRIMARY KEY,
 	[ClassName] nvarchar(max) NOT NULL,
-	[ClassNameEN] nvarchar(max) NOT NULL
+	[ClassNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemClass] (
 	[ItemClassId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemClassName] nvarchar(max) NOT NULL,
-	[ItemClassNameEN] nvarchar(max) NOT NULL
+	[ItemClassNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemType] (
 	[ItemTypeId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemTypeName] nvarchar(max) NOT NULL,
-	[ItemTypeNameEN] nvarchar(max) NOT NULL
+	[ItemTypeNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemBinding] (
 	[ItemBindingId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemBindingName] nvarchar(max) NOT NULL,
-	[ItemBindingNameEN] nvarchar(max) NOT NULL
+	[ItemBindingNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemUniqueness] (
 	[ItemUniquenessId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemUniquenessName] nvarchar(max) NOT NULL,
-	[ItemUniquenessNameEN] nvarchar(max) NOT NULL
+	[ItemUniquenessNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemSlot] (
 	[ItemSlotId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemSlotName] nvarchar(max) NOT NULL,
-	[ItemSlotNameEN] nvarchar(max) NOT NULL
+	[ItemSlotNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemSet] (
 	[ItemSetId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemSetName] nvarchar(max) NOT NULL,
-	[ItemSetNameEN] nvarchar(max) NOT NULL,
+	[ItemSetNameEN] nvarchar(max),
 	[ItemSetNumberOfItems] int NOT NULL
 )
 
 CREATE TABLE [dbo].[ItemRarity] (
 	[ItemRarityId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemRarityName] nvarchar(max) NOT NULL,
-	[ItemRarityNameEN] nvarchar(max) NOT NULL
+	[ItemRarityNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemStatType] (
 	[ItemStatTypeId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemStatTypeName] nvarchar(max) NOT NULL,
-	[ItemStatTypeNameEN] nvarchar(max) NOT NULL
+	[ItemStatTypeNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[ItemDetail] (
@@ -209,7 +209,7 @@ CREATE TABLE [dbo].[ItemStat] (
 CREATE TABLE [dbo].[Item] (
 	[ItemId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemName] nvarchar(max) NOT NULL,
-	[ItemNameEN] nvarchar(max) NOT NULL,
+	[ItemNameEN] nvarchar(max),
 	[ItemImg] image NULL,
 	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NULL
 )
@@ -229,7 +229,7 @@ CREATE TABLE [dbo].[ItemBossSetting] (
 CREATE TABLE [dbo].[Spec] (
 	[SpecId] int IDENTITY(1,1) PRIMARY KEY,
 	[SpecName] nvarchar(max) NOT NULL,
-	[SpecNameEN] nvarchar(max) NOT NULL,
+	[SpecNameEN] nvarchar(max),
 	[FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL
 )
 
@@ -242,7 +242,7 @@ CREATE TABLE [dbo].[Available] (
 CREATE TABLE [dbo].[Faction] (
 	[FactionId] int IDENTITY(1,1) PRIMARY KEY,
 	[FactionName] nvarchar(max) NOT NULL,
-	[FactionNameEN] nvarchar(max) NOT NULL,
+	[FactionNameEN] nvarchar(max)
 )
 
 CREATE TABLE [dbo].[Race] (
@@ -254,8 +254,10 @@ CREATE TABLE [dbo].[Race] (
 
 CREATE TABLE [dbo].[ClassRaceSetting] (
     [ClassRaceSettingId] int IDENTITY(1,1) PRIMARY KEY,
-    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL,
-    [FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL
+    [FK_ClassId] int NOT NULL,
+    [FK_RaceId] int NOT NULL,
+    FOREIGN KEY (FK_ClassId) REFERENCES [dbo].[Class]([ClassId]) ON DELETE CASCADE,
+    FOREIGN KEY (FK_RaceId) REFERENCES [dbo].[Race]([RaceId]) ON DELETE CASCADE
 )
 
 CREATE TABLE [dbo].[Char] (
