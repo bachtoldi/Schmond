@@ -137,7 +137,6 @@
     <Content Include="content\materialize\css\extensions.css" />
     <Content Include="content\materialize\font\material-design-icons\LICENSE.txt" />
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
-    <Content Include="content\mdl\extensions.css" />
     <Content Include="content\site.css" />
     <Content Include="content\spinner.css" />
     <Content Include="index.html" />

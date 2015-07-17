@@ -4,15 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-TextLayoutMetrics" content="natural" />
 	<meta charset="utf-8" />
-	<!--<link rel="stylesheet" href="/content/materialize/css/materialize.css" media="screen,projection">-->
-	<!--<link rel="stylesheet" href="/content/materialize/css/extensions.css" media="screen,projection">
-	<link rel="stylesheet" href="/content/spinner.css" media="screen,projection">-->
-	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
-	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+	<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">
+	<link rel="stylesheet" href="/content/materialize/css/extensions.css" media="screen,projection">
 	<link rel="stylesheet" href="/content/site.css" media="screen,projection">
+	<link rel="stylesheet" href="/content/spinner.css" media="screen,projection">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="/scripts/jquery-2.1.1.min.js"></script>
 	<script src="/scripts/angular.min.js"></script>
 	<script src="/scripts/angular-route.min.js"></script>
@@ -20,47 +16,45 @@
 	<title>Die Legion</title>
 </head>
 <body class="fixed-footer hide-cards-on-mobile hide-chrome-autofill-color">
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded">
-		<header class="mdl-layout__header mdl-color--white" data-ng-controller="indexController">
-			<div class="mdl-layout-icon"></div>
-			<div class="mdl-layout__header-row">
-				<span class="mdl-layout-title mdl-color-text--grey-900" ng-cloak>{{ title }}</span>
-				<div class="mdl-layout-spacer"></div>
-				<nav class="mdl-navigation">
-					<a ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth" class="mdl-navigation__link mdl-color-text--grey-900" href="/#/profile">Mein Profil</a>
-					<a ng-hide="!authentication.isAuth" class="mdl-navigation__link mdl-color-text--grey-900" ng-click="logOut()">Abmelden</a>
-					<a ng-class="{ active: isActive('/register')}" ng-hide="authentication.isAuth" class="mdl-navigation__link mdl-color-text--grey-900" href="/#/register">Registrieren</a>
-					<a ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth" class="mdl-navigation__link mdl-color-text--grey-900" href="/#/login">Anmelden</a>
-				</nav>
-			</div>
-			<!--<div class="progress hide-on-med-and-up ng-hide" ng-show="loading">
-				<div class="indeterminate"></div>
-			</div>-->
-		</header>
-		<div class="mdl-layout__drawer" data-ng-controller="indexController">
-			<header class="drawer-header">
-				<!--<span class="mdl-layout-title">Die Legion</span>-->
-				<div class="avatar-dropdown">
-					<span ng-hide="!authentication.isAuth">{{ authentication.username }}</span>
-					<div class="mdl-layout-spacer"></div>
-					<button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-						<i class="material-icons">arrow_drop_down</i>
-						<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 92.5096679918781px; height: 92.5096679918781px; -webkit-transform: translate(-50%, -50%) translate(18px, 12px); transform: translate(-50%, -50%) translate(18px, 12px);"></span></span>
-					</button>
-					<div class="mdl-menu__container is-upgraded" style="right: 0px; top: 32px; width: 196.953125px; height: 160px;">
-						<div class="mdl-menu__outline mdl-menu--bottom-right" style="width: 196.953125px; height: 160px;"></div><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events" for="accbtn" data-upgraded=",MaterialMenu,MaterialRipple" style="clip: rect(0px 196.953125px 0px 196.953125px);">
-							<li class="mdl-menu__item mdl-js-ripple-effect" tabindex="-1" data-upgraded=",MaterialRipple" style="">hello@example.com<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span></li>
-							<li class="mdl-menu__item mdl-js-ripple-effect" tabindex="-1" data-upgraded=",MaterialRipple" style="">info@example.com<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span></li>
-							<li class="mdl-menu__item mdl-js-ripple-effect" tabindex="-1" data-upgraded=",MaterialRipple" style=""><i class="material-icons">add</i>Add another account...<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span></li>
-						</ul>
-					</div>
+	<header data-ng-controller="indexController">
+		<nav class="top-nav white">
+			<div class="container">
+				<div class="nav-wrapper">
+					<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full grey-text text-darken-3">
+						<i class="mdi-navigation-menu"></i>
+					</a>
+					<ul class="right hide-on-med-and-down">
+						<li ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth">
+							<a class="grey-text text-darken-3" href="/#/profile">Mein Profil</a>
+						</li>
+						<li ng-hide="!authentication.isAuth">
+							<a class="grey-text text-darken-3" ng-click="logOut()">Abmelden</a>
+						</li>
+						<li ng-class="{ active: isActive('/register')}" ng-hide="authentication.isAuth">
+							<a class="grey-text text-darken-3" href="/#/register">Registrieren</a>
+						</li>
+						<li ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth">
+							<a class="grey-text text-darken-3" href="/#/login">Anmelden</a>
+						</li>
+					</ul>
+					<a class="brand-logo grey-text text-darken-3" ng-cloak>{{ title }}</a>
 				</div>
-			</header>
-			<nav class="mdl-navigation">
-				<a ng-class="{ active: isActive('/players')}" href="/#/players" class="mdl-navigation__link hide-nav" data-activates="nav-mobile">Mitglieder</a>
-				<a ng-class="{ active: isActive('/lootlist')}" href="/#/lootlist" class="mdl-navigation__link hide-nav" data-activates="nav-mobile">Lootlisten</a>
-				<a ng-class="{ active: isActive('/admin')}" href="/#/admin" class="mdl-navigation__link hide-nav" data-activates="nav-mobile">Administration</a>
-				<!--<li class="no-padding" ng-hide="!authentication.isAuth">
+			</div>
+		</nav>
+		<div class="progress hide-on-med-and-up ng-hide" ng-show="loading">
+			<div class="indeterminate"></div>
+		</div>
+		<ul id="nav-mobile" class="side-nav fixed z-depth-2" ng-cloak>
+			<li class="logo">
+				<a id="logo-container" href="/#/home" class="brand-logo hide-nav">
+					<!--<img alt="Logo" src="/" class="center-block" height="150"/>-->
+					<h1 class="center-block">LOGO</h1>
+				</a>
+			</li>
+			<li ng-class="{ active: isActive('/players')}" class="bold">
+				<a href="/#/players" class="waves-effect waves-ripple hide-nav" data-activates="nav-mobile">Mitglieder</a>
+			</li>
+			<li class="no-padding" ng-hide="!authentication.isAuth">
 				<ul class="collapsible collapsible-accordion">
 					<li class="bold" ng-class="{ active: isActive('/lootlist')}">
 						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/lootlist')}">Lootlisten</a>
@@ -114,15 +108,25 @@
 						</div>
 					</li>
 				</ul>
-			</li>-->
-				<a href="/#/profile" ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth" class="mdl-navigation__link mdl-cell--hide-desktop hide-nav">Mein Profil</a>
-				<a ng-hide="!authentication.isAuth" ng-click="logOut()" class="mdl-navigation__link mdl-cell--hide-desktop hide-nav">Abmelden</a>
-				<a href="/#/register" ng-class="{ active: isActive('/register')}" ng-hide="authentication.isAuth" class="mdl-navigation__link mdl-cell--hide-desktop hide-nav">Registrieren</a>
-				<a ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth" href="/#/login" class="mdl-navigation__link mdl-cell--hide-desktop hide-nav">Anmelden</a>
-			</nav>
-		</div>
-		<main class="mdl-layout__content mdl-color--grey-100">
-			<!--<div class="ng-cloak" data-ng-controller="indexController">
+			</li>
+			<li class="logo hide-on-large-only">&nbsp;</li> <!-- workaround to get space and a border between this and the upper item -->
+			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/profile')}" ng-hide="!authentication.isAuth">
+				<a href="/#/profile" class="waves-effect waves-ripple hide-nav">Mein Profil</a>
+			</li>
+			<li class="hide-on-large-only bold" ng-hide="!authentication.isAuth">
+				<a ng-click="logOut()" class="waves-effect waves-ripple hide-nav">Abmelden</a>
+			</li>
+			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/register')}" ng-hide="authentication.isAuth">
+				<a href="/#/register" class="waves-effect waves-ripple hide-nav">Registrieren</a>
+			</li>
+			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/login')}" ng-hide="authentication.isAuth">
+				<a href="/#/login" class="waves-effect waves-ripple hide-nav">Anmelden</a>
+			</li>
+		</ul>
+	</header>
+	<main>
+		<div class="container">
+			<div class="ng-cloak" data-ng-controller="indexController">
 				<div class="modal modal-fixed-footer" id="modal">
 					<div class="modal-content">
 						<h4 class="ng-hide" ng-show="header != ''">{{ modalHeader }}</h4> {{ modalMessage }}
@@ -134,25 +138,32 @@
 				<svg alt="Lade..." class="ng-hide spinner hide-on-small-only" ng-show="loading" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
 					<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
 				</svg>
-			</div>-->
+			</div>
 			<div data-ng-view="">
 			</div>
-		</main>
-		<footer class="mdl-mini-footer red darken-2" data-ng-controller="indexController">
-			<div class="mdl-mini-footer--left-section container">
-				<div class="col l4 offset-l2 s12">
-					<div class="mdl-logo">© 2015-{{ getDateNow() | date:'yyyy'}} Die Legion</div>
-					<ul class="mdl-mini-footer--link-list">
-						<li>
-							<a class="white-text" href="/#/imprint">
-								Impressum
-							</a>
-						</li>
-					</ul>
+		</div>
+	</main>
+	<footer class="page-footer z-depth-1 grey darken-3" data-ng-controller="indexController">
+		<div class="container">
+			<div class="col l4 offset-l2 s12">
+				<ul>
+					<li>
+						<a class="white-text" href="/#/imprint">
+							Impressum
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright grey darken-4">
+			<div class="container">
+				<div class="row">
+					<span class="white-text col s12 m6">© 2015-{{ getDateNow() | date:'yyyy'}} Die Legion, All rights reserved.</span>
+					<span class="white-text col s12 m6 right-align hide-on-small-and-down">v. 1.0.0</span>
 				</div>
 			</div>
-		</footer>
-	</div>
+		</div>
+	</footer>
 	<script src="/scripts/materialize/materialize.min.js"></script>
 	<script src="/app/app.js"></script>
 

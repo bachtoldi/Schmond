@@ -8,20 +8,21 @@
 <!-- elements -->
 <div class="row ng-hide" data-ng-init="initIndex()" ng-show="races.length > 0">
 	<div class="col s12">
-			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+		<div class="card-panel">
+			<table>
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Name</th>
-						<th colspan="2" class="mdl-data-table__cell--non-numeric">Fraktion</th>
+						<th>Name</th>
+						<th colspan="2">Fraktion</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="entry in races">
-						<td class="mdl-data-table__cell--non-numeric">
+						<td>
 							<a class="red-text text-darken-2" ng-click="show(entry)">{{ entry.name }}</a>
 						</td>
-						<td class="mdl-data-table__cell--non-numeric">{{ entry.faction.name }}</td>
-						<td class="mdl-data-table__cell--non-numeric">
+						<td>{{ entry.faction.name }}</td>
+						<td>
 							<a ng-click="delete(entry)" class="right red-text text-darken-2">
 								Löschen
 							</a>
@@ -29,6 +30,7 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
 	</div>
 </div>
 
@@ -55,15 +57,8 @@
 			<h5 class="hide-on-small-only">{{ race.name == '' ? 'Neue Rasse' : race.name}}</h5>
 			<div class="row">
 				<div class="input-field col s12">
-					<input type="text" name="name" ng-model="race.name" id="name"/>
+					<input type="text" name="name" ng-model="race.name" id="name" />
 					<label for="name" ng-class="{ active: race.name != '' }">Name</label>
-				</div>
-				<div class="input-field col s12">
-					<select id="faction_id">
-						<option value="" disabled selected>Bitte wählen</option>
-						<option ng-repeat="entry in factions" value="{{ entry.id }}">{{ entry.name }}</option>
-					</select>
-					<label for="faction_id">Fraktion</label>
 				</div>
 			</div>
 		</div>
