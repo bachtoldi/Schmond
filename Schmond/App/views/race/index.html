@@ -35,7 +35,7 @@
 </div>
 
 <!-- edit modal -->
-<div class="modal modal-fixed-footer" id="edit">
+<div class="modal modal-fixed-footer" id="edit" style="height: 330px;">
 	<form ng-submit="save()">
 		<nav class="top-nav red darken-2 hide-on-med-and-up">
 			<div class="container">
@@ -46,7 +46,7 @@
 					<button type="submit" class="button-collapse right btn-flat white-text">
 						<i class="material-icons">&#xE163;</i>
 					</button>
-					<span class="brand-logo">{{ race.name == '' ? 'Neue Rasse' : race.name}}</span>
+					<span class="brand-logo">{{ race.name == '' ? 'Neue Rasse' : race.name }}</span>
 				</div>
 			</div>
 		</nav>
@@ -54,12 +54,16 @@
 			<div class="indeterminate"></div>
 		</div>
 		<div class="modal-content">
-			<h5 class="hide-on-small-only">{{ race.name == '' ? 'Neue Rasse' : race.name}}</h5>
+			<h5 class="hide-on-small-only">{{ race.name == '' ? 'Neue Rasse' : race.name }}</h5>
 			<div class="row">
 				<div class="input-field col s12">
-					<input type="text" name="name" ng-model="race.name" id="name" />
+					<input type="text" name="name" ng-model="race.name" id="name" required/>
 					<label for="name" ng-class="{ active: race.name != '' }">Name</label>
 				</div>
+				<p class="col s12" ng-repeat="entry in factions">
+					<input name="race.faction.id" ng-model="race.faction.id" type="radio" id="faction-{{ entry.id }}" value="{{ entry.id }}" required />
+					<label for="faction-{{ entry.id }}">{{ entry.name }}</label>
+				</p>
 			</div>
 		</div>
 		<div class="modal-footer hide-on-small-only">

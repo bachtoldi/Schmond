@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('raceController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
-	
+
 	$scope.initIndex = function () {
 		$rootScope.title = 'Rassen';
 
@@ -20,7 +20,6 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 	$scope.show = function (race) {
 		$http.get('/api/factions').success(function (response) {
-			console.log(response);
 			$scope.factions = response;
 			$('select').material_select();
 		}).error(function (err) {
@@ -33,7 +32,8 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 		if (race == null) {
 			$scope.race = {
-				name: ''
+				name: '',
+				factionId: 0
 			}
 		} else {
 			$scope.race = angular.copy(race);
@@ -49,9 +49,14 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 	$scope.save = function () {
 		$rootScope.loading = true;
-		
+
+		var fd = {
+			name: $scope.race.name,
+			factionId: $scope.race.faction.id
+		};
+
 		if ($scope.race.id == undefined) {
-			$http.post('/api/races', $scope.race).success(function () {
+			$http.post('/api/races', fd).success(function () {
 				$rootScope.loading = false;
 				$scope.initIndex(); // reload races
 				$('#edit').closeModal();
@@ -65,7 +70,7 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 				$('#modal').openModal();
 			});
 		} else {
-			$http.put('/api/races/' + $scope.race.id, $scope.race).success(function () {
+			$http.put('/api/races/' + $scope.race.id, fd).success(function () {
 				$rootScope.loading = false;
 				$scope.initIndex(); // reload races
 				$('#edit').closeModal();
@@ -82,7 +87,7 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 	$scope.delete = function (race) {
 		$rootScope.loading = true;
-		
+
 		$http.delete('/api/races/' + race.id).success(function () {
 			$rootScope.loading = false;
 			$scope.initIndex(); // reload races

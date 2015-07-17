@@ -132,6 +132,7 @@ a[ng-click] {
 
 		.modal[style],
 		.modal.modal-fixed-footer[style] {
+			height: 100%!important;
 			top: 0 !important;
 		}
 
