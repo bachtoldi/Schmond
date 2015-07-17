@@ -254,8 +254,8 @@ CREATE TABLE [dbo].[Race] (
 
 CREATE TABLE [dbo].[ClassRaceSetting] (
     [ClassRaceSettingId] int IDENTITY(1,1) PRIMARY KEY,
-    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL,
-    [FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL
+    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL ON DELETE CASCADE,
+    [FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL ON DELETE CASCADE
 )
 
 CREATE TABLE [dbo].[Char] (
