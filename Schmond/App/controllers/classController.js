@@ -18,28 +18,55 @@ app.controller('classController', ['$scope', '$rootScope', '$http', function ($s
 		});
 	}
 
+	// if the object references are not the same, no checkboxes are selected in editmode
+	var findReferences = function (targets, sources) {
+		var results = [];
+		angular.forEach(targets, function (target) {
+			angular.forEach(sources, function (source) {
+				if (source.id === target.id) {
+					results.push(source);
+				}
+			});
+		});
+		return results;
+	};
+
 	$scope.show = function (object) {
-		if (object == null) {
-			$scope.class = {
-				name: ''
+		$http.get('/api/races').success(function (response) {
+			$scope.races = response;
+			if (object == null) {
+				$scope.class = {
+					name: '',
+					races: []
+				}
+			} else {
+				object.races = findReferences(object.races, $scope.races);
+				$scope.class = angular.copy(object);
+				$scope.master = angular.copy(object);
 			}
-		} else {
-			$scope.class = angular.copy(object);
-			$scope.master = angular.copy(object);
-		}
-
-		$scope.reset = function () {
-			$scope.class = angular.copy($scope.master);
-		};
-
-		$('#edit').openModal();
+			$scope.reset = function () {
+				$scope.class = angular.copy($scope.master);
+			};
+			$('#edit').openModal();
+		}).error(function (err) {
+			$rootScope.state = 'error';
+			$rootScope.modalHeader = 'Fehler';
+			$rootScope.modalMessage = err;
+			$rootScope.modalLink = 'javascript:void()';
+			$('#modal').openModal();
+		});
 	}
-
+	
 	$scope.save = function () {
 		$rootScope.loading = true;
 
+		var fd = {
+			name: $scope.class.name,
+			availableRaces: $scope.class.races
+		};
+
 		if ($scope.class.id == undefined) {
-			$http.post('/api/classes', $scope.class).success(function () {
+			$http.post('/api/classes', fd).success(function () {
 				$rootScope.loading = false;
 				$scope.initIndex(); // reload 
 				$('#edit').closeModal();
@@ -53,7 +80,7 @@ app.controller('classController', ['$scope', '$rootScope', '$http', function ($s
 				$('#modal').openModal();
 			});
 		} else {
-			$http.put('/api/classes/' + $scope.class.id, $scope.class).success(function () {
+			$http.put('/api/classes/' + $scope.class.id, fd).success(function () {
 				$rootScope.loading = false;
 				$scope.initIndex(); // reload 
 				$('#edit').closeModal();
@@ -73,7 +100,7 @@ app.controller('classController', ['$scope', '$rootScope', '$http', function ($s
 
 		$http.delete('/api/classes/' + object.id).success(function () {
 			$rootScope.loading = false;
-			$scope.initIndex(); // reload races
+			$scope.initIndex(); // reload
 		}).error(function (err) {
 			$rootScope.loading = false;
 			$rootScope.state = 'error';

@@ -21,7 +21,6 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 	$scope.show = function (race) {
 		$http.get('/api/factions').success(function (response) {
 			$scope.factions = response;
-			$('select').material_select();
 		}).error(function (err) {
 			$rootScope.state = 'error';
 			$rootScope.modalHeader = 'Fehler';
@@ -49,7 +48,7 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 	$scope.save = function () {
 		$rootScope.loading = true;
-
+		
 		var fd = {
 			name: $scope.race.name,
 			factionId: $scope.race.faction.id

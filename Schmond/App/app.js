@@ -1,4 +1,4 @@
-﻿var app = angular.module('Schmond', ['ngRoute', 'LocalStorageModule']);
+﻿var app = angular.module('Schmond', ['ngRoute', 'LocalStorageModule', 'checklist-model']);
 
 app.config(function ($routeProvider) {
 	$routeProvider.when('/login', {
@@ -20,6 +20,10 @@ app.config(function ($routeProvider) {
 	$routeProvider.when('/admin/races', {
 		controller: 'raceController',
 		templateUrl: '/app/views/race/index.html'
+	});
+	$routeProvider.when('/admin/classes', {
+		controller: 'classController',
+		templateUrl: '/app/views/class/index.html'
 	});
 	$routeProvider.when('/imprint', {
 		controller: '',

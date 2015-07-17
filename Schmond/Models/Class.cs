@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
 
 namespace Schmond.Models
 {
@@ -15,8 +14,7 @@ namespace Schmond.Models
 		[Required]
 		[Column("ClassName")]
 		public string Name { get; set; }
-
-		[JsonIgnore]
+		
 		public virtual ICollection<Race> AvailableRaces { get; set; }
 
 		public override string ToString()
