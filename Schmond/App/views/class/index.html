@@ -1,27 +1,33 @@
 ﻿<!-- create button -->
 <div class="fixed-action-btn">
-	<a class="btn btn-floating btn-large waves-effect waves-light modal-trigger red darken-2" ng-click="show(null)" title="Rasse erstellen">
+	<a class="btn btn-floating btn-large waves-effect waves-light modal-trigger red darken-2" ng-click="show(null)" title="Klasse erstellen">
 		<i class="mdi-content-add"></i>
 	</a>
 </div>
 
 <!-- elements -->
-<div class="row ng-hide" data-ng-init="initIndex()" ng-show="races.length > 0">
+<div class="row ng-hide" data-ng-init="initIndex()" ng-show="classes.length > 0">
 	<div class="col s12">
 		<div class="card-panel">
 			<table>
 				<thead>
 					<tr>
 						<th>Name</th>
-						<th colspan="2">Fraktion</th>
+						<th >Rassen</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="entry in races">
+					<tr ng-repeat="entry in classes">
 						<td>
 							<a class="red-text text-darken-2" ng-click="show(entry)">{{ entry.name }}</a>
 						</td>
-						<td>{{ entry.faction.name }}</td>
+						<td >
+							<span ng-repeat="race in entry.races">
+								<span>{{ race.name }}</span>
+								<span ng-hide="$last">/</span>
+							</span>
+						</td>
 						<td>
 							<a ng-click="delete(entry)" class="right red-text text-darken-2">
 								Löschen
@@ -35,7 +41,7 @@
 </div>
 
 <!-- edit modal -->
-<div class="modal modal-fixed-footer" id="edit" style="height: 330px;">
+<div class="modal modal-fixed-footer" id="edit" style="height: 640px;">
 	<form ng-submit="save()">
 		<nav class="top-nav red darken-2 hide-on-med-and-up">
 			<div class="container">
@@ -46,7 +52,7 @@
 					<button type="submit" class="button-collapse right btn-flat white-text">
 						<i class="material-icons">&#xE163;</i>
 					</button>
-					<span class="brand-logo">{{ race.name == '' ? 'Neue Rasse' : race.name }}</span>
+					<span class="brand-logo">{{ class.name == '' ? 'Neue Klasse' : class.name }}</span>
 				</div>
 			</div>
 		</nav>
@@ -54,15 +60,15 @@
 			<div class="indeterminate"></div>
 		</div>
 		<div class="modal-content">
-			<h5 class="hide-on-small-only">{{ race.name == '' ? 'Neue Rasse' : race.name }}</h5>
+			<h5 class="hide-on-small-only">{{ class.name == '' ? 'Neue Klasse' : class.name }}</h5>
 			<div class="row">
 				<div class="input-field col s12">
-					<input type="text" name="name" ng-model="race.name" id="name" required/>
-					<label for="name" ng-class="{ active: race.name != '' }">Name</label>
+					<input type="text" name="name" ng-model="class.name" id="name" required/>
+					<label for="name" ng-class="{ active: class.name != '' }">Name</label>
 				</div>
-				<p class="col s12" ng-repeat="entry in factions">
-					<input name="race.faction.id" ng-model="race.faction.id" type="radio" id="faction-{{ entry.id }}" value="{{ entry.id }}" required />
-					<label for="faction-{{ entry.id }}">{{ entry.name }}</label>
+				<p class="col s12" ng-repeat="entry in races">
+					<input name="races" checklist-model="class.races" type="checkbox" id="race-{{ entry.id }}" checklist-value="entry" />
+					<label for="race-{{ entry.id }}">{{ entry.name }}</label> 
 				</p>
 			</div>
 		</div>

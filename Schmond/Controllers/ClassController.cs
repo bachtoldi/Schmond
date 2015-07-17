@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using Schmond.Models;
@@ -7,76 +8,112 @@ namespace Schmond.Controllers
 {
 	[RoutePrefix("api/classes")]
 	public class ClassController : ApiControllerBase
-    {
-			[HttpGet]
-			[Route("")]
-			[Authorize]
-			public IHttpActionResult Read(int raceId = 0)
-			{
-				// TODO: Filter by race
-				var results = Context.Classes;
+	{
+		[HttpGet]
+		[Route("")]
+		[Authorize]
+		public IHttpActionResult Read(int raceId = 0)
+		{
+			var results = (from c in Context.Classes.Include(x => x.AvailableRaces)
+										 where raceId == 0 || c.AvailableRaces.Any(r => r.Id == raceId)
+										 orderby c.Name
+										 select c).Select(c => new
+										 {
+											 c.Id,
+											 c.Name,
+											 Races = c.AvailableRaces.Select(r => new
+											 {
+												 r.Id,
+												 r.Name
+											 })
+										 });
 
-				return Ok(results);
+			return Ok(results);
+		}
+
+		[HttpGet]
+		[Route("{id:int}")]
+		[Authorize]
+		public IHttpActionResult ReadSingle(int id)
+		{
+			var result = (from r in Context.Classes.Include(x => x.AvailableRaces)
+										where r.Id == id
+										select r).Select(c => new
+										{
+											c.Id,
+											c.Name,
+											Races = c.AvailableRaces.Select(r => new
+											{
+												r.Id,
+												r.Name
+											})
+										}).SingleOrDefault();
+
+			return Ok(result);
+		}
+
+		[HttpPost]
+		[Route("")]
+		[Authorize(Roles = "Administrator")]
+		public IHttpActionResult Create(Class @class)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
 			}
 
-			[HttpGet]
-			[Route("{id:int}")]
-			[Authorize]
-			public IHttpActionResult ReadSingle(int id)
+			// avoiding duplicate or changed entities
+			foreach (var entry in @class.AvailableRaces)
 			{
-				var result = (from r in Context.Classes
-											where r.Id == id
-											select r).SingleOrDefault();
-
-				return Ok(result);
+				entry.Faction = null; // else ef tries to add the faction again
+				Context.Entry(entry).State = EntityState.Unchanged;
 			}
 
-			[HttpPost]
-			[Route("")]
-			[Authorize(Roles = "Administrator")]
-			public IHttpActionResult Create(Class @class)
+			Context.Classes.Add(@class);
+			Context.SaveChanges();
+
+			return Ok();
+		}
+
+		[HttpPut]
+		[Route("{id:int}")]
+		[Authorize(Roles = "Administrator")]
+		public IHttpActionResult Update(int id, Class @class)
+		{
+			@class.Id = id;
+
+			if (!ModelState.IsValid)
 			{
-				if (!ModelState.IsValid)
-				{
-					return BadRequest(ModelState);
-				}
-
-				Context.Classes.Add(@class);
-				Context.SaveChanges();
-
-				return Ok();
+				return BadRequest(ModelState);
 			}
 
-			[HttpPut]
-			[Route("{id:int}")]
-			[Authorize(Roles = "Administrator")]
-			public IHttpActionResult Update(int id, Class @class)
+			var tmp = @class.AvailableRaces;
+
+			// avoiding duplicate or changed entities
+			foreach (var race in @class.AvailableRaces)
 			{
-				@class.Id = id;
-
-				if (!ModelState.IsValid)
-				{
-					return BadRequest(ModelState);
-				}
-
-				Context.Classes.Attach(@class);
-				var entry = Context.Entry(@class);
-				entry.State = EntityState.Modified;
-
-				Context.SaveChanges();
-
-				return Ok();
+				race.Faction = null; // else ef tries to add the faction again
+				Context.Entry(race).State = EntityState.Unchanged;
 			}
 
-			[HttpDelete]
-			[Route("{id:int}")]
-			[Authorize(Roles = "Administrator")]
-			public IHttpActionResult Delete(int id)
-			{
-				Context.Classes.Remove(Context.Classes.Find(id));
-				Context.SaveChanges();
+			Context.Classes.Attach(@class);
+			var entry = Context.Entry(@class);
+			entry.State = EntityState.Modified;
 
-				return Ok();
-			}
-    }
+			Context.SaveChanges();
+
+			return Ok();
+		}
+
+		[HttpDelete]
+		[Route("{id:int}")]
+		[Authorize(Roles = "Administrator")]
+		public IHttpActionResult Delete(int id)
+		{
+			Context.Classes.Remove(Context.Classes.Find(id));
+			Context.SaveChanges();
+
+			return Ok();
+		}
+	}
 }

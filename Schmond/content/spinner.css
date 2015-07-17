@@ -4,7 +4,7 @@
   position: fixed;
   left: 50%;
   margin-left: -16px;
-  z-index: 999;
+  z-index: 9999;
   top: 50%;
   margin-top: -16px; }
 
