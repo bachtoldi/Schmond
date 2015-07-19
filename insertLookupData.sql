@@ -38,7 +38,7 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(10,	2,		9,		'Majordomus Exekutus',			'Majordomo Executus'),
 	(11,	2,		10,		'Ragnaros',						'Ragnaros'),
 	(12,	2,		11,		'Trash',						'Trash'),
-	
+
 	(13,	3,		1,		'Hohepriesterin Jeklik',		'High Priestess Jeklik'),
 	(14,	3,		2,		'Hohepriester Venoxis',			'High Priest Venoxis'),
 	(15,	3,		3,		'Hohepriesterin Mar''li',		'High Priestess Mar''li'),
