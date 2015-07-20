@@ -101,7 +101,14 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(68,	7,		13,		'Thaddius',						'Thaddius'),
 	(69,	7,		14,		'Saphiron',						'Sapphiron'),
 	(70,	7,		15,		'Kel''Thuzad',					'Kel''Thuzad'),
-	(71,	7,		16,		'Trash',						'Trash')
+	(71,	7,		16,		'Trash',						'Trash'),
+
+    (72,    8,      1,      'Kazzak',                       'Kazzak'),
+    (73,    8,      2,      'Azuregos',                     'Azuregos'),
+    (74,    8,      3,      'Ysondre',                      'Ysondre'),
+    (75,    8,      4,      'Lethon',                       'Lethon'),
+    (76,    8,      5,      'Taerar',                       'Taerar'),
+    (77,    8,      6,      'Emeriss',                      'Emeriss')
 SET IDENTITY_INSERT [schmond].[dbo].[Boss] OFF
 
  /*
