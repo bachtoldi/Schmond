@@ -87,21 +87,25 @@ namespace Schmond.Controllers
 				return BadRequest(ModelState);
 			}
 
-			var tmp = @class.AvailableRaces;
+			// really fuckking dirty, but working!!!
 
-			// avoiding duplicate or changed entities
-			foreach (var race in @class.AvailableRaces)
-			{
-				race.Faction = null; // else ef tries to add the faction again
-				Context.Entry(race).State = EntityState.Unchanged;
-			}
-
-			Context.Classes.Attach(@class);
 			var entry = Context.Entry(@class);
+			var tmp = new Race[@class.AvailableRaces.Count];
+			@class.AvailableRaces.CopyTo(tmp, 0);
+
+			@class.AvailableRaces.Clear();
 			entry.State = EntityState.Modified;
 
-			Context.SaveChanges();
+			entry.Collection(i => i.AvailableRaces).Load();
+			@class.AvailableRaces.Clear();
+			
+			foreach (var race in tmp)
+			{
+				@class.AvailableRaces.Add(Context.Races.Find(race.Id));
+			}
 
+			Context.SaveChanges();
+			
 			return Ok();
 		}
 
