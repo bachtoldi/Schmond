@@ -65,7 +65,13 @@ namespace Schmond
 			var identityResult = await _userManager.ChangePasswordAsync(id, userModel.OldPassword, userModel.Password);
 
 			return identityResult;
-		}
+        }
+
+        public async Task<IdentityResult> DeleteUser(string id) {
+            var identityResult = await _userManager.DeleteAsync(await GetUserById(id));
+
+            return identityResult;
+        }
 
 		public void Dispose()
 		{

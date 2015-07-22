@@ -119,71 +119,72 @@ GO
 
 CREATE TABLE [dbo].[Instance] (
 	[InstanceId] int IDENTITY(1,1) PRIMARY KEY,
-	[InstanceName] nvarchar(max) NOT NULL,
-	[InstanceNameEN] nvarchar(max)
+	[InstanceName] nvarchar(max) NOT NULL UNIQUE,
+	[InstanceNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[Boss] (
 	[BossId] int IDENTITY(1,1) PRIMARY KEY,
 	[BossNumber] int NOT NULL,
-	[BossName] nvarchar(max) NOT NULL,
-	[BossNameEN] nvarchar(max),
-	[FK_InstanceId] int FOREIGN KEY REFERENCES [dbo].[Instance]([InstanceId]) NOT NULL
+	[BossName] nvarchar(max) NOT NULL UNIQUE,
+	[BossNameEN] nvarchar(max) NULL UNIQUE,
+	[FK_InstanceId] int FOREIGN KEY REFERENCES [dbo].[Instance]([InstanceId]) NOT NULL,
+	CONSTRAINT [uq_InstanceBossNumber] UNIQUE NONCLUSTERED ( [BossNumber], [FK_InstanceId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[Class] (
 	[ClassId] int IDENTITY(1,1) PRIMARY KEY,
-	[ClassName] nvarchar(max) NOT NULL,
-	[ClassNameEN] nvarchar(max)
+	[ClassName] nvarchar(max) NOT NULL UNIQUE,
+	[ClassNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemClass] (
 	[ItemClassId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemClassName] nvarchar(max) NOT NULL,
-	[ItemClassNameEN] nvarchar(max)
+	[ItemClassName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemClassNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemType] (
 	[ItemTypeId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemTypeName] nvarchar(max) NOT NULL,
-	[ItemTypeNameEN] nvarchar(max)
+	[ItemTypeName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemTypeNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemBinding] (
 	[ItemBindingId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemBindingName] nvarchar(max) NOT NULL,
-	[ItemBindingNameEN] nvarchar(max)
+	[ItemBindingName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemBindingNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemUniqueness] (
 	[ItemUniquenessId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemUniquenessName] nvarchar(max) NOT NULL,
-	[ItemUniquenessNameEN] nvarchar(max)
+	[ItemUniquenessName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemUniquenessNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemSlot] (
 	[ItemSlotId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemSlotName] nvarchar(max) NOT NULL,
-	[ItemSlotNameEN] nvarchar(max)
+	[ItemSlotName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemSlotNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemSet] (
 	[ItemSetId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemSetName] nvarchar(max) NOT NULL,
-	[ItemSetNameEN] nvarchar(max),
+	[ItemSetName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemSetNameEN] nvarchar(max) NULL UNIQUE,
 	[ItemSetNumberOfItems] int NOT NULL
 )
 
 CREATE TABLE [dbo].[ItemRarity] (
 	[ItemRarityId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemRarityName] nvarchar(max) NOT NULL,
-	[ItemRarityNameEN] nvarchar(max)
+	[ItemRarityName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemRarityNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemStatType] (
 	[ItemStatTypeId] int IDENTITY(1,1) PRIMARY KEY,
-	[ItemStatTypeName] nvarchar(max) NOT NULL,
-	[ItemStatTypeNameEN] nvarchar(max)
+	[ItemStatTypeName] nvarchar(max) NOT NULL UNIQUE,
+	[ItemStatTypeNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemDetail] (
@@ -203,52 +204,56 @@ CREATE TABLE [dbo].[ItemStat] (
 	[ItemStatId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemStatIncrease] int NULL,
 	[FK_ItemStatTypeId] int FOREIGN KEY REFERENCES [dbo].[ItemStatType]([ItemStatTypeId]) NOT NULL,
-	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NOT NULL
+	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NOT NULL,
+	CONSTRAINT [uq_ItemDetailStat] UNIQUE NONCLUSTERED ( [FK_ItemStatTypeId], [FK_ItemDetailId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[Item] (
 	[ItemId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemName] nvarchar(max) NOT NULL,
-	[ItemNameEN] nvarchar(max),
+	[ItemNameEN] nvarchar(max) NULL,
 	[ItemImg] image NULL,
-	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NULL
+	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[ItemClassSetting] (
     [ItemClassSettingId] int IDENTITY(1,1) PRIMARY KEY,
     [FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL,
-    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL
+    [FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL,
+	CONSTRAINT [uq_ClassItem] UNIQUE NONCLUSTERED ( [FK_ItemId], [FK_ClassId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[ItemBossSetting] (
     [ItemBossSettingId] int IDENTITY(1,1) PRIMARY KEY,
     [FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL,
-    [FK_BossId] int FOREIGN KEY REFERENCES [dbo].[Boss]([BossId]) NOT NULL
+    [FK_BossId] int FOREIGN KEY REFERENCES [dbo].[Boss]([BossId]) NOT NULL,
+	CONSTRAINT [uq_BossItem] UNIQUE NONCLUSTERED ( [FK_ItemId], [FK_BossId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[Spec] (
 	[SpecId] int IDENTITY(1,1) PRIMARY KEY,
 	[SpecName] nvarchar(max) NOT NULL,
-	[SpecNameEN] nvarchar(max),
+	[SpecNameEN] nvarchar(max) NULL,
 	[FK_ClassId] int FOREIGN KEY REFERENCES [dbo].[Class]([ClassId]) NOT NULL
 )
 
 CREATE TABLE [dbo].[Available] (
 	[AvailableId] int IDENTITY(1,1) PRIMARY KEY,
 	[FK_SpecId] int FOREIGN KEY REFERENCES [dbo].[Spec]([SpecId]) NOT NULL,
-	[FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL
+	[FK_ItemId] int FOREIGN KEY REFERENCES [dbo].[Item]([ItemId]) NOT NULL,
+	CONSTRAINT [uq_SpecItem] UNIQUE NONCLUSTERED ( [FK_SpecId], [FK_ItemId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[Faction] (
 	[FactionId] int IDENTITY(1,1) PRIMARY KEY,
-	[FactionName] nvarchar(max) NOT NULL,
-	[FactionNameEN] nvarchar(max)
+	[FactionName] nvarchar(max) NOT NULL UNIQUE,
+	[FactionNameEN] nvarchar(max) NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[Race] (
 	[RaceId] int IDENTITY(1,1) PRIMARY KEY,
-	[RaceName] nvarchar(max),
-	[RaceNameEN] nvarchar(max),
+	[RaceName] nvarchar(max) NOT NULL UNIQUE,
+	[RaceNameEN] nvarchar(max) NULL UNIQUE,
 	[FK_FactionId] int FOREIGN KEY REFERENCES [dbo].[Faction]([FactionId]) NOT NULL
 )
 
@@ -257,12 +262,13 @@ CREATE TABLE [dbo].[ClassRaceSetting] (
     [FK_ClassId] int NOT NULL,
     [FK_RaceId] int NOT NULL,
     FOREIGN KEY (FK_ClassId) REFERENCES [dbo].[Class]([ClassId]) ON DELETE CASCADE,
-    FOREIGN KEY (FK_RaceId) REFERENCES [dbo].[Race]([RaceId]) ON DELETE CASCADE
+    FOREIGN KEY (FK_RaceId) REFERENCES [dbo].[Race]([RaceId]) ON DELETE CASCADE,
+	CONSTRAINT [uq_ClassRace] UNIQUE NONCLUSTERED ( [FK_ClassId], [FK_RaceId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[Char] (
 	[CharId] int IDENTITY(1,1) PRIMARY KEY,
-	[CharName] varchar(max) NOT NULL,
+	[CharName] varchar(max) NOT NULL UNIQUE,
 	[FK_UserId] nvarchar(128) FOREIGN KEY REFERENCES [dbo].[Account]([Id]) NOT NULL,
 	[FK_RaceId] int FOREIGN KEY REFERENCES [dbo].[Race]([RaceId]) NOT NULL,
 	[FK_SpecId] int FOREIGN KEY REFERENCES [dbo].[Spec]([SpecId]) NOT NULL
@@ -273,12 +279,12 @@ ADD [FK_CharId] int FOREIGN KEY REFERENCES [dbo].[Char]([CharId]) NULL
 
 CREATE TABLE [dbo].[NeedType] (
 	[NeedTypeId] int IDENTITY(1,1) PRIMARY KEY,
-	[NeedTypeName] varchar(max) NOT NULL
+	[NeedTypeName] varchar(max) NOT NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[Priority] (
 	[PriorityId] int IDENTITY(1,1) PRIMARY KEY,
-	[PriorityName] varchar(max) NOT NULL
+	[PriorityName] varchar(max) NOT NULL UNIQUE
 )
 
 CREATE TABLE [dbo].[Need] (
@@ -286,5 +292,6 @@ CREATE TABLE [dbo].[Need] (
 	[FK_CharId] int FOREIGN KEY REFERENCES [dbo].[Char]([CharId]) NOT NULL,
 	[FK_AvailableId] int FOREIGN KEY REFERENCES [dbo].[Available]([AvailableId]) NOT NULL,
 	[FK_NeedTypeId] int FOREIGN KEY REFERENCES [dbo].[NeedType]([NeedTypeId]) NOT NULL,
-	[FK_PriorityId] int FOREIGN KEY REFERENCES [dbo].[Priority]([PriorityId]) NOT NULL
+	[FK_PriorityId] int FOREIGN KEY REFERENCES [dbo].[Priority]([PriorityId]) NOT NULL,
+	CONSTRAINT [uq_CharAvailable] UNIQUE NONCLUSTERED ( [FK_CharId], [FK_AvailableId] ) ON [PRIMARY]
 )

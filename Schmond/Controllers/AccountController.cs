@@ -7,95 +7,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.ModelBinding;
 
-namespace Schmond.Controllers
-{
-	[RoutePrefix("api/accounts")]
-	public class AccountController : ApiController
-	{
-		private readonly AuthRepository _repo;
+namespace Schmond.Controllers {
+    [RoutePrefix("api/accounts")]
+    public class AccountController : ApiController {
+        private readonly AuthRepository _repo;
 
-		public AccountController()
-		{
-			_repo = new AuthRepository();
-		}
+        public AccountController() {
+            _repo = new AuthRepository();
+        }
 
-		// POST api/accounts
-		[AllowAnonymous]
-		[HttpPost]
-		[Route("")]
-		public async Task<IHttpActionResult> Register(User userModel)
-		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-			
-			// username should start with a uppercase letter, followed by lowwercase letters
-			userModel.UserName = string.Format("{0}{1}", userModel.UserName.Substring(0, 1).ToUpper(), userModel.UserName.Substring(1).ToLower());
+        // POST api/accounts
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("")]
+        public async Task<IHttpActionResult> Register(User userModel) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
 
-			var result = await _repo.RegisterUser(userModel);
+            // username should start with a uppercase letter, followed by lowwercase letters
+            userModel.UserName = string.Format("{0}{1}", userModel.UserName.Substring(0, 1).ToUpper(), userModel.UserName.Substring(1).ToLower());
 
-			var errorResult = GetErrorResult(result);
+            var result = await _repo.RegisterUser(userModel);
 
-			if (errorResult != null)
-			{
-				return errorResult;
-			}
+            var errorResult = GetErrorResult(result);
 
-			return Ok();
-		}
+            if (errorResult != null) {
+                return errorResult;
+            }
 
-		[HttpGet]
-		[Route("")]
-		[Authorize]
-		public IHttpActionResult GetUserList()
-		{
-			var userList = _repo.GetUserList().Select(user => new
-			{
-				user.Id,
-				user.UserName,
-				user.Email,
-				user.MainCharId
-			});
-			return Ok(userList);
-		}
+            return Ok();
+        }
 
-		[HttpGet]
-		[Route("{id}")]
-		[Authorize]
-		public async Task<IHttpActionResult> GetUserById(string id)
-		{
-			var user = await _repo.GetUserById(id);
-			return Ok(new
-			{
-				user.Id,
-				user.Email,
-				user.UserName,
-				user.MainCharId
-			});
-		}
+        [HttpGet]
+        [Route("")]
+        [Authorize]
+        public IHttpActionResult GetUserList() {
+            var userList = _repo.GetUserList().Select(user => new {
+                user.Id,
+                user.UserName,
+                user.Email,
+                user.MainCharId
+            });
+            return Ok(userList);
+        }
 
-		[HttpPut]
-		[Route("{id}")]
-		[Authorize]
-		public async Task<IHttpActionResult> UpdateUser(string id, User userModel)
-		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
+        [HttpGet]
+        [Route("{id}")]
+        [Authorize]
+        public async Task<IHttpActionResult> GetUserById(string id) {
+            var user = await _repo.GetUserById(id);
+            return Ok(new {
+                user.Id,
+                user.Email,
+                user.UserName,
+                user.MainCharId
+            });
+        }
 
-			var errorResult = GetErrorResult(await _repo.UpdateUser(id, userModel));
-			return (errorResult != null) ? errorResult : Ok();
-		}
+        [HttpPut]
+        [Route("{id}")]
+        [Authorize]
+        public async Task<IHttpActionResult> UpdateUser(string id, User userModel) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+
+            var errorResult = GetErrorResult(await _repo.UpdateUser(id, userModel));
+            return (errorResult != null) ? errorResult : Ok();
+        }
 
         [HttpPut]
         [Route("password")]
         [Authorize]
-        public async Task<IHttpActionResult> UpdatePassword(User userModel)
-        {
-            if(!ModelState.IsValid)
-            {
+        public async Task<IHttpActionResult> UpdatePassword(User userModel) {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
@@ -103,43 +89,47 @@ namespace Schmond.Controllers
             return (errorResult != null) ? errorResult : Ok();
         }
 
-        protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				_repo.Dispose();
-			}
+        [HttpDelete]
+        [Route("{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IHttpActionResult> DeleteUser(string id) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
 
-			base.Dispose(disposing);
-		}
+            var errorResult = GetErrorResult(await _repo.DeleteUser(id));
+            return (errorResult != null) ? errorResult : Ok();
+        }
 
-		private IHttpActionResult GetErrorResult(IdentityResult result)
-		{
-			if (result == null)
-			{
-				return InternalServerError();
-			}
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
+                _repo.Dispose();
+            }
 
-			if (result.Succeeded)
-			{
-				return null;
-			}
+            base.Dispose(disposing);
+        }
 
-			if (result.Errors != null)
-			{
-				foreach (var error in result.Errors)
-				{
-					ModelState.AddModelError("", error);
-				}
-			}
+        private IHttpActionResult GetErrorResult(IdentityResult result) {
+            if (result == null) {
+                return InternalServerError();
+            }
 
-			if (ModelState.IsValid)
-			{
-				// No ModelState errors are available to send, so just return an empty BadRequest.
-				return BadRequest();
-			}
+            if (result.Succeeded) {
+                return null;
+            }
 
-			return BadRequest(ModelState);
-		}
-	}
+            if (result.Errors != null) {
+                foreach (var error in result.Errors) {
+                    ModelState.AddModelError("", error);
+                }
+            }
+
+            if (ModelState.IsValid) {
+                // No ModelState errors are available to send, so just return an empty BadRequest.
+                return BadRequest();
+            }
+
+            return BadRequest(ModelState);
+        }
+    }
 }
