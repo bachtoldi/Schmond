@@ -1,4 +1,4 @@
-﻿var app = angular.module('Schmond', ['ngRoute', 'LocalStorageModule', 'checklist-model']);
+﻿var app = angular.module('Schmond', ['ngRoute', 'LocalStorageModule', 'checklist-model', 'schmond.controllers', 'schmond.directives']);
 
 app.config(function ($routeProvider) {
 	$routeProvider.when('/login', {

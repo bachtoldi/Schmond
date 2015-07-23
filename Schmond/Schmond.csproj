@@ -158,6 +158,8 @@
     <Content Include="App\controllers\classController.js" />
     <Content Include="App\controllers\indexController.js" />
     <Content Include="App\controllers\raceController.js" />
+    <Content Include="App\directives\footerDirective.js" />
+    <Content Include="App\views\shared\footer.html" />
     <Content Include="App\services\authInterceptorService.js" />
     <Content Include="App\services\authService.js" />
     <Content Include="App\views\account\index.html" />
@@ -1057,7 +1059,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\views\Shared\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\Specs\" />
   </ItemGroup>
