@@ -1,13 +1,24 @@
 ﻿(function () {
-    var app = angular.module('schmond.directives', []);
+	var app = angular.module('md-elements', []);
 
-    app.directive('schmondFooter', function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'app/views/shared/footer.html',
-            scope: {
-                links: '@'
-            }
-        };
-    });
+
+	app.directive('mdFooter', function () {
+		function linkFunc(scope) {
+			scope.dateNow = new Date();
+		}
+
+		var directive = {
+			restrict: 'E',
+			templateUrl: 'app/views/shared/footer.html',
+			link: linkFunc,
+			scope: {
+				links: '=mdLinks',
+				copyright: '@mdCopyright',
+				since: '@mdSince',
+				version: '@mdVersion'
+			}
+		};
+
+		return directive;
+	});
 }());
