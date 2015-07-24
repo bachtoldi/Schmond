@@ -25,6 +25,10 @@ app.config(function ($routeProvider) {
 		controller: 'classController',
 		templateUrl: '/app/views/class/index.html'
 	});
+	$routeProvider.when('/admin/items', {
+		controller: 'itemController',
+		templateUrl: '/app/views/item/index.html'
+	});
 	$routeProvider.when('/imprint', {
 		controller: '',
 		templateUrl: '/app/views/imprint.html'

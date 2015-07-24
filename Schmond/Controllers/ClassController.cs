@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using Schmond.Models;
@@ -87,7 +86,7 @@ namespace Schmond.Controllers
 				return BadRequest(ModelState);
 			}
 
-			// really fuckking dirty, but working!!!
+			// really fucking dirty, but working!!!
 
 			var entry = Context.Entry(@class);
 			var tmp = new Race[@class.AvailableRaces.Count];

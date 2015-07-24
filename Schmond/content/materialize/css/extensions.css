@@ -51,6 +51,12 @@ a[ng-click] {
 			height: 44px;
 		}
 
+
+		.side-nav.fixed li a i {
+			top: 7px;
+			position: relative;
+		}
+
 		.side-nav.fixed li:hover, .side-nav.fixed li.active {
 			background-color: rgba(0, 0, 0, 0.10);
 		}

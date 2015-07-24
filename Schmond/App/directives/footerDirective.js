@@ -1,6 +1,7 @@
 ﻿(function () {
-	var app = angular.module('md-elements', []);
+	'use strict';
 
+	var app = angular.module('md-elements', []);
 
 	app.directive('mdFooter', function () {
 		function linkFunc(scope) {

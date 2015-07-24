@@ -55,36 +55,21 @@
 			<li ng-class="{ active: isActive('/players')}" class="bold">
 				<a href="/#/players" class="waves-effect waves-ripple hide-nav" data-activates="nav-mobile">Mitglieder</a>
 			</li>
-			<li class="no-padding" ng-hide="!app.app.authentication.isAuth">
+			<li class="no-padding" ng-hide="!app.authentication.isAuth">
 				<ul class="collapsible collapsible-accordion">
 					<li class="bold" ng-class="{ active: isActive('/lootlist')}">
 						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/lootlist')}">Lootlisten</a>
-						<div class="collapsible-body">
+						<div class="collapsible-body" ng-controller="instanceController as instanceController">
 							<ul>
-								<li ng-class="{ active: isActive('/lootlist/druid')}">
-									<a href="/#/lootlists/druid" class="waves-effect waves-ripple hide-nav">Druide</a>
+								<li ng-class="{ active: isActive('/lootlist/' + instance.id )}" ng-repeat="instance in instanceController.instances">
+									<a href="/#/lootlists/{{ instance.id }}" class="waves-effect waves-ripple hide-nav">{{ instance.name }}</a>
 								</li>
-								<li ng-class="{ active: isActive('/lootlist/warlock')}">
-									<a href="/#/lootlists/warlock" class="waves-effect waves-ripple hide-nav">Hexenmeister</a>
-								</li>
-								<li ng-class="{ active: isActive('/lootlist/hunter')}">
-									<a href="/#/lootlists/hunter" class="waves-effect waves-ripple hide-nav">Jäger</a>
-								</li>
-								<li ng-class="{ active: isActive('/lootlist/warrior')}">
-									<a href="/#/lootlists/warrior" class="waves-effect waves-ripple hide-nav">Krieger</a>
-								</li>
-								<li ng-class="{ active: isActive('/lootlist/mage')}">
-									<a href="/#/lootlists/mage" class="waves-effect waves-ripple hide-nav">Magier</a>
-								</li>
-								<li ng-class="{ active: isActive('/lootlist/paladin')}">
-									<a href="/#/lootlists/paladin" class="waves-effect waves-ripple hide-nav">Paladin</a>
-								</li>
-								<li ng-class="{ active: isActive('/lootlist/priest')}">
-									<a href="/#/lootlists/priest" class="waves-effect waves-ripple hide-nav">Priester</a>
-								</li>
-								<li ng-class="{ active: isActive('/lootlist/rogue')}">
-									<a href="/#/lootlists/rogue" class="waves-effect waves-ripple hide-nav">Schurke</a>
-								</li>
+								<!--<li>
+									<a ng-click="create()" class="waves-effect waves-ripple hide-nav">
+										<i class="material-icons">&#xE145;</i>
+										Neue Instanz
+									</a>
+								</li>-->
 							</ul>
 						</div>
 					</li>
@@ -150,9 +135,11 @@
 	<script src="/app/controllers/accountController.js"></script>
 	<script src="/app/controllers/raceController.js"></script>
 	<script src="/app/controllers/classController.js"></script>
+	<script src="/app/controllers/instanceController.js"></script>
 
 	<script src="/app/services/authService.js"></script>
 	<script src="/app/services/authInterceptorService.js"></script>
+	<script src="/app/services/instanceService.js"></script>
 
 	<script src="/app/directives/footerDirective.js"></script>
 
