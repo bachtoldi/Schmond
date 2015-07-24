@@ -3,8 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-TextLayoutMetrics" content="natural" />
-	<meta charset="utf-8" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> TODO change in production -->
 	<link rel="stylesheet" href="/content/materialize/css/extensions.css" media="screen,projection">
 	<link rel="stylesheet" href="/content/site.css" media="screen,projection">
 	<link rel="stylesheet" href="/content/spinner.css" media="screen,projection">
@@ -48,8 +50,7 @@
 		<ul id="nav-mobile" class="side-nav fixed z-depth-2" ng-cloak>
 			<li class="logo">
 				<a id="logo-container" href="/#/home" class="brand-logo hide-nav">
-					<!--<img alt="Logo" src="/" class="center-block" height="150"/>-->
-					<h1 class="center-block">LOGO</h1>
+					<img alt="Logo" src="logo.png" class="center-block" width="180" />
 				</a>
 			</li>
 			<li ng-class="{ active: isActive('/players')}" class="bold">
@@ -57,14 +58,14 @@
 			</li>
 			<li class="no-padding" ng-hide="!app.authentication.isAuth">
 				<ul class="collapsible collapsible-accordion">
-					<li class="bold" ng-class="{ active: isActive('/lootlist')}">
+					<li class="bold" ng-class="{ active: isActive('/lootlists')}">
 						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/lootlist')}">Lootlisten</a>
 						<div class="collapsible-body" ng-controller="instanceController as instanceController">
 							<ul>
-								<li ng-class="{ active: isActive('/lootlist/' + instance.id )}" ng-repeat="instance in instanceController.instances">
+								<li ng-class="{ active: isActive('/lootlists/' + instance.id )}" ng-repeat="instance in instanceController.instances">
 									<a href="/#/lootlists/{{ instance.id }}" class="waves-effect waves-ripple hide-nav">{{ instance.name }}</a>
 								</li>
-								<!--<li>
+								<!--<li> TODO Feature: Create instance
 									<a ng-click="create()" class="waves-effect waves-ripple hide-nav">
 										<i class="material-icons">&#xE145;</i>
 										Neue Instanz
@@ -127,7 +128,8 @@
 		</div>
 	</main>
 	<md-footer md-links="app.footerLinks" md-copyright="Die Legion, All rights reserved"></md-footer>
-	<script src="/scripts/materialize/materialize.min.js"></script>
+<script src="/scripts/materialize/materialize.min.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> TODO change in production -->
 
 	<script src="/app/app.js"></script>
 
@@ -136,10 +138,12 @@
 	<script src="/app/controllers/raceController.js"></script>
 	<script src="/app/controllers/classController.js"></script>
 	<script src="/app/controllers/instanceController.js"></script>
+	<script src="/app/controllers/lootlistController.js"></script>
 
 	<script src="/app/services/authService.js"></script>
 	<script src="/app/services/authInterceptorService.js"></script>
 	<script src="/app/services/instanceService.js"></script>
+	<script src="/app/services/bossService.js"></script>
 
 	<script src="/app/directives/footerDirective.js"></script>
 

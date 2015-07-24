@@ -1,11 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Schmond.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http.ModelBinding;
 
 namespace Schmond.Controllers {
     [RoutePrefix("api/accounts")]

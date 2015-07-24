@@ -158,10 +158,13 @@
     <Content Include="App\controllers\classController.js" />
     <Content Include="App\controllers\indexController.js" />
     <Content Include="App\controllers\instanceController.js" />
+    <Content Include="App\controllers\lootlistController.js" />
     <Content Include="App\controllers\raceController.js" />
     <Content Include="App\directives\footerDirective.js" />
+    <Content Include="App\services\bossService.js" />
     <Content Include="App\services\instanceService.js" />
     <Content Include="App\views\instance\index.html" />
+    <Content Include="App\views\lootlist\index.html" />
     <Content Include="App\views\shared\footer.html" />
     <Content Include="App\services\authInterceptorService.js" />
     <Content Include="App\services\authService.js" />
@@ -189,6 +192,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="logo.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1011,6 +1015,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\BossController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\FactionController.cs" />
     <Compile Include="Controllers\InstanceController.cs" />

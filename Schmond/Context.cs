@@ -39,5 +39,6 @@ namespace Schmond
 		public virtual IDbSet<Faction> Factions { get; set; }
 		public virtual IDbSet<Item> Items { get; set; }
 		public virtual IDbSet<Instance> Instances { get; set; }
+		public virtual IDbSet<Boss> Bosses { get; set; }
 	}
 }

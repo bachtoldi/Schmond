@@ -29,6 +29,10 @@ app.config(function ($routeProvider) {
 		controller: 'itemController',
 		templateUrl: '/app/views/item/index.html'
 	});
+	$routeProvider.when('/lootlists/:id', {
+		controller: 'lootlistController',
+		templateUrl: '/app/views/lootlist/index.html'
+	});
 	$routeProvider.when('/imprint', {
 		controller: '',
 		templateUrl: '/app/views/imprint.html'
