@@ -3,13 +3,13 @@
 
 	var app = angular.module('Schmond');
 
-	app.factory('bossService', ['$http', '$q', '$rootScope', '$location', 'ngAuthSettings', function ($http, $q, $rootScope, $location, ngAuthSettings) {
+	app.factory('bossService', ['$http', '$q', function ($http, $q) {
 		var factory = {};
 
 		var getBossesByInstance = function (instanceId) {
 			var deferred = $q.defer();
 
-			$http.get('/api/boss?instanceId=' + instanceId).success(function (response) {
+			$http.get('/api/bosses?instanceId=' + instanceId).success(function (response) {
 				deferred.resolve(response);
 			}).error(function (err) {
 				deferred.reject(err);

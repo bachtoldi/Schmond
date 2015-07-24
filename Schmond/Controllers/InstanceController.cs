@@ -10,7 +10,6 @@ namespace Schmond.Controllers
 	{
 		[HttpGet]
 		[Route("")]
-		[Authorize]
 		public IHttpActionResult Read()
 		{
 			var results = (from i in Context.Instances

@@ -11,11 +11,12 @@ namespace Schmond.Controllers
 		[HttpGet]
 		[Route("")]
 		[Authorize]
-		public IHttpActionResult Read()
+		public IHttpActionResult Read(int instanceId = 0)
 		{
 			var results = (from b in Context.Bosses
-										 orderby b.Name
-										 select b);
+										 where instanceId == 0 || b.InstanceId == instanceId
+										 orderby b.Number
+										 select b).ToArray();
 
 			return Ok(results);
 		}

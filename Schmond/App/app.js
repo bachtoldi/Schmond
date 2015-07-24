@@ -30,7 +30,7 @@ app.config(function ($routeProvider) {
 		templateUrl: '/app/views/item/index.html'
 	});
 	$routeProvider.when('/lootlists/:id', {
-		controller: 'lootlistController',
+		controller: 'lootlistController as lootlist',
 		templateUrl: '/app/views/lootlist/index.html'
 	});
 	$routeProvider.when('/imprint', {

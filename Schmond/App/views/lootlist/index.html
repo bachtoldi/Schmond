@@ -1,8 +1,8 @@
 ﻿<ul class="collection">
-	<li class="collection-item">
-		Trash
-		<a ng-click="" class="right">
-			<i class="material-icons">&#xE5CF;</i>
+	<li class="collection-item" ng-repeat="boss in lootlist.bosses">
+		<a ng-click="" class="">
+			{{ boss.name }}
+			<i class="material-icons right">&#xE5CF;</i>
 		</a>
 	</li>
 </ul>

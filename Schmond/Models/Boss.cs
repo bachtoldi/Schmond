@@ -11,6 +11,7 @@ namespace Schmond.Models
 		public int Id { get; set; }
 
 		[Required]
+		[Column("BossNumber")]
 		public int Number { get; set; }
 
 		[Required]
