@@ -163,6 +163,7 @@
     <Content Include="App\directives\footerDirective.js" />
     <Content Include="App\services\bossService.js" />
     <Content Include="App\services\instanceService.js" />
+    <Content Include="App\services\itemService.js" />
     <Content Include="App\views\instance\index.html" />
     <Content Include="App\views\lootlist\index.html" />
     <Content Include="App\views\shared\footer.html" />
@@ -180,8 +181,6 @@
     <Content Include="App\views\class\index.html" />
     <Content Include="App\views\imprint.html" />
     <Content Include="App\views\race\index.html" />
-    <Content Include="content\bootstrap.css" />
-    <Content Include="content\bootstrap.min.css" />
     <Content Include="content\materialize\css\materialize.css" />
     <Content Include="content\materialize\css\materialize.min.css" />
     <Content Include="content\materialize\css\extensions.css" />
@@ -189,10 +188,9 @@
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="content\site.css" />
     <Content Include="content\spinner.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="logo.png" />
+    <Content Include="logo.svg" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -984,9 +982,6 @@
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.woff" />
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.ttf" />
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

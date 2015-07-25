@@ -51,9 +51,18 @@
 		opacity: .8;
 	}
 
+	.collection {
+		border: none;
+	}
+
 	.collection a.collection-item {
 		color: #d32f2f;
 	}
+
+		.collection a.collection-item:not(.active):hover {
+			background-color: #d32f2f;
+			color: #fff;
+		}
 }
 
 @media only screen and (max-width: 992px) {

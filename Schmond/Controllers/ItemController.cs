@@ -11,9 +11,10 @@ namespace Schmond.Controllers
 		[HttpGet]
 		[Route("")]
 		[Authorize]
-		public IHttpActionResult Read()
+		public IHttpActionResult Read(int bossId = 0)
 		{
 			var results = (from i in Context.Items
+										 where bossId == 0
 										 orderby i.Name
 										 select i);
 

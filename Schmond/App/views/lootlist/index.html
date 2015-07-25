@@ -1,8 +1,11 @@
-﻿<ul class="collection">
-	<li class="collection-item" ng-repeat="boss in lootlist.bosses">
+﻿<div class="collection">
+	<a ng-click="lootlist.expand(boss)" class="collection-item" ng-repeat="boss in lootlist.bosses">
+		{{ boss.name }}
+		<i class="material-icons right">&#xE5CF;</i>
+	</a>
+	<li class="collection-item" ng-repeat="item in boss.items">
 		<a ng-click="" class="">
-			{{ boss.name }}
-			<i class="material-icons right">&#xE5CF;</i>
+			{{ item.name }}
 		</a>
 	</li>
-</ul>
+</div>
