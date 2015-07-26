@@ -10,10 +10,10 @@ namespace Schmond.Controllers
         [HttpGet]
         [Route("")]
         [Authorize]
-        public IHttpActionResult Read(int factionId = 0) {
-            var results = (from r in Context.Races.Include(x => x.Faction)
-                           where factionId == 0 || r.FactionId == factionId
-                           orderby r.Faction.Name, r.Name
+        public IHttpActionResult Read(int classId = 0) {
+            var results = (from r in Context.Specs.Include(x => x.Class)
+                           where classId == 0 || r.ClassId == classId
+                           orderby r.Class.Name, r.Name
                            select r);
 
             return Ok(results);
@@ -23,7 +23,7 @@ namespace Schmond.Controllers
         [Route("{id:int}")]
         [Authorize]
         public IHttpActionResult ReadSingle(int id) {
-            var result = (from r in Context.Races.Include(x => x.Faction)
+            var result = (from r in Context.Specs.Include(x => x.Class)
                           where r.Id == id
                           select r).SingleOrDefault();
 
@@ -33,12 +33,12 @@ namespace Schmond.Controllers
         [HttpPost]
         [Route("")]
         [Authorize(Roles = "Administrator")]
-        public IHttpActionResult Create(Race race) {
+        public IHttpActionResult Create(Spec spec) {
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            Context.Races.Add(race);
+            Context.Specs.Add(spec);
             Context.SaveChanges();
 
             return Ok();
@@ -47,15 +47,15 @@ namespace Schmond.Controllers
         [HttpPut]
         [Route("{id:int}")]
         [Authorize(Roles = "Administrator")]
-        public IHttpActionResult Update(int id, Race race) {
-            race.Id = id;
+        public IHttpActionResult Update(int id, Spec spec) {
+            spec.Id = id;
 
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            Context.Races.Attach(race);
-            var entry = Context.Entry(race);
+            Context.Specs.Attach(spec);
+            var entry = Context.Entry(spec);
             entry.State = EntityState.Modified;
 
             Context.SaveChanges();
@@ -67,7 +67,7 @@ namespace Schmond.Controllers
         [Route("{id:int}")]
         [Authorize(Roles = "Administrator")]
         public IHttpActionResult Delete(int id) {
-            Context.Races.Remove(Context.Races.Find(id));
+            Context.Specs.Remove(Context.Specs.Find(id));
             Context.SaveChanges();
 
             return Ok();
