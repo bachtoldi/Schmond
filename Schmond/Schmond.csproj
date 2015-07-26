@@ -1010,23 +1010,31 @@
     <Compile Include="Context.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\AvailableController.cs" />
     <Compile Include="Controllers\BossController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\FactionController.cs" />
     <Compile Include="Controllers\InstanceController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\NeedController.cs" />
+    <Compile Include="Controllers\NeedTypeController.cs" />
+    <Compile Include="Controllers\PriorityController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\SpecsController.cs" />
     <Compile Include="Filters\UnhandledExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Available.cs" />
     <Compile Include="Models\Boss.cs" />
     <Compile Include="Models\Char.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Faction.cs" />
     <Compile Include="Models\Instance.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Need.cs" />
+    <Compile Include="Models\NeedType.cs" />
+    <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\Spec.cs" />
     <Compile Include="Models\User.cs" />
@@ -1066,6 +1074,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Available\" />
+    <Folder Include="Views\NeedType\" />
+    <Folder Include="Views\Need\" />
+    <Folder Include="Views\Priority\" />
     <Folder Include="Views\Specs\" />
   </ItemGroup>
   <PropertyGroup>

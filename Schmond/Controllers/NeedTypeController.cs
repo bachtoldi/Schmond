@@ -1,20 +1,18 @@
-﻿using Schmond.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using Schmond.Models;
 
-namespace Schmond.Controllers
-{
-    [RoutePrefix("api/specs")]
-    public class SpecsController : ApiControllerBase {
+namespace Schmond.Controllers {
+    [RoutePrefix("api/needtype")]
+    public class NeedTypeController : ApiControllerBase {
         [HttpGet]
         [Route("")]
         [Authorize]
-        public IHttpActionResult Read(int classId = 0) {
-            var results = (from s in Context.Specs.Include(x => x.Class)
-                           where classId == 0 || s.ClassId == classId
-                           orderby s.Class.Name, s.Name
-                           select s);
+        public IHttpActionResult Read() {
+            var results = (from nt in Context.NeedTypes
+                           orderby nt.Id
+                           select nt).ToArray();
 
             return Ok(results);
         }
@@ -23,9 +21,9 @@ namespace Schmond.Controllers
         [Route("{id:int}")]
         [Authorize]
         public IHttpActionResult ReadSingle(int id) {
-            var result = (from s in Context.Specs.Include(x => x.Class)
-                          where s.Id == id
-                          select s).SingleOrDefault();
+            var result = (from nt in Context.NeedTypes
+                          where nt.Id == id
+                          select nt).SingleOrDefault();
 
             return Ok(result);
         }
@@ -33,12 +31,12 @@ namespace Schmond.Controllers
         [HttpPost]
         [Route("")]
         [Authorize(Roles = "Administrator")]
-        public IHttpActionResult Create(Spec spec) {
+        public IHttpActionResult Create(NeedType needType) {
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            Context.Specs.Add(spec);
+            Context.NeedTypes.Add(needType);
             Context.SaveChanges();
 
             return Ok();
@@ -47,15 +45,15 @@ namespace Schmond.Controllers
         [HttpPut]
         [Route("{id:int}")]
         [Authorize(Roles = "Administrator")]
-        public IHttpActionResult Update(int id, Spec spec) {
-            spec.Id = id;
+        public IHttpActionResult Update(int id, NeedType needType) {
+            needType.Id = id;
 
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            Context.Specs.Attach(spec);
-            var entry = Context.Entry(spec);
+            Context.NeedTypes.Attach(needType);
+            var entry = Context.Entry(needType);
             entry.State = EntityState.Modified;
 
             Context.SaveChanges();
@@ -65,9 +63,9 @@ namespace Schmond.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles ="Administrator")]
         public IHttpActionResult Delete(int id) {
-            Context.Specs.Remove(Context.Specs.Find(id));
+            Context.NeedTypes.Remove(Context.NeedTypes.Find(id));
             Context.SaveChanges();
 
             return Ok();
