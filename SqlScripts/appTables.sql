@@ -119,72 +119,74 @@ GO
 
 CREATE TABLE [dbo].[Instance] (
 	[InstanceId] int IDENTITY(1,1) PRIMARY KEY,
+	[InstanceSort] int NOT NULL UNIQUE,
 	[InstanceName] nvarchar(256) NOT NULL UNIQUE,
-	[InstanceNameEN] nvarchar(256) NULL UNIQUE
+	[InstanceNameEN] nvarchar(256) NULL 
 )
 
 CREATE TABLE [dbo].[Boss] (
 	[BossId] int IDENTITY(1,1) PRIMARY KEY,
 	[BossNumber] int NOT NULL,
-	[BossName] nvarchar(256) NOT NULL UNIQUE,
-	[BossNameEN] nvarchar(256) NULL UNIQUE,
+	[BossName] nvarchar(256) NOT NULL,
+	[BossNameEN] nvarchar(256) NULL,
 	[FK_InstanceId] int FOREIGN KEY REFERENCES [dbo].[Instance]([InstanceId]) NOT NULL,
-	CONSTRAINT [uq_InstanceBossNumber] UNIQUE NONCLUSTERED ( [BossNumber], [FK_InstanceId] ) ON [PRIMARY]
+	CONSTRAINT [uq_InstanceBossNumber] UNIQUE NONCLUSTERED ( [BossNumber], [FK_InstanceId] ) ON [PRIMARY],
+	CONSTRAINT [uq_InstanceBossName] UNIQUE NONCLUSTERED ( [BossName], [FK_InstanceId] ) ON [PRIMARY]
 )
 
 CREATE TABLE [dbo].[Class] (
 	[ClassId] int IDENTITY(1,1) PRIMARY KEY,
 	[ClassName] nvarchar(256) NOT NULL UNIQUE,
-	[ClassNameEN] nvarchar(256) NULL UNIQUE
+	[ClassNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemClass] (
 	[ItemClassId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemClassName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemClassNameEN] nvarchar(256) NULL UNIQUE
+	[ItemClassNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemType] (
 	[ItemTypeId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemTypeName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemTypeNameEN] nvarchar(256) NULL UNIQUE
+	[ItemTypeNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemBinding] (
 	[ItemBindingId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemBindingName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemBindingNameEN] nvarchar(256) NULL UNIQUE
+	[ItemBindingNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemUniqueness] (
 	[ItemUniquenessId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemUniquenessName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemUniquenessNameEN] nvarchar(256) NULL UNIQUE
+	[ItemUniquenessNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemSlot] (
 	[ItemSlotId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemSlotName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemSlotNameEN] nvarchar(256) NULL UNIQUE
+	[ItemSlotNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemSet] (
 	[ItemSetId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemSetName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemSetNameEN] nvarchar(256) NULL UNIQUE,
+	[ItemSetNameEN] nvarchar(256) NULL,
 	[ItemSetNumberOfItems] int NOT NULL
 )
 
 CREATE TABLE [dbo].[ItemRarity] (
 	[ItemRarityId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemRarityName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemRarityNameEN] nvarchar(256) NULL UNIQUE
+	[ItemRarityNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemStatType] (
 	[ItemStatTypeId] int IDENTITY(1,1) PRIMARY KEY,
 	[ItemStatTypeName] nvarchar(256) NOT NULL UNIQUE,
-	[ItemStatTypeNameEN] nvarchar(256) NULL UNIQUE
+	[ItemStatTypeNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[ItemDetail] (
@@ -213,7 +215,7 @@ CREATE TABLE [dbo].[Item] (
 	[ItemName] nvarchar(256) NOT NULL,
 	[ItemNameEN] nvarchar(256) NULL,
 	[ItemImg] image NULL,
-	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NULL UNIQUE
+	[FK_ItemDetailId] int FOREIGN KEY REFERENCES [dbo].[ItemDetail]([ItemDetailId]) NULL
 )
 
 CREATE TABLE [dbo].[ItemClassSetting] (
@@ -247,13 +249,13 @@ CREATE TABLE [dbo].[Available] (
 CREATE TABLE [dbo].[Faction] (
 	[FactionId] int IDENTITY(1,1) PRIMARY KEY,
 	[FactionName] nvarchar(256) NOT NULL UNIQUE,
-	[FactionNameEN] nvarchar(256) NULL UNIQUE
+	[FactionNameEN] nvarchar(256) NULL
 )
 
 CREATE TABLE [dbo].[Race] (
 	[RaceId] int IDENTITY(1,1) PRIMARY KEY,
 	[RaceName] nvarchar(256) NOT NULL UNIQUE,
-	[RaceNameEN] nvarchar(256) NULL UNIQUE,
+	[RaceNameEN] nvarchar(256) NULL,
 	[FK_FactionId] int FOREIGN KEY REFERENCES [dbo].[Faction]([FactionId]) NOT NULL
 )
 
@@ -284,7 +286,7 @@ CREATE TABLE [dbo].[NeedType] (
 
 CREATE TABLE [dbo].[Priority] (
 	[PriorityId] int IDENTITY(1,1) PRIMARY KEY,
-	[PriorityName] varchar(256) NOT NULL UNIQUE
+	[PriorityName] varchar(256) NOT NULL
 )
 
 CREATE TABLE [dbo].[Need] (

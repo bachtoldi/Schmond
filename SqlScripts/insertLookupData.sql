@@ -8,15 +8,15 @@ SET IDENTITY_INSERT tablename OFF // AI
 						*/
 
 SET IDENTITY_INSERT [schmond].[dbo].[Instance] ON
-INSERT INTO [schmond].[dbo].[Instance] ([InstanceId], [InstanceName], [InstanceNameEN]) VALUES
-	(1, 'Onyxias Hort',				'Onyxia''s Lair'),
-	(2, 'Geschmolzener Kern',		'Molten Core'),
-	(3, 'Zul''Gurub',				'Zul''Gurub'),
-	(4, 'Pechschwingenhort',		'Blackwinglair'),
-	(5, 'Ruinen von Ahn''Qiraj',	'Ruins of Ahn''Qiraj'),
-	(6, 'Tempel von Ahn''Qiraj',	'Temple of Ahn''Qiraj'),
-	(7, 'Naxxramas',				'Naxxramas'),
-	(8, 'Weltbosse',				'World Bosses')
+INSERT INTO [schmond].[dbo].[Instance] ([InstanceId], [InstanceSort], [InstanceName], [InstanceNameEN]) VALUES
+	(1, 1,	'Onyxias Hort',				'Onyxia''s Lair'),
+	(2, 2,	'Geschmolzener Kern',		'Molten Core'),
+	(3, 3,	'Zul''Gurub',				'Zul''Gurub'),
+	(4, 4,	'Pechschwingenhort',		'Blackwinglair'),
+	(5, 5,	'Ruinen von Ahn''Qiraj',	'Ruins of Ahn''Qiraj'),
+	(6, 6,	'Tempel von Ahn''Qiraj',	'Temple of Ahn''Qiraj'),
+	(7, 7,	'Naxxramas',				'Naxxramas'),
+	(8, 8,	'Weltbosse',				'World Bosses')
 SET IDENTITY_INSERT [schmond].[dbo].[Instance] OFF
 	
 /*
@@ -47,12 +47,9 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(18,	3,		6,		'Blutfürst Mandokir',			'Bloodlord Mandokir'),
 	(19,	3,		7,		'Jin''do der Verhexer',			'Jin''do the Hexxer'),
 	(20,	3,		8,		'Gahz''ranka',					'Gahz''ranka'),
-	(21,	3,		9,		'Gri''lek',						'Gri''lek'),
-	(22,	3,		10,		'Hazza''rah',					'Hazza''rah'),
-	(23,	3,		11,		'Renataki',						'Renataki'),
-	(24,	3,		12,		'Wushoolay',					'Wushoolay'),
-	(25,	3,		13,		'Hakkar',						'Hakkar the Soulflayer'),
-	(26,	3,		14,		'Trash',						'Trash'),
+	(21,	3,		9,		'Edge of Madness',				'Edge of Madness'),
+	(25,	3,		10,		'Hakkar',						'Hakkar the Soulflayer'),
+	(26,	3,		11,		'Trash',						'Trash'),
 	
 	(27,	4,		1,		'Feuerkralle der Ungezähmte',	'Razorgore the Untamed'),
 	(28,	4,		2,		'Vaelastrasz',					'Vaelastrasz the Corrupt'),
@@ -73,15 +70,12 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(42,	5,		7,		'Trash',						'Trash'),
 	
 	(43,	6,		1,		'Der Prophet Skeram',			'The Prophet Skeram'),
-	(44,	6,		2,		'Lord Kri',						'Lord Kri'),
-	(45,	6,		2,		'Prinzessin Yauj',				'Princess Yauj'),
-	(46,	6,		2,		'Vem',							'Vem'),
+	(44,	6,		2,		'Adel der Silithiden',			'Silithid Royalty'),
 	(47,	6,		3,		'Schlachtwache Sartura',		'Battleguard Sartura'),
 	(48,	6,		4,		'Fankriss der Unnachgiebige',	'Fankriss the Unyielding'),
 	(49,	6,		5,		'Viscidus',						'Viscidus'),
 	(50,	6,		6,		'Prinzessin Huhuran',			'Princess Huhuran'),
-	(51,	6,		7,		'Imperator Vek''lor',			'Emperor Vek''lor'),
-	(52,	6,		7,		'Imperator Vek''nilash',		'Emperor Vek''nilash'),
+	(51,	6,		7,		'Zwilingsimperatoren',			'The Twin Emperors'),
 	(53,	6,		8,		'Ouro',							'Ouro'),
 	(54,	6,		9,		'C''Thun',						'C''Thun'),
 	(55,	6,		10,		'Trash',						'Trash'),
