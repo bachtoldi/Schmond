@@ -173,13 +173,7 @@
     <Content Include="App\services\authService.js" />
     <Content Include="App\views\account\index.html" />
     <Content Include="App\views\account\login.html" />
-    <Content Include="App\views\account\login.min.html">
-      <DependentUpon>login.html</DependentUpon>
-    </Content>
     <Content Include="App\views\account\register.html" />
-    <Content Include="App\views\account\register.min.html">
-      <DependentUpon>register.html</DependentUpon>
-    </Content>
     <Content Include="App\views\class\index.html" />
     <Content Include="App\views\imprint.html" />
     <Content Include="App\views\race\index.html" />
@@ -984,6 +978,7 @@
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.woff" />
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.ttf" />
     <Content Include="content\materialize\font\material-design-icons\Material-Design-Icons.eot" />
+    <None Include="Properties\PublishProfiles\schmond.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
