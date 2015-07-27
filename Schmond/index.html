@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-TextLayoutMetrics" content="natural" />
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> TODO change in production -->
@@ -19,12 +19,15 @@
 	<title>Die Legion</title>
 </head>
 <body class="fixed-footer hide-cards-on-mobile hide-chrome-autofill-color" ng-controller="indexController as app">
-	<header>
+	<header class="z-depth-1" ng-init="app.init()">
 		<nav class="top-nav white">
 			<div class="container">
 				<div class="nav-wrapper">
-					<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full grey-text text-darken-3">
+					<a href="#" ng-hide="page.goBack" data-activates="nav-mobile" class="button-collapse top-nav full grey-text text-darken-3">
 						<i class="mdi-navigation-menu"></i>
+					</a>
+					<a href="{{ page.goBack }}" ng-show="page.goBack" class="nav-button top-nav grey-text text-darken-3 hide-on-large-only">
+						<i class="material-icons">&#xE5C4;</i>
 					</a>
 					<ul class="right hide-on-med-and-down">
 						<li ng-class="{ active: isActive('/profile')}" ng-hide="!app.authentication.isAuth">
@@ -40,74 +43,79 @@
 							<a class="grey-text text-darken-3" href="/#/login">Anmelden</a>
 						</li>
 					</ul>
-					<a class="brand-logo grey-text text-darken-3" ng-cloak>{{ title }}</a>
+					<a class="brand-logo grey-text text-darken-3" ng-bind="page.title"></a>
 				</div>
 			</div>
 		</nav>
+		<ul class="tabs ng-hide" ng-show="tabs.length">
+			<li class="tab" ng-repeat="tab in tabs">
+				<a ng-click="tab.click">{{ tab.text }}</a>
+			</li>
+		</ul>
 		<div class="progress hide-on-med-and-up ng-hide" ng-show="loading">
 			<div class="indeterminate"></div>
 		</div>
-		<ul id="nav-mobile" class="side-nav fixed z-depth-2" ng-cloak>
-			<li class="logo">
-				<a id="logo-container" href="/#/home" class="brand-logo hide-nav">
-					<img alt="logo" src="logo.svg" width="180"/>
-				</a>
-			</li>
-			<li ng-class="{ active: isActive('/players')}" class="bold">
-				<a href="/#/players" class="waves-effect waves-ripple hide-nav" data-activates="nav-mobile">Mitglieder</a>
-			</li>
-			<li class="no-padding" ng-hide="!app.authentication.isAuth">
-				<ul class="collapsible collapsible-accordion">
-					<li class="bold" ng-class="{ active: isActive('/lootlists')}">
-						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/lootlist')}">Lootlisten</a>
-						<div class="collapsible-body" ng-controller="instanceController as instanceController">
-							<ul>
-								<li ng-class="{ active: isActive('/lootlists/' + instance.id )}" ng-repeat="instance in instanceController.instances">
-									<a href="/#/lootlists/{{ instance.id }}" class="waves-effect waves-ripple hide-nav">{{ instance.name }}</a>
-								</li>
-								<!--<li> TODO Feature: Create instance
-									<a ng-click="create()" class="waves-effect waves-ripple hide-nav">
-										<i class="material-icons">&#xE145;</i>
-										Neue Instanz
-									</a>
-								</li>-->
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</li>
-			<li class="no-padding" ng-hide="!app.authentication.isAuth">
-				<ul class="collapsible collapsible-accordion">
-					<li class="bold" ng-class="{ active: isActive('/admin')}">
-						<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/admin')}">Administration</a>
-						<div class="collapsible-body">
-							<ul>
-								<li ng-class="{ active: isActive('/admin/races')}">
-									<a href="/#/admin/races" class="waves-effect waves-ripple hide-nav">Rassen</a>
-								</li>
-								<li ng-class="{ active: isActive('/admin/classes')}">
-									<a href="/#/admin/classes" class="waves-effect waves-ripple hide-nav">Klassen</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</li>
-			<li class="logo hide-on-large-only">&nbsp;</li> <!-- workaround to get space and a border between this and the upper item -->
-			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/profile')}" ng-hide="!app.authentication.isAuth">
-				<a href="/#/profile" class="waves-effect waves-ripple hide-nav">Mein Profil</a>
-			</li>
-			<li class="hide-on-large-only bold" ng-hide="!app.authentication.isAuth">
-				<a ng-click="logOut()" class="waves-effect waves-ripple hide-nav">Abmelden</a>
-			</li>
-			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/register')}" ng-hide="app.authentication.isAuth">
-				<a href="/#/register" class="waves-effect waves-ripple hide-nav">Registrieren</a>
-			</li>
-			<li class="hide-on-large-only bold" ng-class="{ active: isActive('/login')}" ng-hide="app.authentication.isAuth">
-				<a href="/#/login" class="waves-effect waves-ripple hide-nav">Anmelden</a>
-			</li>
-		</ul>
 	</header>
+	<ul id="nav-mobile" class="side-nav fixed z-depth-2" ng-cloak>
+		<li class="logo">
+			<a id="logo-container" href="/#/home" class="brand-logo hide-nav">
+				<img alt="logo" src="logo.svg" width="180" />
+			</a>
+		</li>
+		<li ng-class="{ active: isActive('/players')}" class="bold">
+			<a href="/#/players" class="waves-effect waves-ripple hide-nav" data-activates="nav-mobile">Mitglieder</a>
+		</li>
+		<li class="no-padding" ng-hide="!app.authentication.isAuth">
+			<ul class="collapsible collapsible-accordion">
+				<li class="bold" ng-class="{ active: isActive('/lootlists')}">
+					<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/lootlist')}">Lootlisten</a>
+					<div class="collapsible-body" ng-controller="instanceController as instanceController">
+						<ul>
+							<li ng-class="{ active: isActive('/lootlists/' + instance.id )}" ng-repeat="instance in instanceController.instances">
+								<a href="/#/lootlists/{{ instance.id }}" class="waves-effect waves-ripple hide-nav">{{ instance.name }}</a>
+							</li>
+							<!--<li> TODO Feature: Create instance
+								<a ng-click="create()" class="waves-effect waves-ripple hide-nav">
+									<i class="material-icons">&#xE145;</i>
+									Neue Instanz
+								</a>
+							</li>-->
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="no-padding" ng-hide="!app.authentication.isAuth">
+			<ul class="collapsible collapsible-accordion">
+				<li class="bold" ng-class="{ active: isActive('/admin')}">
+					<a class="collapsible-header waves-effect waves-ripple" ng-class="{ active: isActive('/admin')}">Administration</a>
+					<div class="collapsible-body">
+						<ul>
+							<li ng-class="{ active: isActive('/admin/races')}">
+								<a href="/#/admin/races" class="waves-effect waves-ripple hide-nav">Rassen</a>
+							</li>
+							<li ng-class="{ active: isActive('/admin/classes')}">
+								<a href="/#/admin/classes" class="waves-effect waves-ripple hide-nav">Klassen</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="logo hide-on-large-only">&nbsp;</li> <!-- workaround to get space and a border between this and the upper item -->
+		<li class="hide-on-large-only bold" ng-class="{ active: isActive('/profile')}" ng-hide="!app.authentication.isAuth">
+			<a href="/#/profile" class="waves-effect waves-ripple hide-nav">Mein Profil</a>
+		</li>
+		<li class="hide-on-large-only bold" ng-hide="!app.authentication.isAuth">
+			<a ng-click="logOut()" class="waves-effect waves-ripple hide-nav">Abmelden</a>
+		</li>
+		<li class="hide-on-large-only bold" ng-class="{ active: isActive('/register')}" ng-hide="app.authentication.isAuth">
+			<a href="/#/register" class="waves-effect waves-ripple hide-nav">Registrieren</a>
+		</li>
+		<li class="hide-on-large-only bold" ng-class="{ active: isActive('/login')}" ng-hide="app.authentication.isAuth">
+			<a href="/#/login" class="waves-effect waves-ripple hide-nav">Anmelden</a>
+		</li>
+	</ul>
 	<main>
 		<div class="container">
 			<div class="ng-cloak">
@@ -128,7 +136,7 @@
 		</div>
 	</main>
 	<md-footer md-links="app.footerLinks" md-copyright="Die Legion, All rights reserved"></md-footer>
-<script src="/scripts/materialize/materialize.min.js"></script>
+	<script src="/scripts/materialize/materialize.min.js"></script>
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> TODO change in production -->
 
 	<script src="/app/app.js"></script>
@@ -145,6 +153,7 @@
 	<script src="/app/services/instanceService.js"></script>
 	<script src="/app/services/bossService.js"></script>
 	<script src="/app/services/itemService.js"></script>
+	<script src="/app/services/needTypeService.js"></script>
 
 	<script src="/app/directives/footerDirective.js"></script>
 

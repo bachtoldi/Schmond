@@ -2,7 +2,7 @@
 app.controller('raceController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
 
 	$scope.initIndex = function () {
-		$rootScope.title = 'Rassen';
+		$scope.page.setTitle('Rassen');
 
 		$rootScope.loading = true;
 		$http.get('/api/races').success(function (response) {

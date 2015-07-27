@@ -1,0 +1,13 @@
+﻿<div class="row" ng-init="lootlist.initBoss()">
+	<div class="card" ng-repeat="item in lootlist.items">
+		<div class="card-content">
+			<div class="card-title grey-text text-darken-3">{{ item.name }}</div>
+			<table class="responsive-table">
+				<tr>
+					<th></th>
+					<th ng-repeat="needType in lootlist.NeedTypes"></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

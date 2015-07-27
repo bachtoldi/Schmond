@@ -13,8 +13,8 @@ namespace Schmond.Controllers
 		[Authorize]
 		public IHttpActionResult Read(int bossId = 0)
 		{
-			var results = (from i in Context.Items
-										 where bossId == 0
+			var results = (from i in Context.Items.Include(x => x.DroppedBy)
+										 where bossId == 0 || i.DroppedBy.Any(x => x.Id == bossId)
 										 orderby i.Name
 										 select i);
 

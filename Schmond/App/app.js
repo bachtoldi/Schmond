@@ -29,9 +29,13 @@ app.config(function ($routeProvider) {
 		controller: 'itemController',
 		templateUrl: '/app/views/item/index.html'
 	});
-	$routeProvider.when('/lootlists/:id', {
+	$routeProvider.when('/lootlists/:instance', {
 		controller: 'lootlistController as lootlist',
 		templateUrl: '/app/views/lootlist/index.html'
+	});
+	$routeProvider.when('/lootlists/:instance/:boss', {
+		controller: 'lootlistController as lootlist',
+		templateUrl: '/app/views/lootlist/boss.html'
 	});
 	$routeProvider.when('/imprint', {
 		controller: '',
@@ -52,4 +56,20 @@ app.config(function ($httpProvider) {
 
 app.run(['authService', function (authService) {
 	authService.fillAuthData();
+}]);
+
+app.run(['$rootScope', function ($rootScope) {
+	$rootScope.page = {
+		setTitle: function (title) {
+			this.title = title;
+		},
+		setGoBack: function (goBack) {
+			this.goBack = goBack;
+		}
+	}
+
+	$rootScope.$on('$routeChangeSuccess', function (event, current) {
+		$rootScope.page.setGoBack('');
+		$rootScope.page.setTitle(current.$$route.title || '');
+	});
 }]);

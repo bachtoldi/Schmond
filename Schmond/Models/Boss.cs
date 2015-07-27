@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Schmond.Models
 {
@@ -24,6 +27,9 @@ namespace Schmond.Models
 
 		[ForeignKey("InstanceId")]
 		public virtual Instance Instance { get; set; }
+
+		[JsonIgnore]
+		public virtual ICollection<Item> Items { get; set; }
 
 		public override string ToString()
 		{

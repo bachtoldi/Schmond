@@ -51,10 +51,10 @@ a[ng-click] {
 		}
 
 
-		.side-nav.fixed li a i {
-			top: 7px;
-			position: relative;
-		}
+			.side-nav.fixed li a i {
+				top: 7px;
+				position: relative;
+			}
 
 		.side-nav.fixed li:hover, .side-nav.fixed li.active {
 			background-color: rgba(0, 0, 0, 0.10);
@@ -68,7 +68,8 @@ a[ng-click] {
 		margin: 0;
 	}
 
-	nav .button-collapse i {
+	nav .button-collapse i,
+	nav .nav-button i {
 		font-size: 24px;
 	}
 
@@ -86,6 +87,22 @@ a[ng-click] {
 		top: 22px;
 		bottom: auto;
 		right: 22px;
+	}
+
+	.breadcrumbs {
+		margin-bottom: 20px;
+	}
+
+	nav .nav-button i {
+		height: 64px;
+		line-height: 64px;
+	}
+
+	nav .nav-button {
+		float: left;
+		position: relative;
+		z-index: 1;
+		height: 56px;
 	}
 }
 
@@ -114,6 +131,11 @@ a[ng-click] {
 					border-top: none;
 				}
 
+	nav .nav-button i {
+		height: 56px;
+		line-height: 56px;
+	}
+
 	.lean-overlay {
 		visibility: hidden;
 	}
@@ -137,7 +159,7 @@ a[ng-click] {
 
 		.modal[style],
 		.modal.modal-fixed-footer[style] {
-			height: 100%!important;
+			height: 100% !important;
 			top: 0 !important;
 		}
 

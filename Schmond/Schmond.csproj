@@ -164,7 +164,9 @@
     <Content Include="App\services\bossService.js" />
     <Content Include="App\services\instanceService.js" />
     <Content Include="App\services\itemService.js" />
+    <Content Include="App\services\needTypeService.js" />
     <Content Include="App\views\instance\index.html" />
+    <Content Include="App\views\lootlist\boss.html" />
     <Content Include="App\views\lootlist\index.html" />
     <Content Include="App\views\shared\footer.html" />
     <Content Include="App\services\authInterceptorService.js" />

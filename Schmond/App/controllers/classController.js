@@ -2,7 +2,7 @@
 app.controller('classController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
 
 	$scope.initIndex = function () {
-		$rootScope.title = 'Klassen';
+		$scope.page.setTitle('Klassen');
 
 		$rootScope.loading = true;
 		$http.get('/api/classes').success(function (response) {

@@ -1,5 +1,5 @@
 ﻿@media screen, projection {
-	header, main, footer {
+	header, main, footer, .tabs {
 		padding-left: 120px;
 	}
 
@@ -12,6 +12,7 @@
 		left: 0;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		font-size: 24px;
 	}
 
 	.side-nav .collapsible-body li.active, .side-nav.fixed .collapsible-body li.active {
@@ -81,6 +82,5 @@
 		-ms-transform: none;
 		-webkit-transform: none;
 		transform: none;
-		font-size: 24px;
 	}
 }

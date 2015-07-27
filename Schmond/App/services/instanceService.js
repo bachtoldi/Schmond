@@ -18,7 +18,20 @@
 			return deferred.promise;
 		}
 
+		var getInstanceById = function (id) {
+			var deferred = $q.defer();
+
+			$http.get('/api/instances/' + id).success(function (response) {
+				deferred.resolve(response);
+			}).error(function (err) {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
 		factory.getInstances = getInstances;
+		factory.getInstanceById = getInstanceById;
 
 		return factory;
 	}]);
