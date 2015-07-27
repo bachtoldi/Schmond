@@ -66,6 +66,9 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 	var fillAuthData = function () {
 
 		var authData = localStorageService.get('authorizationData');
+
+		console.log(authData);
+
 		if (authData) {
 			authentication.isAuth = true;
 			authentication.userName = authData.userName;

@@ -10,10 +10,6 @@ app.config(function ($routeProvider) {
 		templateUrl: '/app/views/account/register.html'
 	});
 	$routeProvider.when('/players', {
-		controller: 'charController',
-		templateUrl: '/app/views/char/index.html'
-	});
-	$routeProvider.when('/admin/accounts', {
 		controller: 'accountController',
 		templateUrl: '/app/views/account/index.html'
 	});

@@ -5,7 +5,7 @@ using Schmond.Models;
 
 namespace Schmond.Controllers
 {
-	[RoutePrefix("api/available")]
+	[RoutePrefix("api/availabilities")]
 	public class AvailableController : ApiControllerBase
 	{
 		[HttpGet]

@@ -19,7 +19,7 @@
 	<title>Die Legion</title>
 </head>
 <body class="fixed-footer hide-cards-on-mobile hide-chrome-autofill-color" ng-controller="indexController as app">
-	<header class="z-depth-1" ng-init="app.init()">
+	<header class="z-depth-1">
 		<nav class="top-nav white">
 			<div class="container">
 				<div class="nav-wrapper">
@@ -47,11 +47,11 @@
 				</div>
 			</div>
 		</nav>
-		<ul class="tabs ng-hide" ng-show="tabs.length">
+		<!--<ul class="tabs ng-hide" ng-show="tabs.length">
 			<li class="tab" ng-repeat="tab in tabs">
 				<a ng-click="tab.click">{{ tab.text }}</a>
 			</li>
-		</ul>
+		</ul>-->
 		<div class="progress hide-on-med-and-up ng-hide" ng-show="loading">
 			<div class="indeterminate"></div>
 		</div>

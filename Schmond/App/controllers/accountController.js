@@ -2,26 +2,19 @@
 app.controller('accountController', ['$scope', '$rootScope', '$http', '$location', '$timeout', 'authService', function ($scope, $rootScope, $http, $location, $timeout, authService) {
 
 	$scope.initRegister = function () {
-		$rootScope.title = 'Registrieren';
+		$scope.page.setTitle('Registrieren');
 	}
 
 	$scope.initLogin = function () {
-		$rootScope.title = 'Anmelden';
+		$scope.page.setTitle('Anmelden');
 	}
 
 	$scope.initIndex = function () {
-		$rootScope.title = 'Mitglieder';
+		$scope.page.setTitle('Mitglieder');
 
 		$http.get('/api/accounts').success(function (response) {
 			$scope.accounts = response;
 			$rootScope.loading = false;
-		}).error(function (err) {
-			$rootScope.loading = false;
-			$rootScope.state = 'error';
-			$rootScope.modalHeader = 'Fehler';
-			$rootScope.modalMessage = err;
-			$rootScope.modalLink = 'javascript:void()';
-			$('#modal').openModal();
 		});
 	}
 
@@ -29,17 +22,7 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 		$rootScope.loading = true;
 		$http.post('/api/accounts', $scope.user).success(function () {
 			$rootScope.loading = false;
-			$rootScope.modalHeader = 'Erfolgreich';
-			$rootScope.modalMessage = 'Vielen Dank für Ihre Registrierung.';
-			$rootScope.modalLink = '/#/login';
-			$('#modal').openModal();
-		}).error(function (err) {
-			$rootScope.loading = false;
-			$rootScope.state = 'error';
-			$rootScope.modalHeader = 'Fehler';
-			$rootScope.modalMessage = err;
-			$rootScope.modalLink = 'javascript:void()';
-			$('#modal').openModal();
+			$location.path('/char/create');
 		});
 	}
 
@@ -48,18 +31,7 @@ app.controller('accountController', ['$scope', '$rootScope', '$http', '$location
 
 		authService.login($scope.user).then(function () {
 			$rootScope.loading = false;
-			$rootScope.modalHeader = 'Erfolgreich';
-			$rootScope.modalMessage = 'Erfolgreich angemeldet!';
-			$('#modal').openModal();
-		},
-		 function (err) {
-		 	$rootScope.loading = false;
-		 	$rootScope.modalHeader = 'Anmeldung fehlgeschlagen';
-		 	$rootScope.modalMessage = err.error_description;
-		 	$rootScope.modalLink = 'javascript:void()';
-		 	$('#modal').openModal();
-		 });
-
-		$rootScope.loading = false;
+			$location.path('/players');
+		});
 	}
 }]);

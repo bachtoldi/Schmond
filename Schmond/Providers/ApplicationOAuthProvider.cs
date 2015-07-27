@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using Schmond.Models;
 
 namespace Schmond.Providers
 {
@@ -41,7 +37,7 @@ namespace Schmond.Providers
 			var oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
 			var cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
 
-			var properties = CreateProperties(user.UserName);
+			var properties = CreateProperties(user.UserName, user.MainCharId);
 			var ticket = new AuthenticationTicket(oAuthIdentity, properties);
 
 
@@ -85,11 +81,12 @@ namespace Schmond.Providers
 			return Task.FromResult<object>(null);
 		}
 
-		public static AuthenticationProperties CreateProperties(string userName)
+		public static AuthenticationProperties CreateProperties(string userName, int? mainCharId)
 		{
 			IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                { "mainCharId", mainCharId.ToString() }
             };
 			return new AuthenticationProperties(data);
 		}

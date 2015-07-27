@@ -2,10 +2,10 @@
 	<div class="card" ng-repeat="item in lootlist.items">
 		<div class="card-content">
 			<div class="card-title grey-text text-darken-3">{{ item.name }}</div>
-			<table class="responsive-table">
+			<table>
 				<tr>
 					<th></th>
-					<th ng-repeat="needType in lootlist.NeedTypes"></th>
+					<th ng-repeat="needType in lootlist.needTypes">{{ needType.name }}</th>
 				</tr>
 			</table>
 		</div>

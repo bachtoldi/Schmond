@@ -5,7 +5,7 @@ using Schmond.Models;
 
 namespace Schmond.Controllers
 {
-	[RoutePrefix("api/needtype")]
+	[RoutePrefix("api/needtypes")]
 	public class NeedTypeController : ApiControllerBase
 	{
 		[HttpGet]

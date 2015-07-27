@@ -5,12 +5,10 @@
 
 	app.controller('indexController', ['$scope', '$rootScope', '$http', '$location', 'authService', function ($scope, $rootScope, $http, $location, authService) {
 
-		this.init = function () {
-			$rootScope.modalMessage = '';
-			$rootScope.modalHeader = '';
-			$rootScope.modalLink = '#!';
-			$rootScope.tabs = [];
-		}
+		$rootScope.modalMessage = '';
+		$rootScope.modalHeader = '';
+		$rootScope.modalLink = '#!';
+		$rootScope.tabs = [];
 
 		this.authentication = authService.authentication;
 		this.footerLinks = [
@@ -19,7 +17,7 @@
 				url: '/#/imprint'
 			}
 		];
-		
+
 		$scope.logOut = function () {
 			authService.logOut();
 			$location.path('/login');

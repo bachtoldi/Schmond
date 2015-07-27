@@ -5,7 +5,7 @@ using Schmond.Models;
 
 namespace Schmond.Controllers
 {
-	[RoutePrefix("api/priority")]
+	[RoutePrefix("api/priorities")]
 	public class PriorityController : ApiControllerBase
 	{
 		[HttpGet]

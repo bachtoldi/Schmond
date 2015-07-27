@@ -26,6 +26,10 @@
 			itemService.getItemsForBoss($routeParams.boss).then(function (response) {
 				vm.items = response;
 			});
+
+			needTypeService.getNeedTypes().then(function (response) {
+				vm.needTypes = response;
+			});
 		}
 	}]);
 }());
