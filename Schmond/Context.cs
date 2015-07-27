@@ -5,7 +5,7 @@ using Schmond.Models;
 
 namespace Schmond
 {
-	public class Context : IdentityDbContext<User>
+	public class Context : IdentityDbContext<ApplicationUser>
 	{
 		public Context()
 			: base("DefaultContext")
@@ -18,7 +18,7 @@ namespace Schmond
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-			modelBuilder.Entity<User>().ToTable("Account");
+			modelBuilder.Entity<ApplicationUser>().ToTable("Account");
 			modelBuilder.Entity<IdentityUserLogin>().ToTable("Login");
 			modelBuilder.Entity<IdentityRole>().ToTable("Role");
 			modelBuilder.Entity<IdentityUserRole>().ToTable("UserHasRole");
@@ -40,10 +40,15 @@ namespace Schmond
 		public virtual IDbSet<Item> Items { get; set; }
 		public virtual IDbSet<Instance> Instances { get; set; }
 		public virtual IDbSet<Boss> Bosses { get; set; }
-        public virtual IDbSet<Spec> Specs { get; set; }
-        public virtual IDbSet<NeedType> NeedTypes { get; set; }
-        public virtual IDbSet<Priority> Priorities { get; set; }
-        public virtual IDbSet<Available> Availabilities { get; set; }
-        public virtual IDbSet<Need> Needs { get; set; }
+		public virtual IDbSet<Spec> Specs { get; set; }
+		public virtual IDbSet<NeedType> NeedTypes { get; set; }
+		public virtual IDbSet<Priority> Priorities { get; set; }
+		public virtual IDbSet<Available> Availabilities { get; set; }
+		public virtual IDbSet<Need> Needs { get; set; }
+
+		public static Context Create()
+		{
+			return new Context();
+		}
 	}
 }

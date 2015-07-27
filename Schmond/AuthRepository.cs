@@ -11,14 +11,14 @@ namespace Schmond
 	public class AuthRepository : IDisposable
 	{
 		private readonly Context _context;
-		private readonly UserManager<User> _userManager;
+		private readonly ApplicationUserManager _userManager;
 
 		public AuthRepository(Context context = null)
 		{
 			_context = context ?? new Context();
 
-			var store = new UserStore<User>(_context);
-			_userManager = new UserManager<User>(store);
+			var store = new UserStore<ApplicationUser>(_context);
+			_userManager = new ApplicationUserManager(store);
 		}
 
 		public IEnumerable<string> GetRoles(string userId)
@@ -27,31 +27,31 @@ namespace Schmond
 			return roles;
 		}
 
-		public async Task<IdentityResult> RegisterUser(User user)
+		public async Task<IdentityResult> RegisterUser(ApplicationUser user)
 		{
 			var result = await _userManager.CreateAsync(user, user.Password);
 
 			return result;
 		}
 
-		public async Task<User> FindUser(string userName, string password)
+		public async Task<ApplicationUser> FindUser(string userName, string password)
 		{
 			var user = await _userManager.FindAsync(userName, password);
 
 			return user;
 		}
 
-		public List<User> GetUserList()
+		public List<ApplicationUser> GetUserList()
 		{
 			var userList = _userManager.Users.ToList();
 
 			return userList;
 		}
 
-		public async Task<IdentityResult> UpdateUser(string id, User userModel)
+		public async Task<IdentityResult> UpdateUser(string id, ApplicationUser userModel)
 		{
 			var user = await GetUserById(id);
-			
+
 			user.Email = userModel.Email;
 			user.UserName = userModel.UserName;
 			user.MainCharId = userModel.MainCharId;
@@ -60,18 +60,19 @@ namespace Schmond
 			return identityResult;
 		}
 
-		public async Task<IdentityResult> UpdatePassword(string id, User userModel)
+		public async Task<IdentityResult> UpdatePassword(string id, ApplicationUser userModel)
 		{
 			var identityResult = await _userManager.ChangePasswordAsync(id, userModel.OldPassword, userModel.Password);
 
 			return identityResult;
-        }
+		}
 
-        public async Task<IdentityResult> DeleteUser(string id) {
-            var identityResult = await _userManager.DeleteAsync(await GetUserById(id));
+		public async Task<IdentityResult> DeleteUser(string id)
+		{
+			var identityResult = await _userManager.DeleteAsync(await GetUserById(id));
 
-            return identityResult;
-        }
+			return identityResult;
+		}
 
 		public void Dispose()
 		{
@@ -79,7 +80,7 @@ namespace Schmond
 			_userManager.Dispose();
 		}
 
-		public async Task<User> GetUserById(string id)
+		public async Task<ApplicationUser> GetUserById(string id)
 		{
 			var user = await _userManager.FindByIdAsync(id);
 
