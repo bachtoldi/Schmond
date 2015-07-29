@@ -155,6 +155,7 @@
   <ItemGroup>
     <Content Include="App\app.js" />
     <Content Include="App\controllers\accountController.js" />
+    <Content Include="App\controllers\charController.js" />
     <Content Include="App\controllers\classController.js" />
     <Content Include="App\controllers\indexController.js" />
     <Content Include="App\controllers\instanceController.js" />
@@ -165,6 +166,7 @@
     <Content Include="App\services\instanceService.js" />
     <Content Include="App\services\itemService.js" />
     <Content Include="App\services\needTypeService.js" />
+    <Content Include="App\views\account\chars.html" />
     <Content Include="App\views\instance\index.html" />
     <Content Include="App\views\lootlist\boss.html" />
     <Content Include="App\views\lootlist\index.html" />

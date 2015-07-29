@@ -13,6 +13,10 @@ app.config(function ($routeProvider) {
 		controller: 'accountController',
 		templateUrl: '/app/views/account/index.html'
 	});
+	$routeProvider.when('/chars', {
+		controller: 'charController',
+		templateUrl: '/app/views/account/chars.html'
+	});
 	$routeProvider.when('/admin/races', {
 		controller: 'raceController',
 		templateUrl: '/app/views/race/index.html'

@@ -7,7 +7,8 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 	var authentication = {
 		isAuth: false,
 		userName: '',
-		useRefreshTokens: false
+		useRefreshTokens: false,
+		mainCharId: ''
 	};
 
 	var saveRegistration = function (registration) {
@@ -29,6 +30,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 		authentication.isAuth = false;
 		authentication.userName = '';
 		authentication.useRefreshTokens = false;
+		authentication.mainCharId = '';
 		$location.path('/login');
 	};
 
@@ -44,10 +46,10 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 
 		$http.post('/api/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 			if (loginData.useRefreshTokens) {
-				localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
+				localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, mainCharId: response.mainCharId, useRefreshTokens: true });
 			}
 			else {
-				localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: '', useRefreshTokens: false });
+				localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: '', mainCharId: response.mainCharId, useRefreshTokens: false });
 			}
 			authentication.isAuth = true;
 			authentication.userName = loginData.userName;
@@ -66,15 +68,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 	var fillAuthData = function () {
 
 		var authData = localStorageService.get('authorizationData');
-
-		console.log(authData);
-
+		
 		if (authData) {
 			authentication.isAuth = true;
 			authentication.userName = authData.userName;
 			authentication.useRefreshTokens = authData.useRefreshTokens;
+			authentication.mainCharId = authData.mainCharId;
 		}
-
 	};
 
 	var refreshToken = function () {
