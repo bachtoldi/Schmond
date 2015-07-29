@@ -1,12 +1,7 @@
 ﻿<footer class="page-footer z-depth-1 grey darken-3">
 	<div class="container">
 		<div class="col l4 offset-l2 s12">
-			<ul>
-				<li ng-repeat="link in links">
-					<a class="white-text" href="{{ link.url }}">
-						{{ link.text }}
-					</a>
-				</li>
+			<ul ng-transclude>
 			</ul>
 		</div>
 	</div>

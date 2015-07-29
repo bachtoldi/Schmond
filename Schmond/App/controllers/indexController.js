@@ -11,12 +11,6 @@
 		$rootScope.tabs = [];
 
 		this.authentication = authService.authentication;
-		this.footerLinks = [
-			{
-				text: 'Impressum',
-				url: '/#/imprint'
-			}
-		];
 
 		$scope.logOut = function () {
 			authService.logOut();

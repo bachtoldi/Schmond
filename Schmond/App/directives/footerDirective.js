@@ -12,8 +12,8 @@
 			restrict: 'E',
 			templateUrl: 'app/views/shared/footer.html',
 			link: linkFunc,
+			transclude: true,
 			scope: {
-				links: '=mdLinks',
 				copyright: '@mdCopyright',
 				since: '@mdSince',
 				version: '@mdVersion'

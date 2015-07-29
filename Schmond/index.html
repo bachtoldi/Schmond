@@ -26,7 +26,7 @@
 					<a href="#" ng-hide="page.goBack" data-activates="nav-mobile" class="button-collapse top-nav full grey-text text-darken-3">
 						<i class="mdi-navigation-menu"></i>
 					</a>
-					<a href="{{ page.goBack }}" ng-show="page.goBack" class="nav-button top-nav grey-text text-darken-3 hide-on-large-only">
+					<a href="{{ page.goBack }}" ng-show="page.goBack" class="nav-button top-nav grey-text text-darken-3 hide-on-large-only ng-hide">
 						<i class="material-icons">&#xE5C4;</i>
 					</a>
 					<ul class="right hide-on-med-and-down">
@@ -135,7 +135,13 @@
 			</div>
 		</div>
 	</main>
-	<md-footer md-links="app.footerLinks" md-copyright="Die Legion, All rights reserved"></md-footer>
+	<md-footer md-links="app.footerLinks" md-copyright="Die Legion, All rights reserved">
+		<li>
+			<a class="white-text" href="/#/imprint">
+				Impressum
+			</a>
+		</li>
+	</md-footer>
 	<script src="/scripts/materialize/materialize.min.js"></script>
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> TODO change in production -->
 

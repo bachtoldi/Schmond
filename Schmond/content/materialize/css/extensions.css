@@ -104,6 +104,19 @@ a[ng-click] {
 		z-index: 1;
 		height: 56px;
 	}
+
+	.side-nav .collapsible-body li a {
+		padding: 0 1rem 0 3rem;
+		margin: 0;
+	}
+
+	.waves-effect {
+  -webkit-transition: all .4s ease-out;
+  -moz-transition: all .4s ease-out;
+  -o-transition: all .4s ease-out;
+  -ms-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+}
 }
 
 @media only screen and (max-width: 992px) {
