@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-TextLayoutMetrics" content="natural" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="/content/materialize/css/materialize.min.css" media="screen,projection">
+	<link rel="stylesheet" href="/content/materialize/css/materialize.css" media="screen,projection">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> TODO change in production -->
 	<link rel="stylesheet" href="/content/materialize/css/extensions.css" media="screen,projection">
 	<link rel="stylesheet" href="/content/site.css" media="screen,projection">
@@ -135,17 +135,28 @@
 			</div>
 		</div>
 	</main>
-	<md-footer md-links="app.footerLinks" md-copyright="Die Legion, All rights reserved">
+	<md-footer md-copyright="Die Legion, All rights reserved">
 		<li>
 			<a class="white-text" href="/#/imprint">
 				Impressum
 			</a>
 		</li>
 	</md-footer>
-	<script src="/scripts/materialize/materialize.min.js"></script>
+	<script src="/scripts/materialize/materialize.js"></script>
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> TODO change in production -->
 
 	<script src="/app/app.js"></script>
+
+	<script src="/app/services/authService.js"></script>
+	<script src="/app/services/authInterceptorService.js"></script>
+	<script src="/app/services/instanceService.js"></script>
+	<script src="/app/services/bossService.js"></script>
+	<script src="/app/services/itemService.js"></script>
+	<script src="/app/services/needTypeService.js"></script>
+	<script src="/app/services/raceService.js"></script>
+	<script src="/app/services/classService.js"></script>
+	<script src="/app/services/charService.js"></script>
+	<script src="/app/services/specService.js"></script>
 
 	<script src="/app/controllers/indexController.js"></script>
 	<script src="/app/controllers/accountController.js"></script>
@@ -154,13 +165,6 @@
 	<script src="/app/controllers/instanceController.js"></script>
 	<script src="/app/controllers/lootlistController.js"></script>
 	<script src="/app/controllers/charController.js"></script>
-
-	<script src="/app/services/authService.js"></script>
-	<script src="/app/services/authInterceptorService.js"></script>
-	<script src="/app/services/instanceService.js"></script>
-	<script src="/app/services/bossService.js"></script>
-	<script src="/app/services/itemService.js"></script>
-	<script src="/app/services/needTypeService.js"></script>
 
 	<script src="/app/directives/footerDirective.js"></script>
 

@@ -1,1 +1,42 @@
-﻿<h1>BLAAAAAAAAA</h1>
+﻿<div class="row">
+	<div class="col s12">
+		<div class="card-panel">
+			Was ist dein Hauptcharakter?
+		</div>
+	</div>
+	<form ng-submit="vm.createChar()" class="col s12">
+		<div class="card-panel">
+			<div class="input-field">
+				<input type="text" name="name" ng-model="vm.char.name" id="name" required />
+				<label for="name">Name</label>
+			</div>
+			<div class="input-field">
+				<select name="race" ng-model="vm.char.raceId" id="race" ng-change="vm.loadClasses()">
+					<option value="" disabled selected>Bitte wählen</option>
+					<option value="{{ race.id }}" ng-repeat="race in vm.races">{{ race.name }}</option>
+				</select>
+				<label for="race">Rasse</label>
+			</div>
+			<div class="input-field">
+				<select name="race" ng-model="vm.char.classId" id="class" ng-disabled="!vm.char.raceId" ng-change="vm.loadSpecs()">
+					<option value="" disabled selected>Bitte wählen</option>
+					<option value="{{ class.id }}" ng-repeat="class in vm.classes">{{ class.name }}</option>
+				</select>
+				<label for="class">Klasse</label>
+			</div>
+			<div class="input-field">
+				<select name="spec" ng-model="vm.char.specId" id="spec" ng-disabled="!vm.char.classId">
+					<option value="" disabled selected>Bitte wählen</option>
+					<option value="{{ spec.id }}" ng-repeat="spec in vm.specs">{{ spec.name }}</option>
+				</select>
+				<label for="spec">Skillung</label>
+			</div>
+			<div class="card-action center-align">
+				<button class="waves-effect waves-light btn" type="submit" title="Login">
+					<i class="mdi-content-send right"></i>
+					Speichern
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

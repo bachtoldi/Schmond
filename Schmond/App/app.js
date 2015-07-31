@@ -14,7 +14,7 @@ app.config(function ($routeProvider) {
 		templateUrl: '/app/views/account/index.html'
 	});
 	$routeProvider.when('/chars', {
-		controller: 'charController',
+		controller: 'charController as vm',
 		templateUrl: '/app/views/account/chars.html'
 	});
 	$routeProvider.when('/admin/races', {

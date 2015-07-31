@@ -163,9 +163,13 @@
     <Content Include="App\controllers\raceController.js" />
     <Content Include="App\directives\footerDirective.js" />
     <Content Include="App\services\bossService.js" />
+    <Content Include="App\services\charService.js" />
+    <Content Include="App\services\classService.js" />
     <Content Include="App\services\instanceService.js" />
     <Content Include="App\services\itemService.js" />
     <Content Include="App\services\needTypeService.js" />
+    <Content Include="App\services\raceService.js" />
+    <Content Include="App\services\specService.js" />
     <Content Include="App\views\account\chars.html" />
     <Content Include="App\views\instance\index.html" />
     <Content Include="App\views\lootlist\boss.html" />
@@ -1012,6 +1016,7 @@
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\AvailableController.cs" />
     <Compile Include="Controllers\BossController.cs" />
+    <Compile Include="Controllers\CharController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\FactionController.cs" />
     <Compile Include="Controllers\InstanceController.cs" />
@@ -1020,7 +1025,7 @@
     <Compile Include="Controllers\NeedTypeController.cs" />
     <Compile Include="Controllers\PriorityController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
-    <Compile Include="Controllers\SpecsController.cs" />
+    <Compile Include="Controllers\SpecController.cs" />
     <Compile Include="Filters\UnhandledExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

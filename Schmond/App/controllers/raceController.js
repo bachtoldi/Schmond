@@ -1,20 +1,14 @@
 ﻿'use strict';
-app.controller('raceController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
+app.controller('raceController', ['$scope', '$rootScope', '$http', 'raceService', function ($scope, $rootScope, $http, raceService) {
 
 	$scope.initIndex = function () {
 		$scope.page.setTitle('Rassen');
 
 		$rootScope.loading = true;
-		$http.get('/api/races').success(function (response) {
+
+		raceService.getRaces().then(function (response) {
 			$rootScope.loading = false;
 			$scope.races = response;
-		}).error(function (err) {
-			$rootScope.loading = false;
-			$rootScope.state = 'error';
-			$rootScope.modalHeader = 'Fehler';
-			$rootScope.modalMessage = err;
-			$rootScope.modalLink = 'javascript:void()';
-			$('#modal').openModal();
 		});
 	}
 
@@ -48,7 +42,7 @@ app.controller('raceController', ['$scope', '$rootScope', '$http', function ($sc
 
 	$scope.save = function () {
 		$rootScope.loading = true;
-		
+
 		var fd = {
 			name: $scope.race.name,
 			factionId: $scope.race.faction.id

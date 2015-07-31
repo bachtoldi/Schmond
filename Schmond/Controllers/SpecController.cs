@@ -6,7 +6,7 @@ using System.Web.Http;
 namespace Schmond.Controllers
 {
 	[RoutePrefix("api/specs")]
-	public class SpecsController : ApiControllerBase
+	public class SpecController : ApiControllerBase
 	{
 		[HttpGet]
 		[Route("")]

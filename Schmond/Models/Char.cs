@@ -14,6 +14,9 @@ namespace Schmond.Models
 		public virtual ApplicationUser User { get; set; }
 
 		[Required]
+		[Column("CharName")]
+		public string Name { get; set; }
+
 		[Column("FK_UserId")]
 		public string UserId { get; set; }
 

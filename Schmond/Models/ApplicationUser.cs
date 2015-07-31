@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 
 namespace Schmond.Models
 {
@@ -27,6 +28,7 @@ namespace Schmond.Models
 		[Column("FK_CharId")]
 		public int? MainCharId { get; set; }
 
+		//[JsonIgnore]
 		//[ForeignKey("MainCharId")]
 		//public virtual Char MainChar { get; set; }
 

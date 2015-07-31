@@ -33,7 +33,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 		authentication.mainCharId = '';
 		$location.path('/login');
 	};
-
+	
 	var login = function (loginData) {
 
 		var data = 'grant_type=password&username=' + loginData.userName + '&password=' + loginData.password;
@@ -54,6 +54,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 			authentication.isAuth = true;
 			authentication.userName = loginData.userName;
 			authentication.useRefreshTokens = loginData.useRefreshTokens;
+			authentication.mainCharId = response.mainCharId;
 
 			deferred.resolve(response);
 		}).error(function (err) {
@@ -92,8 +93,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', '$location', '
 
 				$http.post('/api/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-					localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
-
+					localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token, useRefreshTokens: true, mainCharId: response.mainCharId });
 					deferred.resolve(response);
 
 				}).error(function (err) {

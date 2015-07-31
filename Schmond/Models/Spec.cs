@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Schmond.Models
 {
@@ -18,6 +19,7 @@ namespace Schmond.Models
 		[Column("FK_ClassId")]
 		public int ClassId { get; set; }
 
+		[JsonIgnore]
 		[ForeignKey("ClassId")]
 		public Class Class { get; set; }
 

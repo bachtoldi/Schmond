@@ -13,13 +13,10 @@
 
 		vm.authentication = authService.authentication;
 
-		if (!vm.authentication.mainCharId) {
-			$location.path('/login');
-		}
-
 		$scope.$on('$routeChangeStart', function (next, current) {
-			console.log(next);
-			$location.path('/chars');
+			if (authService.authentication.isAuth && !authService.authentication.mainCharId) {
+				$location.path('/chars');
+			}
 		});
 
 		$scope.logOut = function () {

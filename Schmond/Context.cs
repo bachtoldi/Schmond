@@ -25,7 +25,7 @@ namespace Schmond
 			modelBuilder.Entity<IdentityUserLogin>().HasKey(l => new { l.UserId, l.LoginProvider, l.ProviderKey });
 			modelBuilder.Entity<IdentityRole>().HasKey(r => r.Id);
 			modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
-
+		
 			modelBuilder.Entity<Race>().HasMany<Class>(r => r.AvailableClasses)
 																 .WithMany(c => c.AvailableRaces)
 																 .Map(m => m.ToTable("ClassRaceSetting")
