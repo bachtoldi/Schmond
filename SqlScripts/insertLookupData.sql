@@ -1,5 +1,5 @@
 /*
-SET IDENTITY_INSERT tablename ON // Identity selber einfügen
+SET IDENTITY_INSERT tablename ON // Identity selber einfÃ¼gen
 SET IDENTITY_INSERT tablename OFF // AI
 */
 
@@ -44,16 +44,16 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(15,	3,		3,		'Hohepriesterin Mar''li',		'High Priestess Mar''li'),
 	(16,	3,		4,		'Hohepriester Thekal',			'High Priest Thekal'),
 	(17,	3,		5,		'Hohepriesterin Arlokk',		'High Priestess Arlokk'),
-	(18,	3,		6,		'Blutfürst Mandokir',			'Bloodlord Mandokir'),
+	(18,	3,		6,		'BlutfÃ¼rst Mandokir',			'Bloodlord Mandokir'),
 	(19,	3,		7,		'Jin''do der Verhexer',			'Jin''do the Hexxer'),
 	(20,	3,		8,		'Gahz''ranka',					'Gahz''ranka'),
 	(21,	3,		9,		'Edge of Madness',				'Edge of Madness'),
 	(25,	3,		10,		'Hakkar',						'Hakkar the Soulflayer'),
 	(26,	3,		11,		'Trash',						'Trash'),
 	
-	(27,	4,		1,		'Feuerkralle der Ungezähmte',	'Razorgore the Untamed'),
+	(27,	4,		1,		'Feuerkralle der UngezÃ¤hmte',	'Razorgore the Untamed'),
 	(28,	4,		2,		'Vaelastrasz',					'Vaelastrasz the Corrupt'),
-	(29,	4,		3,		'Brutwächter Dreschbringer',	'Broodlord Lashlayer'),
+	(29,	4,		3,		'BrutwÃ¤chter Dreschbringer',	'Broodlord Lashlayer'),
 	(30,	4,		4,		'Feuerschwinge',				'Flamegor'),
 	(31,	4,		5,		'Schattenschwinge',				'Ebonroc'),
 	(32,	4,		6,		'Flammenmaul',					'Firemaw'),
@@ -65,7 +65,7 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(37,	5,		2,		'General Rajaxx',				'General Rajaxx'),
 	(38,	5,		3,		'Moam',							'Moam'),
 	(39,	5,		4,		'Buru der Verschlinger',		'Buru the Gorger'),
-	(40,	5,		5,		'Ayamiss der Jäger',			'Ayamiss the Hunter'),
+	(40,	5,		5,		'Ayamiss der JÃ¤ger',			'Ayamiss the Hunter'),
 	(41,	5,		6,		'Ossirian der Narbenlose',		'Ossirian the Unscarred'),
 	(42,	5,		7,		'Trash',						'Trash'),
 	
@@ -81,13 +81,13 @@ INSERT INTO [schmond].[dbo].[Boss] ([BossId], [FK_InstanceId], [BossNumber], [Bo
 	(55,	6,		10,		'Trash',						'Trash'),
 
 	(56,	7,		1,		'Anub''Rekhan',					'Anub''Rekhan'),
-	(57,	7,		2,		'Großwitwe Faerlina',			'Grand Widow Faerlina'),
+	(57,	7,		2,		'GroÃŸwitwe Faerlina',			'Grand Widow Faerlina'),
 	(58,	7,		3,		'Maexxna',						'Maexxna'),
-	(59,	7,		4,		'Noth der Seuchenfürst',		'Noth the Plaguebringer'),
+	(59,	7,		4,		'Noth der SeuchenfÃ¼rst',		'Noth the Plaguebringer'),
 	(60,	7,		5,		'Heigan der Unreine',			'Heigan the Unclean'),
 	(61,	7,		6,		'Loatheb',						'Loatheb'),
 	(62,	7,		7,		'Instrukteur Razuvious',		'Instructor Razuvious'),
-	(63,	7,		8,		'Gothik der Seelenjäger',		'Gothik the Harvester'),
+	(63,	7,		8,		'Gothik der SeelenjÃ¤ger',		'Gothik the Harvester'),
 	(64,	7,		9,		'Die vier Reiter',				'The Four Horsemen'),
 	(65,	7,		10,		'Flickwerk',					'Patchwerk'),
 	(66,	7,		11,		'Grobbulus',					'Grobbulus'),
@@ -116,7 +116,7 @@ INSERT INTO [schmond].[dbo].[Class] ([ClassId], [ClassName], [ClassNameEN]) VALU
 	(3, 'Hexenmeister',	'Warlock'),
 	(4, 'Schurke',		'Rogue'),
 	(5, 'Druide',		'Druid'),
-	(6, 'Jäger',		'Hunter'),
+	(6, 'JÃ¤ger',		'Hunter'),
 	(7, 'Schamane',		'Shaman'),
 	(8, 'Krieger',		'Warrior'),
 	(9, 'Paladin',		'Paladin')
@@ -137,12 +137,14 @@ INSERT INTO [schmond].[dbo].[Spec] ([SpecId], [FK_ClassId], [SpecName], [SpecNam
  (4,  2, 'Frost',				'Frost'),
 
  (7,  3, 'Gebrechen',			'Affliction'),
- (9,  3, 'Dämonologie',			'Demonology'),
- (8,  3, 'Zerstörung',			'Destruction'),
+ (9,  3, 'DÃ¤monologie',			'Demonology'),
+ (8,  3, 'ZerstÃ¶rung',			'Destruction'),
 
- (12, 4, 'Meucheln',			'Assassination'),
- (10, 4, 'Kampf',				'Combat'),
- (11, 4, 'Täuschung',			'Subtlety'),
+ (12, 4, 'Kampf - Dolch',			'Combat/Dagger'),
+ (10, 4, 'Kampf - Schwert',				'Combat/Sword'),
+ (11, 4, 'Blutsturz',			'Hemo'),
+ (28, 4, '30/0/21',			'SealFate-Hemo'),
+ (28, 4, '30/21/0',			'SealFate-Combat'),
  
  (14, 5, 'Gleichgewicht',		'Balance'),
  (13, 5, 'Wilder Kampf',		'Feral'),
@@ -150,10 +152,10 @@ INSERT INTO [schmond].[dbo].[Spec] ([SpecId], [FK_ClassId], [SpecName], [SpecNam
  
  (18, 6, 'Tierherrschaft',		'Beast Mastery'),
  (17, 6, 'Treffsicherheit',		'Marksmanship'),
- (16, 6, 'Überleben',			'Survival'),
+ (16, 6, 'Ãœberleben',			'Survival'),
  
  (21, 7, 'Elementar',			'Elemental'),
- (20, 7, 'Verstärkung',			'Enhancement'),
+ (20, 7, 'VerstÃ¤rkung',			'Enhancement'),
  (19, 7, 'Wiederherstellung',	'Restoration'),
  
  (23, 8, 'Waffen',				'Arms'),
@@ -223,8 +225,8 @@ SET IDENTITY_INSERT [schmond].[dbo].[NeedType] OFF
 
 SET IDENTITY_INSERT [schmond].[dbo].[Priority] ON
 INSERT INTO [schmond].[dbo].[Priority] ([PriorityId], [PriorityName]) VALUES
- (1,	'Höchste'),
- (2,	'Höher'),
+ (1,	'HÃ¶chste'),
+ (2,	'HÃ¶her'),
  (3,	'Hoch'),
  (4,	'Mittel-Hoch'),
  (5,	'Mittel'),
