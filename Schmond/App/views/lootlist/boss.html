@@ -2,13 +2,51 @@
 	<div class="col s12" ng-repeat="item in lootlist.items">
 		<div class="card">
 			<div class="card-content">
-				<div class="card-title grey-text text-darken-3">{{ item.name }}</div>
+				<div class="card-title grey-text text-darken-3">
+					{{ item.name }}
+					<a class="right" ng-click="lootlist.show(item.id)"><i class="material-icons">&#xE5D4;</i></a>
+				</div>
 				<table>
 					<tr>
 						<th></th>
 						<th ng-repeat="needType in lootlist.needTypes">{{ needType.name }}</th>
 					</tr>
 				</table>
+
+				<!-- config modal -->
+				<div class="modal modal-fixed-footer" id="config-{{ item.id }}" style="height: 350px;">
+					<form ng-submit="saveAvailablity()">
+						<nav class="top-nav red darken-2 hide-on-med-and-up">
+							<div class="container">
+								<div class="nav-wrapper">
+									<a ng-click="reset()" class="button-collapse btn-flat white-text modal-close">
+										<i class="material-icons">&#xE5C4;</i>
+									</a>
+									<button type="submit" class="button-collapse right btn-flat white-text">
+										<i class="material-icons">&#xE163;</i>
+									</button>
+									<span class="brand-logo">Verfügbarkeit</span>
+								</div>
+							</div>
+						</nav>
+						<div class="progress hide-on-med-and-up ng-hide" ng-show="loading">
+							<div class="indeterminate"></div>
+						</div>
+						<div class="modal-content">
+							<h5 class="hide-on-small-only">Verfügbarkeit</h5>
+							<div class="row">
+								<p class="col s12" ng-repeat="entry in lootlist.specs">
+									<input name="race.faction.id" ng-model="race.faction.id" type="checkbox" id="faction-{{ entry.id }}" value="{{ entry.id }}" />
+									<label for="faction-{{ entry.id }}">{{ entry.name }}</label>
+								</p>
+							</div>
+						</div>
+						<div class="modal-footer hide-on-small-only">
+							<button type="submit" class="btn-flat modal-action">Ok</button>
+							<a ng-click="reset()" class="btn-flat modal-action modal-close">Abbrechen</a>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

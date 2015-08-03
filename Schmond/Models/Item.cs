@@ -19,6 +19,8 @@ namespace Schmond.Models
 		[JsonIgnore]
 		public virtual ICollection<Boss> DroppedBy { get; set; }
 
+		public virtual ICollection<Spec> AvailableFor { get; set; }
+
 		public override string ToString()
 		{
 			return Name;

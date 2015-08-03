@@ -37,6 +37,12 @@ namespace Schmond
 																 .Map(m => m.ToTable("ItemBossSetting")
 																	 .MapLeftKey("FK_BossId")
 																	 .MapRightKey("FK_ItemId"));
+
+			modelBuilder.Entity<Spec>().HasMany<Item>(s => s.AvailableItems)
+																 .WithMany(i => i.AvailableFor)
+																 .Map(m => m.ToTable("Available")
+																	 .MapLeftKey("FK_SpecId")
+																	 .MapRightKey("FK_ItemId"));
 		}
 
 		public virtual IDbSet<Char> Chars { get; set; }

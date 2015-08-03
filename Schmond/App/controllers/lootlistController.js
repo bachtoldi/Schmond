@@ -3,7 +3,7 @@
 
 	var app = angular.module('schmond.controllers');
 
-	app.controller('lootlistController', ['$scope', '$rootScope', 'instanceService', 'bossService', 'itemService', 'needTypeService', '$routeParams', function ($scope, $rootScope, instanceService, bossService, itemService, needTypeService, $routeParams) {
+	app.controller('lootlistController', ['$scope', '$rootScope', 'instanceService', 'bossService', 'itemService', 'needTypeService', 'charService', 'authService', 'specService', '$routeParams', function ($scope, $rootScope, instanceService, bossService, itemService, needTypeService, charService, authService, specService, $routeParams) {
 		var vm = this;
 
 		vm.initIndex = function () {
@@ -29,6 +29,19 @@
 
 			needTypeService.getNeedTypes().then(function (response) {
 				vm.needTypes = response;
+			});
+
+			vm.show = function (id) {
+				$('#config-' + id).openModal();
+			}
+
+			// loads specs for configuration
+			charService.getCharById(authService.authentication.mainCharId).then(function(character) {
+				if (character) {
+					specService.getSpecsByClass(character.spec.classId).then(function (specs) {
+						vm.specs = specs;
+					});
+				}
 			});
 		}
 	}]);

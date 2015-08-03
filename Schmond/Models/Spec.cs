@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
@@ -22,6 +24,8 @@ namespace Schmond.Models
 		[JsonIgnore]
 		[ForeignKey("ClassId")]
 		public Class Class { get; set; }
+
+		public virtual ICollection<Item> AvailableItems { get; set; }
 
 		public override string ToString()
 		{
