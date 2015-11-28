@@ -140,11 +140,9 @@ INSERT INTO [schmond].[dbo].[Spec] ([SpecId], [FK_ClassId], [SpecName], [SpecNam
  (9,  3, 'Dämonologie',			'Demonology'),
  (8,  3, 'Zerstörung',			'Destruction'),
 
- (12, 4, 'Kampf - Dolch',			'Combat/Dagger'),
- (10, 4, 'Kampf - Schwert',				'Combat/Sword'),
- (11, 4, 'Blutsturz',			'Hemo'),
- (28, 4, '30/0/21',			'SealFate-Hemo'),
- (28, 4, '30/21/0',			'SealFate-Combat'),
+ (12, 4, 'Meucheln',			'Assassination'),
+ (10, 4, 'Kampf',				'Combat'),
+ (11, 4, 'Täuschung',			'Subtlety'),
  
  (14, 5, 'Gleichgewicht',		'Balance'),
  (13, 5, 'Wilder Kampf',		'Feral'),
